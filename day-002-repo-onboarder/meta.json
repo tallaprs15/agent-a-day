@@ -1,0 +1,19 @@
+{
+  "day": 2,
+  "slug": "repo-onboarder",
+  "title": "Repo Onboarder",
+  "summary": "Onboarding guide for any public GitHub repo, built by a map, research, write pipeline over DeepWiki.",
+  "pattern": "Sequential pipeline (SequentialAgent)",
+  "mcp_servers": [
+    "DeepWiki MCP",
+    "mcp-server-fetch"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-19",
+  "eval": {
+    "args": [
+      "psf/requests"
+    ],
+    "timeout_s": 300
+  }
+}

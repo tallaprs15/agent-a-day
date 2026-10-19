@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Health</title>
+<meta name="description" content="Nightly live evaluation of every Agent a Day agent: pass/fail, latency, tool calls and tokens.">
+<style>
+:root {
+  color-scheme: light;
+  --surface-0: #f4f4f2;
+  --surface-1: #fcfcfb;
+  --border: #e2e1dc;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #7a7974;
+  --series-1: #2a78d6;
+  --grid: #ecebe7;
+  --good: #0ca30c;
+  --critical: #d03b3b;
+  --warning: #fab219;
+  --good-text: #006300;
+  --critical-text: #b02a2a;
+  --warning-text: #8a5a00;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface-0: #121211;
+    --surface-1: #1a1a19;
+    --border: #2e2e2b;
+    --text-primary: #f0efec;
+    --text-secondary: #c3c2b7;
+    --text-muted: #8e8d86;
+    --series-1: #3987e5;
+    --grid: #2a2a27;
+    --good-text: #5fd05f;
+    --critical-text: #f08a8a;
+    --warning-text: #fac35a;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-0: #121211;
+  --surface-1: #1a1a19;
+  --border: #2e2e2b;
+  --text-primary: #f0efec;
+  --text-secondary: #c3c2b7;
+  --text-muted: #8e8d86;
+  --series-1: #3987e5;
+  --grid: #2a2a27;
+  --good-text: #5fd05f;
+  --critical-text: #f08a8a;
+  --warning-text: #fac35a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 32px 16px 64px; }
+header > div { min-width: 0; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 24px; }
+h1 { font-size: 28px; margin: 0; letter-spacing: -0.01em; }
+.sub { color: var(--text-secondary); margin: 4px 0 0; }
+.meta { color: var(--text-muted); font-size: 13px; }
+.meta a, a { color: var(--series-1); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 12px; margin-bottom: 28px; }
+.tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.tile .label { color: var(--text-secondary); font-size: 13px; }
+.tile .value { font-size: 30px; font-weight: 650; letter-spacing: -0.02em; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.tile .hint { color: var(--text-muted); font-size: 12px; }
+h2 { font-size: 18px; margin: 32px 0 12px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(330px, 100%), 1fr)); gap: 14px; }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.card h3 { margin: 0; font-size: 16px; }
+.card h3 a { color: var(--text-primary); text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; }
+.day { color: var(--text-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.pattern { color: var(--text-secondary); font-size: 13px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--border); white-space: nowrap; }
+.pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+.pill.pass { color: var(--good-text); } .pill.pass .dot { background: var(--good); }
+.pill.fail, .pill.error, .pill.timeout { color: var(--critical-text); } .pill.fail .dot, .pill.error .dot, .pill.timeout .dot { background: var(--critical); }
+.pill.no-eval { color: var(--warning-text); } .pill.no-eval .dot { background: var(--warning); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.stat .k { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat .v { font-weight: 600; font-variant-numeric: tabular-nums; }
+.checks { font-size: 13px; color: var(--text-secondary); }
+.chart-box { position: relative; height: 90px; }
+.chart-title { color: var(--text-muted); font-size: 12px; }
+details { font-size: 13px; color: var(--text-secondary); }
+details pre { white-space: pre-wrap; word-break: break-word; background: var(--surface-0); border: 1px solid var(--border); border-radius: 8px; padding: 8px; max-height: 220px; overflow: auto; font-size: 12px; }
+.table-wrap { overflow-x: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { color: var(--text-secondary); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+.empty { color: var(--text-secondary); background: var(--surface-1); border: 1px dashed var(--border); border-radius: 12px; padding: 24px; }
+footer { margin-top: 40px; color: var(--text-muted); font-size: 13px; }
+@media (max-width: 480px) { .stats { grid-template-columns: repeat(2, 1fr); } .tile .value { font-size: 26px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Agent Health</h1>
+      <p class="sub">Every <a href="https://github.com/tallaprs15/agent-a-day">Agent a Day</a> agent, run live every night against a fixed task.</p>
+    </div>
+    <div class="meta" id="meta">Loading…</div>
+  </header>
+
+  <section class="tiles" id="tiles"></section>
+
+  <h2>Agents: latest run</h2>
+  <section class="cards" id="cards"></section>
+
+  <h2>Run history</h2>
+  <div class="table-wrap"><table id="history"><thead></thead><tbody></tbody></table></div>
+
+  <footer>
+    Each run executes the agent's own CLI with <code>--metrics</code>, so these numbers come from the same meter the README shows.
+    Pass = the agent exited 0 and its post-run checks held. Data: <a href="data/history.json">history.json</a>.
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const $ = (s) => document.querySelector(s);
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const fmt = new Intl.NumberFormat("en-AU");
+const STATUS = {
+  pass: ["✓", "Pass"], fail: ["✗", "Fail"], error: ["✗", "Error"],
+  timeout: ["⏱", "Timeout"], "no-eval": ["–", "No eval"],
+};
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pill = (status) => {
+  const [icon, label] = STATUS[status] || ["?", status];
+  return `<span class="pill ${esc(status)}"><span class="dot" aria-hidden="true"></span>${icon} ${label}</span>`;
+};
+const when = (iso) => new Date(iso).toLocaleString("en-AU", { dateStyle: "medium", timeStyle: "short" });
+const shortDate = (iso) => new Date(iso).toLocaleDateString("en-AU", { day: "numeric", month: "short" });
+
+async function load() {
+  let history = [];
+  try {
+    const res = await fetch("data/history.json", { cache: "no-store" });
+    if (res.ok) history = await res.json();
+  } catch (e) { /* first deploy: no data yet */ }
+  if (!history.length) {
+    $("#meta").textContent = "No runs yet";
+    $("#cards").innerHTML = `<div class="empty">The first nightly evaluation hasn't run yet. Trigger it from the repo's Actions tab ("evals" → Run workflow).</div>`;
+    return;
+  }
+  const latest = history[history.length - 1];
+  const results = latest.results;
+  const evaluated = results.filter((r) => r.status !== "no-eval");
+  const passed = evaluated.filter((r) => r.status === "pass");
+  const sum = (k) => evaluated.reduce((a, r) => a + (r.metrics?.[k] || 0), 0);
+  const tokens = sum("prompt_tokens") + sum("output_tokens");
+  const avgLatency = evaluated.length ? sum("elapsed_s") / evaluated.length : 0;
+
+  $("#meta").innerHTML = `Last run ${esc(when(latest.timestamp))} · <a href="https://github.com/tallaprs15/agent-a-day/commit/${esc(latest.sha)}">${esc(latest.sha.slice(0, 7))}</a> · ${history.length} runs recorded`;
+  $("#tiles").innerHTML = [
+    ["Agents passing", `${passed.length}/${evaluated.length}`, results.length - evaluated.length ? `${results.length - evaluated.length} without an eval` : "all agents evaluated"],
+    ["Avg latency", `${avgLatency.toFixed(1)}s`, "per agent run"],
+    ["Tokens, last run", fmt.format(tokens), "input + output, all agents"],
+    ["Tool calls, last run", fmt.format(sum("tool_calls")), "across all agents"],
+  ].map(([l, v, h]) => `<div class="tile"><div class="label">${l}</div><div class="value">${v}</div><div class="hint">${h}</div></div>`).join("");
+
+  $("#cards").innerHTML = results.map((r, i) => {
+    const m = r.metrics || {};
+    const checks = Object.entries(m.checks || {}).filter(([, v]) => typeof v === "boolean")
+      .map(([k, v]) => `${v ? "✓" : "✗"} ${esc(k.replaceAll("_", " "))}`).join(" · ");
+    const tools = Object.entries(m.calls_by_tool || {}).map(([k, v]) => `${esc(k)} ×${v}`).join(", ");
+    return `<article class="card">
+      <div class="card-head">
+        <div><div class="day">Day ${String(r.day).padStart(3, "0")}</div>
+        <h3><a href="https://github.com/tallaprs15/agent-a-day/tree/main/${esc(r.folder)}">${esc(r.title)}</a></h3>
+        <div class="pattern">${esc(r.pattern)}</div></div>
+        ${pill(r.status)}
+      </div>
+      ${r.metrics ? `<div class="stats">
+        <div class="stat"><div class="k">Latency</div><div class="v">${m.elapsed_s?.toFixed(1)}s</div></div>
+        <div class="stat"><div class="k">Tools</div><div class="v">${m.tool_calls}/${m.tool_budget ?? "–"}</div></div>
+        <div class="stat"><div class="k">Tokens</div><div class="v">${fmt.format((m.prompt_tokens || 0) + (m.output_tokens || 0))}</div></div>
+        <div class="stat"><div class="k">Cost</div><div class="v">${m.cost_usd != null ? "$" + m.cost_usd.toFixed(4) : "–"}</div></div>
+      </div>` : ""}
+      ${checks ? `<div class="checks">${checks}</div>` : ""}
+      ${tools ? `<div class="checks">${tools}</div>` : ""}
+      <div><div class="chart-title">Latency over recent runs (seconds)</div><div class="chart-box"><canvas id="lat-${i}" aria-label="Latency trend for ${esc(r.title)}"></canvas></div></div>
+      ${r.stderr_tail ? `<details><summary>Run log (tail)</summary><pre>${esc(r.stderr_tail)}</pre></details>` : ""}
+    </article>`;
+  }).join("");
+
+  const recent = history.slice(-30);
+  results.forEach((r, i) => {
+    const pts = recent.map((run) => {
+      const x = run.results.find((y) => y.slug === r.slug);
+      return { label: shortDate(run.timestamp), y: x?.metrics?.elapsed_s ?? null, status: x?.status };
+    });
+    new Chart(document.getElementById(`lat-${i}`), {
+      type: "line",
+      data: {
+        labels: pts.map((p) => p.label),
+        datasets: [{
+          data: pts.map((p) => p.y),
+          borderColor: css("--series-1"), borderWidth: 2, tension: 0.25, spanGaps: true,
+          pointRadius: pts.length < 2 ? 4 : 0, pointHoverRadius: 5, pointBackgroundColor: css("--series-1"),
+          pointBorderColor: css("--surface-1"), pointBorderWidth: 2,
+        }],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, animation: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => ` ${c.parsed.y?.toFixed(1)}s · ${STATUS[pts[c.dataIndex].status]?.[1] ?? "–"}` } },
+        },
+        scales: {
+          x: { ticks: { color: css("--text-muted"), maxTicksLimit: 4, font: { size: 10 } }, grid: { display: false }, border: { color: css("--grid") } },
+          y: { beginAtZero: true, ticks: { color: css("--text-muted"), maxTicksLimit: 3, font: { size: 10 } }, grid: { color: css("--grid") }, border: { display: false } },
+        },
+      },
+    });
+  });
+
+  const agents = results.map((r) => r);
+  $("#history thead").innerHTML = `<tr><th>Run</th><th>Commit</th><th>Passing</th>${agents.map((a) => `<th>D${String(a.day).padStart(3, "0")} ${esc(a.title)}</th>`).join("")}</tr>`;
+  $("#history tbody").innerHTML = history.slice().reverse().slice(0, 30).map((run) => {
+    const ev = run.results.filter((r) => r.status !== "no-eval");
+    const ok = ev.filter((r) => r.status === "pass").length;
+    return `<tr><td>${esc(when(run.timestamp))}</td><td><a href="https://github.com/tallaprs15/agent-a-day/commit/${esc(run.sha)}">${esc(run.sha.slice(0, 7))}</a></td><td>${ok}/${ev.length}</td>${agents.map((a) => {
+      const x = run.results.find((y) => y.slug === a.slug);
+      if (!x) return "<td>–</td>";
+      const [icon, label] = STATUS[x.status] || ["?", x.status];
+      return `<td>${icon} ${label}${x.metrics?.elapsed_s != null ? ` · ${x.metrics.elapsed_s.toFixed(1)}s` : ""}</td>`;
+    }).join("")}</tr>`;
+  }).join("");
+}
+load();
+</script>
+</body>
+</html>

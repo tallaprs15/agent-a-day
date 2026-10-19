@@ -1,0 +1,19 @@
+{
+  "day": 1,
+  "slug": "arxiv-scout",
+  "title": "arXiv Scout",
+  "summary": "Researches a topic on arXiv and writes a cited engineering brief; rejects hallucinated citations.",
+  "pattern": "Single agent + guardrail callbacks",
+  "mcp_servers": [
+    "arxiv-mcp-server",
+    "mcp-server-fetch"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-18",
+  "eval": {
+    "args": [
+      "speculative decoding for LLM inference"
+    ],
+    "timeout_s": 300
+  }
+}

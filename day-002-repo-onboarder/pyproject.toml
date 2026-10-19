@@ -1,0 +1,25 @@
+[project]
+name = "repo-onboarder"
+version = "0.1.0"
+description = "Day 002: an ADK SequentialAgent that turns any public GitHub repo into an onboarding guide via DeepWiki MCP."
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk>=2.12,<3",
+    "mcp>=1.20",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = [
+    "ignore:\\[EXPERIMENTAL\\]:UserWarning",
+    "ignore:MCPTool class is deprecated:DeprecationWarning",
+    "ignore:SequentialAgent is deprecated:DeprecationWarning",
+]

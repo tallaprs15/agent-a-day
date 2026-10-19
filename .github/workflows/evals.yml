@@ -1,0 +1,66 @@
+name: evals
+
+on:
+  schedule:
+    - cron: "0 21 * * *"   # 8am Melbourne (AEDT), after the 6am build
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Run only day folders starting with (e.g. day-001)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: evals
+  cancel-in-progress: false
+
+jobs:
+  evals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for Gemini key
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          if [ -z "$GOOGLE_API_KEY" ]; then
+            echo "::error::Add a GOOGLE_API_KEY repository secret to run live evals."
+            exit 1
+          fi
+
+      - name: Check out gh-pages into site/
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch origin gh-pages
+            git worktree add site origin/gh-pages
+            git -C site checkout -B gh-pages
+          else
+            git worktree add --orphan -b gh-pages site
+          fi
+
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run agent evals
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_GENAI_USE_VERTEXAI: "FALSE"
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.only }}" ]; then ARGS="--only ${{ github.event.inputs.only }}"; fi
+          python3 scripts/run_evals.py --site site $ARGS
+
+      - name: Publish dashboard
+        run: |
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Evals $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
+          git push origin gh-pages

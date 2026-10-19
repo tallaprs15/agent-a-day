@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+output/
+*.log
+.DS_Store
+.adk/
+brief.md
+brie*.md
+guide.md
