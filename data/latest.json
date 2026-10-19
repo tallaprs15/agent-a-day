@@ -1,5 +1,5 @@
 {
- "timestamp": "2026-10-19T00:21:41+00:00",
+ "timestamp": "2026-10-19T00:30:34+00:00",
  "sha": "de3a426da42f70a901ac4a1de6a3a7745f6c295f",
  "results": [
   {
@@ -13,7 +13,7 @@
    "exit_code": 0,
    "metrics": {
     "passed": true,
-    "elapsed_s": 18.94,
+    "elapsed_s": 17.99,
     "model": "gemini-3.5-flash-lite",
     "model_calls": 6,
     "tool_calls": 5,
@@ -23,16 +23,16 @@
      "get_abstract": 4
     },
     "prompt_tokens": 25932,
-    "output_tokens": 1365,
+    "output_tokens": 1199,
     "cost_usd": null,
     "checks": {
      "citations_verified": true,
      "unverified_ids": []
     },
-    "output_chars": 4659
+    "output_chars": 4016
    },
-   "stderr_tail": "/private/tmp/claude-501/-Users-sri-code-excelerate-source/759d3d2a-5d46-45de-9e2b-b8317e6e2da3/scratchpad/aad-clean/day-001-arxiv-scout/.venv/lib/python3.13/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/private/tmp/claude-501/-Users-sri-code-excelerate-source/759d3d2a-5d46-45de-9e2b-b8317e6e2da3/scratchpad/aad-clean/day-001-arxiv-scout/.venv/lib/python3.13/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\n/private/tmp/claude-501/-Users-sri-code-excelerate-source/759d3d2a-5d46-45de-9e2b-b8317e6e2da3/scratchpad/aad-clean/day-001-arxiv-scout/.venv/lib/python3.13/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/private/tmp/claude-501/-Users-sri-code-excelerate-source/759d3d2a-5d46-45de-9e2b-b8317e6e2da3/scratchpad/aad-clean/day-001-arxiv-scout/.venv/lib/python3.13/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(categories=['cs.CL', 'cs.LG'], query='\"speculative decoding\" OR \"speculative sampling\" ...)\n  \u2192 get_abstract(paper_id='2401.07851')\n  \u2192 get_abstract(paper_id='2402.01528')\n  \u2192 get_abstract(paper_id='2508.15371')\n  \u2192 get_abstract(paper_id='2510.15545')\n\n\u2014 18.9s \u00b7 6 model calls \u00b7 5/12 tool calls {'search_papers': 1, 'get_abstract': 4} \u00b7 25,932 in / 1,365 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
-   "output_excerpt": "# speculative decoding for LLM inference: engineering brief\n\n## TL;DR\n* **Draft-then-verify paradigm**: Speculative decoding accelerates autoregressive LLM generation by employing a lightweight draft model to rapidly generate multiple candidate tokens, which are then validated in parallel by the target model in a single forward pass without sacrificing output quality [arXiv:2401.07851](https://arxiv.org/abs/2401.07851).\n* **Draft model latency dictates speedup**: Language modeling capability does not strongly correlate with speculative decoding performance; draft model latency and hardware efficiency are the primary bottlenecks dictating end-to-end throughput gains [arXiv:2402.01528](https://arxiv.org/abs/2402.01528].\n* **Dynamic and universal adaptations**: Modern approaches transcend rig"
+   "stderr_tail": "Downloading lxml (5.0MiB)\nDownloading cryptography (4.5MiB)\n Downloaded aiohttp\n Downloaded pydantic-core\n Downloaded lxml\n Downloaded cryptography\nInstalled 44 packages in 22ms\nInstalled 45 packages in 22ms\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(sort_by='relevance', categories=['cs.CL', 'cs.LG'], query='\"speculative decoding\" OR \"s...)\n  \u2192 get_abstract(paper_id='2401.07851')\n  \u2192 get_abstract(paper_id='2402.01528')\n  \u2192 get_abstract(paper_id='2508.15371')\n  \u2192 get_abstract(paper_id='2510.15545')\n\n\u2014 18.0s \u00b7 6 model calls \u00b7 5/12 tool calls {'search_papers': 1, 'get_abstract': 4} \u00b7 25,932 in / 1,199 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
+   "output_excerpt": "# Speculative Decoding for LLM Inference: engineering brief\n\n## TL;DR\n- **Draft-then-Verify Paradigm:** Speculative decoding accelerates autoregressive generation by using a lightweight draft model to rapidly propose multiple candidate tokens, which the larger target model then verifies in parallel.\n- **Draft Model Design Trumps Raw Perplexity:** Research shows that draft model speed and hardware efficiency matter far more for overall throughput gains than high language-modeling capabilities or matching vocabulary families.\n- **Adaptive and Universal Enhancements:** Newer frameworks replace rigid drafting lengths with confidence-modulated mechanisms and bridge vocabulary mismatches to let arbitrary off-the-shelf models act as drafters.\n\n## Key papers\n\n| Paper | Core idea | Why it matters f"
   },
   {
    "day": 2,
@@ -45,17 +45,17 @@
    "exit_code": 0,
    "metrics": {
     "passed": true,
-    "elapsed_s": 56.96,
+    "elapsed_s": 58.11,
     "model": "gemini-3.5-flash-lite",
     "model_calls": 8,
     "tool_calls": 5,
-    "tool_budget": 12,
+    "tool_budget": 10,
     "calls_by_tool": {
      "read_wiki_structure": 1,
      "ask_wiki_question": 4
     },
-    "prompt_tokens": 35687,
-    "output_tokens": 1390,
+    "prompt_tokens": 41781,
+    "output_tokens": 2232,
     "cost_usd": null,
     "checks": {
      "repo_available": true,
@@ -64,10 +64,10 @@
      "missing_sections": [],
      "unverified_links": []
     },
-    "output_chars": 2338
+    "output_chars": 3407
    },
-   "stderr_tail": "/private/tmp/claude-501/-Users-sri-code-excelerate-source/759d3d2a-5d46-45de-9e2b-b8317e6e2da3/scratchpad/aad-clean/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\nFailed to configure mTLS using AsyncAuthorizedSession: `auth_request` must either be configured or the external package `aiohttp` must be installed to use the default value.\n/private/tmp/claude-501/-Users-sri-code-excelerate-source/759d3d2a-5d46-45de-9e2b-b8317e6e2da3/scratchpad/aad-clean/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\n/private/tmp/claude-501/-Users-sri-code-excelerate-source/759d3d2a-5d46-45de-9e2b-b8317e6e2da3/scratchpad/aad-clean/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/private/tmp/claude-501/-Users-sri-code-excelerate-source/759d3d2a-5d46-45de-9e2b-b8317e6e2da3/scratchpad/aad-clean/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [mapper] read_wiki_structure(repoName='psf/requests')\nFailed to configure mTLS using AsyncAuthorizedSession: `auth_request` must either be configured or the external package `aiohttp` must be installed to use the default value.\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What is this project, who is it for, and how is the ...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='Where does a new reader start: the main entry points...)\n  \u2192 [researcher] ask_wiki_question(question='How do I set up a development environment, run it, and run the tests?', repoN...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What are the contribution conventions (branching, st...)\n\n\u2014 57.0s \u00b7 8 model calls \u00b7 5/12 tool calls {'read_wiki_structure': 1, 'ask_wiki_question': 4} \u00b7 35,687 in / 1,390 out tokens\n\u2713 All sections present and every repo link was returned by a tool.",
-   "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\nRequests is an elegant and simple HTTP client library for Python (\"HTTP for Humans\u2122\") supporting Python 3.10+ and PyPy. It handles connection pooling, keep-alive, redirects, and encoding detection internally.\n\n## Architecture map\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Core Library | [`src/requests`](https://github.com/psf/requests/blob/HEAD/src/requests) | Core library source code |\n| Documentation | [`docs/`](https://github.com/psf/requests/blob/HEAD/docs/) | Sphinx documentation written in reStructuredText |\n| Test Suite | [`tests/`](https://github.com/psf/requests/blob/HEAD/tests/) | Test suite |\n| External Assets | [`ext/`](https://github.com/psf/requests/blob/HEAD/ext/) | External assets such as README imag"
+   "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [mapper] read_wiki_structure(repoName='psf/requests')\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What is this project, who is it for, and how is the ...)\n  \u2192 [researcher] ask_wiki_question(question='Where does a new reader start: the main entry points and the 3-5 most importa...)\n  \u2192 [researcher] ask_wiki_question(question='How do I set up a development environment, run it, and run the tests?', repoN...)\n  \u2192 [researcher] ask_wiki_question(question='What are the contribution conventions (branching, style, review) and known pi...)\n\n\u2014 58.1s \u00b7 8 model calls \u00b7 5/10 tool calls {'read_wiki_structure': 1, 'ask_wiki_question': 4} \u00b7 41,781 in / 2,232 out tokens\n\u2713 All sections present and every repo link was returned by a tool.",
+   "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\nThe `Requests` library (`psf/requests`) is an open-source HTTP client for Python designed with the philosophy \"HTTP for Humans\u2122\". It provides an intuitive, user-friendly interface for sending HTTP/1.1 requests while abstracting complex protocol details, and is built on top of `urllib3` for developers interacting with web services and APIs.\n\n## Architecture map\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Core Source Library | [`src/requests`](https://github.com/psf/requests/blob/HEAD/src/requests) | Contains the main source code including `__init__.py`, `__version__.py`, `api.py`, `sessions.py`, `models.py`, and `adapters.py`. |\n| Documentation | [`docs`](https://github.com/psf/requests/blob/HEAD/docs) | Sphinx docume"
   }
  ]
 }
