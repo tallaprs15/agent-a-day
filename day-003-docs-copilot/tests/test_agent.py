@@ -20,7 +20,7 @@ from docs_copilot.agent import (
     _truncate_result,
     build_agent,
 )
-from docs_copilot.ledger import RunLedger
+from docs_copilot.ledger import RunLedger, unverified_sources
 
 
 class _Tool:
@@ -75,6 +75,15 @@ def test_after_tool_truncates_and_records_only_what_the_model_sees():
     assert _truncate_result("not a dict") == ("not a dict", False)
 
 
+def test_after_tool_evidence_keeps_urls_followed_by_newlines_matchable():
+    """Context7 puts a newline right after each source URL; JSON-escaping it once broke source checks."""
+    ledger = _ledger()
+    _, after_tool, _ = _make_callbacks(ledger)
+    after_tool(_Tool("query-docs"), {}, None, {"content": [{"type": "text", "text": "Source: https://fastapi.tiangolo.com/tutorial/dependencies/\n\nDeclare"}]})
+    answer = "## Answer\nUse Depends.\n\n## Sources\n- https://fastapi.tiangolo.com/tutorial/dependencies/"
+    assert unverified_sources(answer, ledger) == []
+
+
 def test_question_comes_from_the_message_not_import_time():
     """Two questions in one session: each message rebinds the pipeline."""
     ledger = _ledger()
@@ -84,6 +93,19 @@ def test_question_comes_from_the_message_not_import_time():
     assert ctx.state["question"].startswith("How do I declare") and ledger.question == ctx.state["question"]
     ctx2 = _Ctx(state=ctx.state, text="How do I upload a blob with the Azure Storage SDK?")
     assert resolve(ctx2) is None and "Azure" in ctx2.state["question"] and "Azure" in ledger.question
+
+
+def test_each_question_gets_a_fresh_budget_and_evidence():
+    """`adk web` shares one ledger across messages; a spent budget or old evidence must not carry over."""
+    ledger = _ledger()
+    resolve = _make_pipeline_callbacks(ledger)
+    resolve(_Ctx(text="How do I declare a dependency in FastAPI?"))
+    for _ in range(ledger.max_tool_calls):
+        ledger.record_tool_call("query-docs")
+    ledger.record_evidence("https://fastapi.tiangolo.com/tutorial/dependencies/")
+    resolve(_Ctx(text="How do I read a CSV file with pandas?"))
+    assert ledger.tool_calls == 0 and ledger.calls_by_tool == {} and ledger.evidence == []
+    assert ledger.record_tool_call("query-docs")
 
 
 def test_asks_for_a_question_when_none_given():

@@ -15,7 +15,6 @@ in a tool result. Two public MCP servers supply the docs:
 from __future__ import annotations
 
 import copy
-import json
 import os
 from typing import Any
 
@@ -145,6 +144,17 @@ def _truncate_result(tool_response: Any) -> tuple[Any, bool]:
     return trimmed, changed
 
 
+def _evidence_text(value: Any) -> str:
+    """The plain text of a tool result. Not json.dumps: its escaped "\\n" would glue onto URLs and break matching."""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        return "\n".join(_evidence_text(v) for v in value.values())
+    if isinstance(value, (list, tuple)):
+        return "\n".join(_evidence_text(v) for v in value)
+    return str(value)
+
+
 def _make_pipeline_callbacks(ledger: RunLedger):
     def resolve_question(callback_context):
         """Runs first on every user message: bind this run to the question the user asked."""
@@ -152,7 +162,7 @@ def _make_pipeline_callbacks(ledger: RunLedger):
         if not question:
             return _say(ASK_FOR_QUESTION)  # ends the turn without spending a model call
         callback_context.state[QUESTION_KEY] = question
-        ledger.question = question
+        ledger.start(question)
         return None
 
     return resolve_question
@@ -174,7 +184,7 @@ def _make_callbacks(ledger: RunLedger):
     def after_tool(tool, args, tool_context, tool_response) -> dict | None:
         trimmed, changed = _truncate_result(tool_response)
         # Evidence is what the model actually saw, so the post-run checks cannot be satisfied by text it never read.
-        ledger.record_evidence(json.dumps(trimmed, default=str))
+        ledger.record_evidence(_evidence_text(trimmed))
         return trimmed if changed else None
 
     def after_model(callback_context, llm_response):

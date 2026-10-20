@@ -50,6 +50,16 @@ class RunLedger:
     model_calls: int = 0
     evidence: list[str] = field(default_factory=list)
 
+    def start(self, question: str) -> None:
+        """Begin a new question. `adk web` reuses one ledger for every message, so budget and evidence reset here."""
+        self.question = question
+        self.tool_calls = 0
+        self.calls_by_tool = {}
+        self.prompt_tokens = 0
+        self.output_tokens = 0
+        self.model_calls = 0
+        self.evidence = []
+
     def record_tool_call(self, name: str) -> bool:
         """Count a tool call. Returns False when the budget is exhausted."""
         if self.tool_calls >= self.max_tool_calls:
