@@ -1,0 +1,20 @@
+{
+  "day": 4,
+  "slug": "web-qa-explorer",
+  "title": "Web QA Explorer",
+  "summary": "Explores a web app in a real browser and files a bug report; risky clicks wait for human approval.",
+  "pattern": "Browser agent + human confirmation (require_confirmation)",
+  "mcp_servers": [
+    "Playwright MCP"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-21",
+  "eval": {
+    "args": [
+      "https://demo.playwright.dev/todomvc/",
+      "--focus",
+      "add two todos, complete one, delete one, and check the console and network for defects"
+    ],
+    "timeout_s": 300
+  }
+}
