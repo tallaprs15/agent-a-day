@@ -7,12 +7,13 @@ One production-minded AI agent, built and published every day.
 Every agent is built with **[Google ADK](https://google.github.io/adk-docs/)** on **Gemini**, and gets its tools from **public, free MCP servers**. No custom MCP servers: the point is composing what already exists, well. Each agent folder has an engineering README covering architecture, tool selection, guardrails, cost per run, failure modes and tests.
 
 <!-- index:start -->
-**Agents built so far: 2**
+**Agents built so far: 3**
 
 | Day | Agent | What it does | Pattern | MCP servers |
 |---:|---|---|---|---|
 | 001 | [arXiv Scout](day-001-arxiv-scout/) | Researches a topic on arXiv and writes a cited engineering brief; rejects hallucinated citations. | Single agent + guardrail callbacks | `arxiv-mcp-server` · `mcp-server-fetch` |
 | 002 | [Repo Onboarder](day-002-repo-onboarder/) | Onboarding guide for any public GitHub repo, built by a map, research, write pipeline over DeepWiki. | Sequential pipeline (SequentialAgent) | `DeepWiki MCP` · `mcp-server-fetch` |
+| 003 | [Docs Copilot](day-003-docs-copilot/) | Answers library API questions from live docs; rejects unverified sources and API calls missing from the docs. | Grounded QA + answer verification | `Context7` · `Microsoft Learn MCP` |
 <!-- index:end -->
 
 ## Engineering standards (every agent)
