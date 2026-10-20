@@ -144,5 +144,78 @@
     "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\nThe `Requests` library (`psf/requests`) is an open-source HTTP client for Python designed with the philosophy \"HTTP for Humans\u2122\". It provides an intuitive, user-friendly interface for sending HTTP/1.1 requests while abstracting complex protocol details, and is built on top of `urllib3` for developers interacting with web services and APIs.\n\n## Architecture map\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Core Source Library | [`src/requests`](https://github.com/psf/requests/blob/HEAD/src/requests) | Contains the main source code including `__init__.py`, `__version__.py`, `api.py`, `sessions.py`, `models.py`, and `adapters.py`. |\n| Documentation | [`docs`](https://github.com/psf/requests/blob/HEAD/docs) | Sphinx docume"
    }
   ]
+ },
+ {
+  "timestamp": "2026-10-20T00:06:22+00:00",
+  "sha": "de3a426da42f70a901ac4a1de6a3a7745f6c295f",
+  "results": [
+   {
+    "day": 1,
+    "slug": "arxiv-scout",
+    "title": "arXiv Scout",
+    "pattern": "Single agent + guardrail callbacks",
+    "folder": "day-001-arxiv-scout",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 92.32,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 3,
+     "tool_calls": 2,
+     "tool_budget": 12,
+     "calls_by_tool": {
+      "search_papers": 2
+     },
+     "prompt_tokens": 6534,
+     "output_tokens": 276,
+     "cost_usd": null,
+     "checks": {
+      "citations_verified": true,
+      "unverified_ids": []
+     },
+     "output_chars": 761
+    },
+    "stderr_tail": " Downloaded cryptography\nInstalled 45 packages in 56ms\nInstalled 44 packages in 59ms\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(max_results=5, query='\"speculative decoding\" OR \"speculative sampling\" LLM inference', ...)\narXiv API request HTTP 429; retrying in 2.5s (attempt 1/3)\narXiv API request timed out; retrying in 3.8s (attempt 2/3)\narXiv API request HTTP 429 after 3 attempts\narXiv search rate limited after retries: arXiv is rate limiting this IP (HTTP 429). Please wait 60 seconds before retrying.\n  \u2192 search_papers(query='speculative decoding LLM inference', sort_by='date', categories=['cs.CL'], max_r...)\narXiv API request timed out; retrying in 2.5s (attempt 1/3)\narXiv API request HTTP 429; retrying in 5.5s (attempt 2/3)\narXiv API request timed out after 50.0s (budget: 50.0s)\narXiv search rate limited after retries: arXiv is rate limiting this IP (HTTP 429). Please wait 60 seconds before retrying.\n\n\u2014 92.3s \u00b7 3 model calls \u00b7 2/12 tool calls {'search_papers': 2} \u00b7 6,534 in / 276 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
+    "output_excerpt": "# speculative decoding for LLM inference: engineering brief\n\n## TL;DR\n- The arXiv tools encountered a temporary rate-limit (HTTP 429) during the search queries. \n- As a result, no papers could be retrieved or cited in this session.\n- Per the system instructions, a short honest brief is provided instead of padded or unverified content.\n\n## Key papers       (table: Paper | Core idea | Why it matters for builders)\n*None available due to rate-limiting.*\n\n## Techniques worth trying\n*None available due to rate-limiting.*\n\n## Open problems / caveats\n- Rate limits on public APIs can impede automated literature discovery; caching or retrying with backoff is required in production engineering environments.\n\n## Sources          (bulleted citation links)\n- *None*"
+   },
+   {
+    "day": 2,
+    "slug": "repo-onboarder",
+    "title": "Repo Onboarder",
+    "pattern": "Sequential pipeline (SequentialAgent)",
+    "folder": "day-002-repo-onboarder",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 58.54,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 6,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "read_wiki_structure": 1,
+      "ask_wiki_question": 4,
+      "fetch": 1
+     },
+     "prompt_tokens": 50029,
+     "output_tokens": 2200,
+     "cost_usd": null,
+     "checks": {
+      "repo_available": true,
+      "all_sections_present": true,
+      "links_verified": true,
+      "missing_sections": [],
+      "unverified_links": []
+     },
+     "output_chars": 3254
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [mapper] read_wiki_structure(repoName='psf/requests')\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [researcher] ask_wiki_question(question='What is this project, who is it for, and how is the code organised (top-level...)\n  \u2192 [researcher] ask_wiki_question(question='Where does a new reader start: the main entry points and the 3-5 most importa...)\n  \u2192 [researcher] ask_wiki_question(question='How do I set up a development environment, run it, and run the tests?', repoN...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What are the contribution conventions (branching, st...)\n  \u2192 [researcher] fetch(url='https://raw.githubusercontent.com/psf/requests/main/CONTRIBUTING.md')\n\n\u2014 58.5s \u00b7 9 model calls \u00b7 6/10 tool calls {'read_wiki_structure': 1, 'ask_wiki_question': 4, 'fetch': 1} \u00b7 50,029 in / 2,200 out tokens\n\u2713 All sections present and every repo link was returned by a tool.",
+    "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\nThe `requests` library is a Python HTTP client library designed to make HTTP requests simple and intuitive (\"HTTP for Humans\u2122\"). It is intended for developers interacting with web services and APIs using Python, abstracting complex protocol details on top of `urllib3`.\n\n## Architecture map\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Core Source Code | [`src/requests`](https://github.com/psf/requests/blob/HEAD/src/requests) | Contains core modules like `api.py`, `sessions.py`, `models.py`, `adapters.py`, `utils.py`, `auth.py`, `exceptions.py`, and `structures.py`. |\n| Documentation | [`docs/`](https://github.com/psf/requests/blob/HEAD/docs/) | Holds Sphinx documentation, including `docs/index.rst`, `docs/api.rst`, and"
+   }
+  ]
  }
 ]
