@@ -1,0 +1,20 @@
+{
+  "day": 5,
+  "slug": "hn-digest",
+  "title": "HN Digest",
+  "summary": "Daily Hacker News digest that remembers covered stories in a knowledge graph and never repeats one.",
+  "pattern": "Long-term memory via knowledge graph",
+  "mcp_servers": [
+    "mcp-server-fetch",
+    "server-memory"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-22",
+  "eval": {
+    "args": [
+      "top stories",
+      "--fresh"
+    ],
+    "timeout_s": 300
+  }
+}
