@@ -1,0 +1,18 @@
+{
+  "day": 6,
+  "slug": "meeting-planner",
+  "title": "Meeting Planner",
+  "summary": "Finds meeting slots across time zones and returns a typed plan whose conversions are re-verified.",
+  "pattern": "Structured output (Pydantic output_schema)",
+  "mcp_servers": [
+    "mcp-server-time"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-23",
+  "eval": {
+    "args": [
+      "A 45-minute sync next week between Melbourne, Singapore and Mumbai, working hours 09:00-17:00"
+    ],
+    "timeout_s": 300
+  }
+}
