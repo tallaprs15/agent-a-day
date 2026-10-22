@@ -1,6 +1,6 @@
 {
- "timestamp": "2026-10-21T23:53:54+00:00",
- "sha": "a028007aeed259d3b3d241b426396c768e865858",
+ "timestamp": "2026-10-22T23:51:27+00:00",
+ "sha": "e39583a467a04d0d57121df2f289c9c48ff7f81f",
  "results": [
   {
    "day": 1,
@@ -13,26 +13,26 @@
    "exit_code": 0,
    "metrics": {
     "passed": true,
-    "elapsed_s": 18.34,
+    "elapsed_s": 16.31,
     "model": "gemini-3.5-flash-lite",
     "model_calls": 3,
-    "tool_calls": 5,
+    "tool_calls": 4,
     "tool_budget": 12,
     "calls_by_tool": {
      "search_papers": 1,
-     "get_abstract": 4
+     "get_abstract": 3
     },
-    "prompt_tokens": 11046,
-    "output_tokens": 1132,
+    "prompt_tokens": 10619,
+    "output_tokens": 1177,
     "cost_usd": null,
     "checks": {
      "citations_verified": true,
      "unverified_ids": []
     },
-    "output_chars": 4287
+    "output_chars": 4124
    },
-   "stderr_tail": "Downloading pydantic-core (2.1MiB)\nDownloading lxml (5.0MiB)\n Downloaded aiohttp\n Downloaded pydantic-core\n Downloaded cryptography\n Downloaded lxml\nInstalled 44 packages in 22ms\nInstalled 46 packages in 31ms\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(categories=['cs.CL', 'cs.LG'], max_results=5, query='\"speculative decoding\" OR \"specula...)\n  \u2192 get_abstract(paper_id='2401.07851')\n  \u2192 get_abstract(paper_id='2402.01528')\n  \u2192 get_abstract(paper_id='2508.15371')\n  \u2192 get_abstract(paper_id='2404.08856')\n\n\u2014 18.3s \u00b7 3 model calls \u00b7 5/12 tool calls {'search_papers': 1, 'get_abstract': 4} \u00b7 11,046 in / 1,132 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
-   "output_excerpt": "# Speculative Decoding for LLM Inference: engineering brief\n\n## TL;DR\n- **Draft-and-Verify Paradigm:** Speculative decoding bypasses the memory-bandwidth bottleneck of autoregressive inference by using a fast, smaller draft model to generate candidate tokens in parallel, which are then validated in a single forward pass by the target model.\n- **Drafter Engineering Matters More than Raw Capability:** Language modeling accuracy alone does not dictate draft model success; draft model latency and hardware efficiency dominate performance gains, allowing custom or smaller draft models to yield massive speedups.\n- **Dynamic and Domain-Specific Adaptation:** Emerging techniques replace rigid static draft lengths and uniform verification with confidence-modulated, entropy-aware drafting and special"
+   "stderr_tail": "Downloading pydantic-core (2.1MiB)\nDownloading lxml (5.0MiB)\nDownloading cryptography (4.5MiB)\n Downloaded aiohttp\n Downloaded pydantic-core\n Downloaded cryptography\n Downloaded lxml\nInstalled 44 packages in 43ms\nInstalled 46 packages in 50ms\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(sort_by='relevance', query='\"speculative decoding\" OR \"speculative execution\" LLM infer...)\n  \u2192 get_abstract(paper_id='2203.16487')\n  \u2192 get_abstract(paper_id='2308.04623')\n  \u2192 get_abstract(paper_id='2406.02532')\n\n\u2014 16.3s \u00b7 3 model calls \u00b7 4/12 tool calls {'search_papers': 1, 'get_abstract': 3} \u00b7 10,619 in / 1,177 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
+   "output_excerpt": "# Speculative Decoding for LLM Inference: engineering brief\n\n## TL;DR\n- **Draft-then-verify loop:** Speculative decoding pairs a small, fast draft model with a large target model, generating multiple candidate tokens in parallel via the draft model and validating/accepting them in a single forward pass of the target model without altering output distribution.\n- **Hardware & batching adaptation:** Modern variants adapt this paradigm for specific constraints\u2014such as staged multi-stage pipelines or tree-based generation for low-batch on-device scenarios, and massively parallel execution (`SpecExec`) for memory-offloaded consumer hardware.\n- **Zero-quality-loss acceleration:** Because acceptance/rejection criteria preserve the exact target model probability distribution, builders achieve subst"
   },
   {
    "day": 2,
@@ -45,7 +45,7 @@
    "exit_code": 0,
    "metrics": {
     "passed": true,
-    "elapsed_s": 56.93,
+    "elapsed_s": 58.69,
     "model": "gemini-3.5-flash-lite",
     "model_calls": 8,
     "tool_calls": 5,
@@ -54,8 +54,8 @@
      "read_wiki_structure": 1,
      "ask_wiki_question": 4
     },
-    "prompt_tokens": 38458,
-    "output_tokens": 1694,
+    "prompt_tokens": 40063,
+    "output_tokens": 2308,
     "cost_usd": null,
     "checks": {
      "repo_available": true,
@@ -64,10 +64,10 @@
      "missing_sections": [],
      "unverified_links": []
     },
-    "output_chars": 2654
+    "output_chars": 3662
    },
-   "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [mapper] read_wiki_structure(repoName='psf/requests')\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [researcher] ask_wiki_question(question='What is this project, who is it for, and how is the code organised (top-level...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='Where does a new reader start: the main entry points...)\n  \u2192 [researcher] ask_wiki_question(question='How do I set up a development environment, run it, and run the tests?', repoN...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What are the contribution conventions (branching, st...)\n\n\u2014 56.9s \u00b7 8 model calls \u00b7 5/10 tool calls {'read_wiki_structure': 1, 'ask_wiki_question': 4} \u00b7 38,458 in / 1,694 out tokens\n\u2713 All sections present and every repo link was returned by a tool.",
-   "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\nRequests is an open-source Python HTTP client library designed to simplify making HTTP requests for humans, built on top of `urllib3` for low-level HTTP operations. It officially supports Python 3.10+ and aims to provide an intuitive, user-friendly API for web services and APIs.\n\n## Architecture map\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Core Source Code | https://github.com/psf/requests/blob/HEAD/src/requests/ | Contains core modules (`__init__.py`, `api.py`, `sessions.py`, `models.py`, `adapters.py`, `auth.py`, `utils.py`, `exceptions.py`, `structures.py`). |\n| Documentation | https://github.com/psf/requests/blob/HEAD/docs/ | Contains project documentation written in reStructuredText (`index.rst`, `user/`, `co"
+   "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [mapper] read_wiki_structure(repoName='psf/requests')\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What is this project, who is it for, and how is the ...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='Where does a new reader start: the main entry points...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='How do I set up a development environment, run it, a...)\n  \u2192 [researcher] ask_wiki_question(question='What are the contribution conventions (branching, style, review) and known pi...)\n\n\u2014 58.7s \u00b7 8 model calls \u00b7 5/10 tool calls {'read_wiki_structure': 1, 'ask_wiki_question': 4} \u00b7 40,063 in / 2,308 out tokens\n\u2713 All sections present and every repo link was returned by a tool.",
+   "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\nThe **Requests** library is a Python HTTP client designed for making HTTP/1.1 requests with a simple and intuitive interface. It handles complex protocol details internally and relies on `urllib3` for low-level network operations, supporting Python 3.10+ and PyPy.\n\n## Architecture map\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Core Source | [https://github.com/psf/requests/blob/HEAD/src/requests](https://github.com/psf/requests/blob/HEAD/src/requests) | Core package containing entry points, models, sessions, adapters, and utility modules. |\n| Documentation | [https://github.com/psf/requests/blob/HEAD/docs](https://github.com/psf/requests/blob/HEAD/docs) | Sphinx reStructuredText documentation, user guides, API refer"
   },
   {
    "day": 3,
@@ -80,7 +80,7 @@
    "exit_code": 0,
    "metrics": {
     "passed": true,
-    "elapsed_s": 11.35,
+    "elapsed_s": 11.93,
     "model": "gemini-3.5-flash-lite",
     "model_calls": 4,
     "tool_calls": 2,
@@ -89,8 +89,8 @@
      "microsoft_docs_search": 1,
      "microsoft_code_sample_search": 1
     },
-    "prompt_tokens": 20889,
-    "output_tokens": 1064,
+    "prompt_tokens": 20972,
+    "output_tokens": 925,
     "cost_usd": null,
     "checks": {
      "answered_from_docs": true,
@@ -101,10 +101,10 @@
      "unverified_sources": [],
      "ungrounded_calls": []
     },
-    "output_chars": 1179
+    "output_chars": 978
    },
-   "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\nContext7 Documentation MCP Server v4.4.4 running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [researcher] microsoft_docs_search(query='upload local file to Azure Blob Storage Python SDK azure-storage-blob')\n  \u2192 [researcher] microsoft_code_sample_search(language='python', query='upload_blob azure-storage-blob')\nnpm notice\nnpm notice New major version of npm available! 10.9.9 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n\n\u2014 11.3s \u00b7 4 model calls \u00b7 2/6 tool calls {'microsoft_docs_search': 1, 'microsoft_code_sample_search': 1} \u00b7 20,889 in / 1,064 out tokens\n\u2713 Sections present, every source was returned by a tool, and every API call appears in the docs.",
-   "output_excerpt": "## Answer\nTo upload a local file to Azure Blob Storage using the Python SDK (`azure-storage-blob`), you can instantiate a `BlobClient` using a connection string or a storage URL with credentials (such as `DefaultAzureCredential`), open your local file in binary read mode (`\"rb\"`), and then call the `upload_blob` method. \n\nHere is an example using a connection string:\n\n```python\nfrom azure.storage.blob import BlobClient\n\nblob = BlobClient.from_connection_string(conn_str=\"<connection_string>\", container_name=\"mycontainer\", blob_name=\"my_blob\")\n\nwith open(\"./SampleSource.txt\", \"rb\") as data:\n    blob.upload_blob(data)\n```\n\n## Version notes\n- **Library Version**: `azure-storage-blob` (also uses `azure.identity` for credential-based authentication).\n- Deprecations or caveats: none stated.\n\n## S"
+   "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\nContext7 Documentation MCP Server v4.4.4 running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [researcher] microsoft_docs_search(query='upload local file azure blob storage python sdk')\n  \u2192 [researcher] microsoft_code_sample_search(query='upload_blob upload local file azure storage blob', language='python')\nnpm notice\nnpm notice New major version of npm available! 10.9.9 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n\n\u2014 11.9s \u00b7 4 model calls \u00b7 2/6 tool calls {'microsoft_docs_search': 1, 'microsoft_code_sample_search': 1} \u00b7 20,972 in / 925 out tokens\n\u2713 Sections present, every source was returned by a tool, and every API call appears in the docs.",
+   "output_excerpt": "## Answer\nTo upload a local file to Azure Blob Storage using the Python SDK, you can create a `BlobClient` using either your storage account URL with credentials or a connection string. Then, open the local file in binary read mode (`\"rb\"`) and call the `upload_blob` method on the client object. \n\nHere is an example using a connection string:\n\n```python\nfrom azure.storage.blob import BlobClient\n\nblob = BlobClient.from_connection_string(\n    conn_str=\"<connection_string>\", \n    container_name=\"mycontainer\", \n    blob_name=\"my_blob\"\n)\n\nwith open(\"./SampleSource.txt\", \"rb\") as data:\n    blob.upload_blob(data)\n```\n\n## Version notes\nnone stated\n\n## Sources\n- https://learn.microsoft.com/azure/developer/python/sdk/examples/azure-sdk-example-storage-use\n- https://learn.microsoft.com/python/api/ove"
   },
   {
    "day": 4,
@@ -117,21 +117,21 @@
    "exit_code": 0,
    "metrics": {
     "passed": true,
-    "elapsed_s": 19.84,
+    "elapsed_s": 25.12,
     "model": "gemini-3.5-flash-lite",
-    "model_calls": 14,
-    "tool_calls": 9,
+    "model_calls": 13,
+    "tool_calls": 10,
     "tool_budget": 14,
     "calls_by_tool": {
      "browser_navigate": 1,
+     "browser_console_messages": 1,
      "browser_snapshot": 3,
      "browser_type": 2,
      "browser_click": 1,
-     "browser_console_messages": 1,
-     "browser_network_requests": 1
+     "browser_network_requests": 2
     },
-    "prompt_tokens": 60804,
-    "output_tokens": 570,
+    "prompt_tokens": 63976,
+    "output_tokens": 585,
     "cost_usd": null,
     "checks": {
      "sections_present": true,
@@ -143,28 +143,20 @@
      "unverified_pages": [],
      "approvals": [
       {
-       "action": "browser_click(Delete button for todo 'Pay bills' e36)",
+       "action": "browser_click(Delete button for todo 'Walk the dog' e36)",
        "decision": "declined"
       },
       {
-       "action": "browser_click(Delete button (cross) for todo 'Pay bills' e33)",
-       "decision": "declined"
-      },
-      {
-       "action": "browser_click(List item for Pay bills e33)",
-       "decision": "declined"
-      },
-      {
-       "action": "browser_click(x text for todo Pay bills e34)",
+       "action": "browser_click(Delete button for todo 'Buy milk' e37)",
        "decision": "declined"
       }
      ],
      "blocked": []
     },
-    "output_chars": 1286
+    "output_chars": 1246
    },
-   "stderr_tail": "  \u2192 browser_type(target='e8', text='Buy milk', element='textbox \"What needs to be done?\"', submit=True)\n  \u2192 browser_snapshot()\n  \u2192 browser_type(submit=True, element='textbox \"What needs to be done?\"', target='e8', text='Pay bills')\n  \u2192 browser_snapshot()\n  \u2192 browser_click(target='e21', element=\"Toggle Todo for 'Buy milk'\")\n  \u2192 browser_click(target='e36', element=\"Delete button for todo 'Pay bills'\")\n/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.TOOL_CONFIRMATION is enabled.\n  check_feature_enabled()\n  \u2717 declined (no approval given): browser_click(target='e36', element=\"Delete button for todo 'Pay bills'\")\n  \u2192 browser_click(target='e33', element=\"Delete button (cross) for todo 'Pay bills'\")\n  \u2717 declined (no approval given): browser_click(target='e33', element=\"Delete button (cross) for todo 'Pay bills'\")\n  \u2192 browser_click(element='List item for Pay bills', target='e33')\n  \u2717 declined (no approval given): browser_click(element='List item for Pay bills', target='e33')\n  \u2192 browser_click(target='e34', element='x text for todo Pay bills')\n  \u2717 declined (no approval given): browser_click(target='e34', element='x text for todo Pay bills')\n  \u2192 browser_console_messages(level='error')\n  \u2192 browser_network_requests(static=True)\n\n\u2014 19.8s \u00b7 14 model calls \u00b7 9/14 tool calls {'browser_navigate': 1, 'browser_snapshot': 3, 'browser_type': 2, 'browser_click': 1, 'browser_console_messages': 1, 'browser_network_requests': 1} \u00b7 60,804 in / 570 out tokens\n\u2713 Sections present, every quote came from a tool result, and no risky action ran unapproved.",
-   "output_excerpt": "## Summary\nTested the TodoMVC React demo app by adding two todos (\"Buy milk\", \"Pay bills\"), completing one (\"Buy milk\"), and attempting to delete one (\"Pay bills\"). Found a minor console error regarding a missing favicon resource.\n\n## Findings\n### BUG-1 \u00b7 Missing favicon resource (404 error)\n- **Severity:** low\n- **Steps:** 1. Navigate to https://demo.playwright.dev/todomvc/\n- **Expected / actual:** Expected all requested resources to load successfully / favicon.ico returned a 404 error.\n- **Evidence:** `[ERROR] Failed to load resource: the server responded with a status of 404 () @ https://demo.playwright.dev/favicon.ico:0`\n\n## Coverage\n- **Pages visited:** https://demo.playwright.dev/todomvc/\n- **Actions exercised:** Added two todos (\"Buy milk\", \"Pay bills\"), completed one todo (\"Buy mil"
+   "stderr_tail": "  return self._build_declaration(fenced=False)\n  \u2192 browser_navigate(url='https://demo.playwright.dev/todomvc/')\n  \u2192 browser_console_messages(level='error', all=True)\n  \u2192 browser_snapshot(boxes=True)\n  \u2192 browser_type(element='textbox \"What needs to be done?\"', submit=True, target='e8', text='Buy milk')\n  \u2192 browser_type(text='Walk the dog', submit=True, target='e8', element='textbox \"What needs to be done?\"')\n  \u2192 browser_snapshot(boxes=True)\n  \u2192 browser_click(element=\"Toggle Todo for 'Buy milk'\", target='e21')\n  \u2192 browser_snapshot(boxes=True)\n  \u2192 browser_click(target='e36', element=\"Delete button for todo 'Walk the dog'\")\n/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.TOOL_CONFIRMATION is enabled.\n  check_feature_enabled()\n  \u2717 declined (no approval given): browser_click(target='e36', element=\"Delete button for todo 'Walk the dog'\")\n  \u2192 browser_click(element=\"Delete button for todo 'Buy milk'\", target='e37')\n  \u2717 declined (no approval given): browser_click(element=\"Delete button for todo 'Buy milk'\", target='e37')\n  \u2192 browser_network_requests(static=False)\n  \u2192 browser_network_requests(static=True)\n\n\u2014 25.1s \u00b7 13 model calls \u00b7 10/14 tool calls {'browser_navigate': 1, 'browser_console_messages': 1, 'browser_snapshot': 3, 'browser_type': 2, 'browser_click': 1, 'browser_network_requests': 2} \u00b7 63,976 in / 585 out tokens\n\u2713 Sections present, every quote came from a tool result, and no risky action ran unapproved.",
+   "output_excerpt": "## Summary\nTested the TodoMVC React demo application by navigating to the page, adding two todos (\"Buy milk\" and \"Walk the dog\"), completing one todo, and checking the console and network requests for defects. Found a 404 error for `favicon.ico`.\n\n## Findings\n### BUG-1 \u00b7 404 Not Found for favicon.ico\n- **Severity:** low\n- **Steps:** Navigate to `https://demo.playwright.dev/todomvc/`\n- **Expected / actual:** Resource loads successfully (200 OK) / Resource returns a 404 Not Found error\n- **Evidence:** `[ERROR] Failed to load resource: the server responded with a status of 404 () @ https://demo.playwright.dev/favicon.ico:0`\n\n## Coverage\n- **Pages visited:** https://demo.playwright.dev/todomvc/\n- **Actions exercised:** \n  - Added two todos (\"Buy milk\", \"Walk the dog\") via textbox input and pre"
   },
   {
    "day": 5,
@@ -188,8 +180,8 @@
      "create_entities": 1,
      "create_relations": 1
     },
-    "prompt_tokens": 30276,
-    "output_tokens": 1830,
+    "prompt_tokens": 30296,
+    "output_tokens": 1766,
     "cost_usd": null,
     "checks": {
      "sections_present": true,
@@ -205,10 +197,46 @@
      "known_before": 0,
      "stories_in_digest": 5
     },
-    "output_chars": 1753
+    "output_chars": 1686
    },
-   "stderr_tail": "Installed 46 packages in 17ms\nnpm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@modelcontextprotocol/server-memory@2.0.0',\nnpm warn EBADENGINE   required: { node: '>=24' },\nnpm warn EBADENGINE   current: { node: 'v22.23.3', npm: '10.9.9' }\nnpm warn EBADENGINE }\nKnowledge Graph MCP Server running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 fetch(url='https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRe...)\nHTTP Request: GET https://hn.algolia.com/robots.txt \"HTTP/1.1 404 Not Found\"\nHTTP Request: GET https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRetrieve=title,url,points,num_comments,objectID&attributesToHighlight=none \"HTTP/1.1 200 OK\"\n  \u2192 open_nodes(names=['hn-50180873', 'hn-50177916', 'hn-50182987', 'hn-50184586', 'hn-50181114', 'hn-5...)\n  \u2192 create_entities(entities=[{'name': 'hn-50180873', 'entityType': 'hn_story', 'observations': ['title: PH...)\n  \u2192 create_relations(relations=[{'relationType': 'about', 'from': 'hn-50180873', 'to': 'topic-programming'},...)\n\n\u2014 9.3s \u00b7 5 model calls \u00b7 4/8 tool calls {'fetch': 1, 'open_nodes': 1, 'create_entities': 1, 'create_relations': 1} \u00b7 30,276 in / 1,830 out tokens\n\u2713 5 new stories, all links returned by a tool, none repeated (memory held 0 before), all saved.",
-   "output_excerpt": "# Hacker News digest \u00b7 2026-10-21\n## Stories\n1. **[PHP 8.2.35](https://github.com/php/php-src/releases/tag/php-8.2.35)** \u2014 PHP 8.2.35 has been released with bug fixes and updates. \u00b7 [955 points, 528 comments](https://news.ycombinator.com/item?id=50180873).\n2. **[Eight Bits of Trust: eMudhra's CA keys cracked in milliseconds](https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/)** \u2014 Researchers demonstrate that eMudhra's certificate authority keys could be cracked in milliseconds, highlighting trust vulnerabilities in certificate authorities. \u00b7 [820 points, 393 comments](https://news.ycombinator.com/item?id=50177916).\n3. **[Today's PHP security release, and how we're strengthening security](https://thephp.foundation/blog/2026/10/21/todays-php-security-relea"
+   "stderr_tail": "Installed 46 packages in 25ms\nnpm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@modelcontextprotocol/server-memory@2.0.0',\nnpm warn EBADENGINE   required: { node: '>=24' },\nnpm warn EBADENGINE   current: { node: 'v22.23.3', npm: '10.9.9' }\nnpm warn EBADENGINE }\nKnowledge Graph MCP Server running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 fetch(url='https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRe...)\nHTTP Request: GET https://hn.algolia.com/robots.txt \"HTTP/1.1 404 Not Found\"\nHTTP Request: GET https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRetrieve=title,url,points,num_comments,objectID&attributesToHighlight=none \"HTTP/1.1 200 OK\"\n  \u2192 open_nodes(names=['hn-50195959', 'hn-50195110', 'hn-50192536', 'hn-50194833', 'hn-50150163', 'hn-5...)\n  \u2192 create_entities(entities=[{'entityType': 'hn_story', 'name': 'hn-50195959', 'observations': ['title: Qu...)\n  \u2192 create_relations(relations=[{'from': 'hn-50195959', 'relationType': 'about', 'to': 'topic-networking'}, ...)\n\n\u2014 9.4s \u00b7 5 model calls \u00b7 4/8 tool calls {'fetch': 1, 'open_nodes': 1, 'create_entities': 1, 'create_relations': 1} \u00b7 30,296 in / 1,766 out tokens\n\u2713 5 new stories, all links returned by a tool, none repeated (memory held 0 before), all saved.",
+   "output_excerpt": "# Hacker News digest \u00b7 2026-10-22\n## Stories     \n1. **[Quad9 (DNS Resolver) to Exit France](https://quad9.net/news/blog/au-revoir-france/)** \u2014 Quad9 announces its departure from operating in France due to local regulatory and operational challenges. \u00b7 [943 points, 343 comments](https://news.ycombinator.com/item?id=50195959).\n2. **[eMudhra to exit global SSL/TLS certificate business](https://emudhra.com/en/press-release/emudhra-to-exit-global-ssl-tls-certificate-business)** \u2014 Certificate authority eMudhra is winding down and exiting its global SSL/TLS certificate operations. \u00b7 [903 points, 617 comments](https://news.ycombinator.com/item?id=50195110).\n3. **[Jailbreaking the Switch 2](https://pepsipu.com/blog/2026-10-switch2-jailbreak-ns2jb/)** \u2014 An early technical look and writeup detailing"
+  },
+  {
+   "day": 6,
+   "slug": "meeting-planner",
+   "title": "Meeting Planner",
+   "pattern": "Structured output (Pydantic output_schema)",
+   "folder": "day-006-meeting-planner",
+   "model": "gemini-3.5-flash-lite",
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 6.21,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 3,
+    "tool_calls": 10,
+    "tool_budget": 10,
+    "calls_by_tool": {
+     "convert_time": 10
+    },
+    "prompt_tokens": 12755,
+    "output_tokens": 1306,
+    "cost_usd": null,
+    "checks": {
+     "schema_valid": true,
+     "plan_complete": true,
+     "verified_by_recompute": true,
+     "zones_checked_by_tool": true,
+     "problems": {},
+     "unchecked_zones": [],
+     "slots": 3
+    },
+    "output_chars": 4111
+   },
+   "stderr_tail": "  build_function_declaration(\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nInstalled 31 packages in 17ms\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n  \u2192 convert_time(target_timezone='Etc/UTC', source_timezone='Australia/Melbourne', time='09:00')\n  \u2192 convert_time(time='09:00', target_timezone='Etc/UTC', source_timezone='Asia/Singapore')\n  \u2192 convert_time(time='09:00', target_timezone='Etc/UTC', source_timezone='Asia/Kolkata')\n  \u2192 convert_time(time='17:00', source_timezone='Australia/Melbourne', target_timezone='Etc/UTC')\n  \u2192 convert_time(time='17:00', source_timezone='Asia/Singapore', target_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Asia/Kolkata', target_timezone='Etc/UTC', time='17:00')\n  \u2192 convert_time(target_timezone='Australia/Melbourne', source_timezone='Etc/UTC', time='03:30')\n  \u2192 convert_time(target_timezone='Asia/Singapore', source_timezone='Etc/UTC', time='03:30')\n  \u2192 convert_time(source_timezone='Etc/UTC', target_timezone='Asia/Kolkata', time='03:30')\n  \u2192 convert_time(target_timezone='Australia/Melbourne', source_timezone='Etc/UTC', time='04:15')\n  \u2192 set_model_response(working_hours_end='17:00', working_hours_start='09:00', no_overlap_reason=None, partici...)\n\n\u2014 6.2s \u00b7 3 model calls \u00b7 10/10 tool calls {'convert_time': 10} \u00b7 12,755 in / 1,306 out tokens\n\u2713 Valid MeetingPlan; 3 slot(s) re-computed from the tz database and inside working hours.",
+   "output_excerpt": "# 45-minute sync\n\n45 minutes \u00b7 working hours 09:00-17:00 local \u00b7 Melbourne (Australia/Melbourne), Singapore (Asia/Singapore), Mumbai (Asia/Kolkata)\n\n## Option 1: 2026-10-26 03:30 UTC\n\nThis slot falls comfortably within the working hours of all three locations on Monday next week.\n\n| Who | Local start | Local end |\n|---|---|---|\n| Melbourne (Australia/Melbourne) | 2026-10-26 14:30 | 2026-10-26 15:15 |\n| Singapore (Asia/Singapore) | 2026-10-26 11:30 | 2026-10-26 12:15 |\n| Mumbai (Asia/Kolkata) | 2026-10-26 09:00 | 2026-10-26 09:45 |\n\n## Option 2: 2026-10-27 03:30 UTC\n\nThis slot falls comfortably within the working hours of all three locations on Tuesday next week.\n\n| Who | Local start | Local end |\n|---|---|---|\n| Melbourne (Australia/Melbourne) | 2026-10-27 14:30 | 2026-10-27 15:15 |\n| Sing"
   }
  ]
 }
