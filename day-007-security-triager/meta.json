@@ -1,0 +1,19 @@
+{
+  "day": 7,
+  "slug": "security-triager",
+  "title": "Security Triager",
+  "summary": "Runs Semgrep over a git repo via MCP and triages every finding by exploitability; verdicts are checked against the scan.",
+  "pattern": "Deterministic tool + LLM triage",
+  "mcp_servers": [
+    "semgrep",
+    "mcp-server-git"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-24",
+  "eval": {
+    "args": [
+      "--demo"
+    ],
+    "timeout_s": 300
+  }
+}
