@@ -7,7 +7,7 @@ One production-minded AI agent, built and published every day.
 Every agent is built with **[Google ADK](https://google.github.io/adk-docs/)** on **Gemini**, and gets its tools from **public, free MCP servers**. No custom MCP servers: the point is composing what already exists, well. Each agent folder has an engineering README covering architecture, tool selection, guardrails, cost per run, failure modes and tests.
 
 <!-- index:start -->
-**Agents built so far: 6**
+**Agents built so far: 8**
 
 | Day | Agent | What it does | Pattern | MCP servers |
 |---:|---|---|---|---|
@@ -17,6 +17,8 @@ Every agent is built with **[Google ADK](https://google.github.io/adk-docs/)** o
 | 004 | [Web QA Explorer](day-004-web-qa-explorer/) | Explores a web app in a real browser and files a bug report; risky clicks wait for human approval. | Browser agent + human confirmation (require_confirmation) | `Playwright MCP` |
 | 005 | [HN Digest](day-005-hn-digest/) | Daily Hacker News digest that remembers covered stories in a knowledge graph and never repeats one. | Long-term memory via knowledge graph | `mcp-server-fetch` · `server-memory` |
 | 006 | [Meeting Planner](day-006-meeting-planner/) | Finds meeting slots across time zones and returns a typed plan whose conversions are re-verified. | Structured output (Pydantic output_schema) | `mcp-server-time` |
+| 007 | [Security Triager](day-007-security-triager/) | Runs Semgrep over a git repo via MCP and triages every finding by exploitability; verdicts are checked against the scan. | Deterministic tool + LLM triage | `semgrep` · `mcp-server-git` |
+| 008 | [AWS Architect](day-008-aws-architect/) | Reviews an AWS architecture on cost, security and reliability in parallel, citing the AWS docs it actually read. | Parallel fan-out (ParallelAgent) + merge | `awslabs.aws-documentation-mcp-server` |
 <!-- index:end -->
 
 ## Engineering standards (every agent)
