@@ -1,0 +1,20 @@
+{
+  "day": 9,
+  "slug": "fact-checker",
+  "title": "Fact Checker",
+  "summary": "Verifies claims with verdicts and quoted sources; a critic loop rejects unsupported verdicts until they hold up.",
+  "pattern": "Generator–critic loop (LoopAgent)",
+  "mcp_servers": [
+    "wikipedia-mcp",
+    "duckduckgo-mcp-server"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-26",
+  "eval": {
+    "args": [
+      "Sydney is the capital of Australia.",
+      "Mount Everest is the tallest mountain on Earth measured from base to peak."
+    ],
+    "timeout_s": 300
+  }
+}
