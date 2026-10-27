@@ -1,0 +1,18 @@
+{
+  "day": 11,
+  "slug": "perf-auditor",
+  "title": "Perf Auditor",
+  "summary": "Records a Chrome performance trace and explains Core Web Vitals; every number and rating is checked against the trace.",
+  "pattern": "Tool-heavy diagnostics",
+  "mcp_servers": [
+    "chrome-devtools-mcp"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-28",
+  "eval": {
+    "args": [
+      "https://web.dev"
+    ],
+    "timeout_s": 300
+  }
+}

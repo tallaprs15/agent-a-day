@@ -1,0 +1,24 @@
+[project]
+name = "perf-auditor"
+version = "0.1.0"
+description = "Day 011: an ADK agent that records a Chrome performance trace via Chrome DevTools MCP and explains Core Web Vitals, with every number checked against the trace."
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk>=2.12,<3",
+    "mcp>=1.20",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = [
+    "ignore:\\[EXPERIMENTAL\\]:UserWarning",
+    "ignore:MCPTool class is deprecated:DeprecationWarning",
+]
