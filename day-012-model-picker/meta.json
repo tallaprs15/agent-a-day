@@ -1,0 +1,18 @@
+{
+  "day": 12,
+  "slug": "model-picker",
+  "title": "Model Picker",
+  "summary": "Recommends Hugging Face models for a task under constraints, ranked by a transparent scoring rubric.",
+  "pattern": "Ranking with explicit scoring rubric",
+  "mcp_servers": [
+    "Hugging Face MCP"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-29",
+  "eval": {
+    "args": [
+      "Multilingual sentence embeddings for semantic search, permissive licence, small enough for a laptop CPU"
+    ],
+    "timeout_s": 300
+  }
+}
