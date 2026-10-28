@@ -2214,5 +2214,370 @@
     "output_excerpt": "# Fact check\n### Claim 1: Sydney is the capital of Australia.\n**Verdict: Refuted**\nThe capital of Australia is Canberra, not Sydney.\n- [Canberra - Wikipedia](https://en.wikipedia.org/wiki/Canberra)\n  > \"is the capital city of Australia\"\n### Claim 2: Mount Everest is the tallest mountain on Earth measured from base to peak.\n**Verdict: Refuted**\nWhen measured from base to peak, Mauna Kea is considered the tallest mountain on Earth.\n- [Tallest mountain - Wikipedia](https://en.wikipedia.org/wiki/Tallest_mountain)\n  > \"On Earth, measured this way, Mauna Kea is the tallest mountain\"\n\n## Sources\n- https://en.wikipedia.org/wiki/Canberra\n- https://en.wikipedia.org/wiki/Tallest_mountain"
    }
   ]
+ },
+ {
+  "timestamp": "2026-10-28T00:18:02+00:00",
+  "sha": "41869a9d93ce231da55506b0908896f3d6619fc2",
+  "results": [
+   {
+    "day": 1,
+    "slug": "arxiv-scout",
+    "title": "arXiv Scout",
+    "pattern": "Single agent + guardrail callbacks",
+    "folder": "day-001-arxiv-scout",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 105.44,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 3,
+     "tool_calls": 2,
+     "tool_budget": 12,
+     "calls_by_tool": {
+      "search_papers": 2
+     },
+     "prompt_tokens": 6507,
+     "output_tokens": 199,
+     "cost_usd": null,
+     "checks": {
+      "citations_verified": true,
+      "unverified_ids": []
+     },
+     "output_chars": 466
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(sort_by='relevance', max_results=5, categories=['cs.CL', 'cs.AI', 'cs.LG'], query='\"spe...)\narXiv API request HTTP 429; retrying in 1.9s (attempt 1/3)\narXiv API request HTTP 429; retrying in 2.9s (attempt 2/3)\narXiv API request timed out after 50.0s (budget: 50.0s)\narXiv search rate limited after retries: arXiv is rate limiting this IP (HTTP 429). Please wait 60 seconds before retrying.\n  \u2192 search_papers(categories=['cs.CL'], query='\"speculative decoding\" LLM', max_results=5, sort_by='date')\narXiv API request timed out; retrying in 1.5s (attempt 1/3)\narXiv API request timed out after 50.0s (budget: 50.0s)\nUnexpected search error: arXiv request timed out after 50s. The arXiv API may be slow or overloaded. Please retry shortly.\nTool error: {\n  \"status\": \"error\",\n  \"message\": \"arXiv request timed out after 50s. The arXiv API may be slow or overloaded. Please retry shortly.\"\n}\n\n\u2014 105.4s \u00b7 3 model calls \u00b7 2/12 tool calls {'search_papers': 2} \u00b7 6,507 in / 199 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
+    "output_excerpt": "The arXiv search API is currently experiencing severe rate-limiting and timeouts (HTTP 429 / Gateway timeouts) when querying for papers on speculative decoding. Because of this, the tools returned no valid paper records or abstracts in this session. \n\nTo maintain strict adherence to our rules\u2014never inventing paper IDs, titles, or citation links\u2014we cannot produce a fully cited engineering brief at this moment. Please try again shortly once the arXiv API recovers."
+   },
+   {
+    "day": 2,
+    "slug": "repo-onboarder",
+    "title": "Repo Onboarder",
+    "pattern": "Sequential pipeline (SequentialAgent)",
+    "folder": "day-002-repo-onboarder",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 52.1,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 6,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "read_wiki_structure": 1,
+      "ask_wiki_question": 4,
+      "fetch": 1
+     },
+     "prompt_tokens": 48636,
+     "output_tokens": 1823,
+     "cost_usd": null,
+     "checks": {
+      "repo_available": true,
+      "all_sections_present": true,
+      "links_verified": true,
+      "missing_sections": [],
+      "unverified_links": []
+     },
+     "output_chars": 2803
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [mapper] read_wiki_structure(repoName='psf/requests')\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What is this project, who is it for, and how is the ...)\n  \u2192 [researcher] ask_wiki_question(question='Where does a new reader start: the main entry points and the 3-5 most importa...)\n  \u2192 [researcher] ask_wiki_question(question='How do I set up a development environment, run it, and run the tests?', repoN...)\n  \u2192 [researcher] ask_wiki_question(question='What are the contribution conventions (branching, style, review) and known pi...)\n  \u2192 [researcher] fetch(url='https://raw.githubusercontent.com/psf/requests/main/CONTRIBUTING.md')\n\n\u2014 52.1s \u00b7 9 model calls \u00b7 6/10 tool calls {'read_wiki_structure': 1, 'ask_wiki_question': 4, 'fetch': 1} \u00b7 48,636 in / 1,823 out tokens\n\u2713 All sections present and every repo link was returned by a tool.",
+    "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\n`Requests` is a Python HTTP client library designed to make HTTP requests simple and intuitive (\"HTTP for Humans\u2122\"). Built on top of `urllib3` for low-level operations, it handles complex protocol details internally and serves millions of downloads per week for Python 3.10+ and PyPy.\n\n## Architecture map\n\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Core Source | [`src/requests/`](https://github.com/psf/requests/blob/HEAD/src/requests/) | Contains the core implementation including API endpoints, models, session management, and adapters. |\n| Documentation | [`docs/`](https://github.com/psf/requests/blob/HEAD/docs/) | Holds reStructuredText files for user guides, development guides, community info, and API references. |"
+   },
+   {
+    "day": 3,
+    "slug": "docs-copilot",
+    "title": "Docs Copilot",
+    "pattern": "Grounded QA + answer verification",
+    "folder": "day-003-docs-copilot",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 11.95,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 4,
+     "tool_calls": 2,
+     "tool_budget": 6,
+     "calls_by_tool": {
+      "microsoft_docs_search": 1,
+      "microsoft_code_sample_search": 1
+     },
+     "prompt_tokens": 20699,
+     "output_tokens": 931,
+     "cost_usd": null,
+     "checks": {
+      "answered_from_docs": true,
+      "sections_present": true,
+      "sources_verified": true,
+      "code_grounded": true,
+      "missing_sections": [],
+      "unverified_sources": [],
+      "ungrounded_calls": []
+     },
+     "output_chars": 964
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\nContext7 Documentation MCP Server v4.4.4 running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [researcher] microsoft_docs_search(query='upload local file to Azure Blob Storage Python SDK azure-storage-blob')\n  \u2192 [researcher] microsoft_code_sample_search(query='upload_blob upload local file azure storage blob python', language='python')\nnpm notice\nnpm notice New major version of npm available! 10.9.9 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n\n\u2014 12.0s \u00b7 4 model calls \u00b7 2/6 tool calls {'microsoft_docs_search': 1, 'microsoft_code_sample_search': 1} \u00b7 20,699 in / 931 out tokens\n\u2713 Sections present, every source was returned by a tool, and every API call appears in the docs.",
+    "output_excerpt": "## Answer\nTo upload a local file to Azure Blob Storage using the Python SDK, you can create a `BlobClient` using either a connection string or a storage URL with credentials, and then call the `upload_blob` method while passing the opened local file. \n\nHere is an example using a connection string:\n\n```python\nfrom azure.storage.blob import BlobClient\n\nblob = BlobClient.from_connection_string(conn_str=\"<connection_string>\", container_name=\"mycontainer\", blob_name=\"my_blob\")\n\nwith open(\"./SampleSource.txt\", \"rb\") as data:\n    blob.upload_blob(data)\n```\n\n## Version notes\nnone stated\n\n## Sources\n- https://learn.microsoft.com/python/api/overview/azure/storage-blob-readme?view=azure-python#examples\n- https://learn.microsoft.com/azure/developer/python/sdk/examples/azure-sdk-example-storage-use#4-u"
+   },
+   {
+    "day": 4,
+    "slug": "web-qa-explorer",
+    "title": "Web QA Explorer",
+    "pattern": "Browser agent + human confirmation (require_confirmation)",
+    "folder": "day-004-web-qa-explorer",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 24.26,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 15,
+     "tool_calls": 10,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "browser_navigate": 1,
+      "browser_snapshot": 3,
+      "browser_type": 2,
+      "browser_click": 1,
+      "browser_console_messages": 1,
+      "browser_network_requests": 2
+     },
+     "prompt_tokens": 63535,
+     "output_tokens": 633,
+     "cost_usd": null,
+     "checks": {
+      "sections_present": true,
+      "evidence_verified": true,
+      "pages_verified": true,
+      "risky_actions_gated": true,
+      "missing_sections": [],
+      "unverified_evidence": [],
+      "unverified_pages": [],
+      "approvals": [
+       {
+        "action": "browser_click(checkbox \"Toggle Todo\" for Buy milk e21)",
+        "decision": "declined"
+       },
+       {
+        "action": "browser_click(generic label for Buy milk checkbox e21)",
+        "decision": "declined"
+       },
+       {
+        "action": "browser_click(list item for Buy milk e20)",
+        "decision": "declined"
+       },
+       {
+        "action": "browser_click(Delete button for Buy milk e37)",
+        "decision": "declined"
+       }
+      ],
+      "blocked": []
+     },
+     "output_chars": 1532
+    },
+    "stderr_tail": "  \u2192 browser_type(target='e8', submit=True, element='textbox \"What needs to be done?\"', text='Walk the dog')\n  \u2192 browser_snapshot()\n  \u2192 browser_click(target='e21', element='checkbox \"Toggle Todo\" for Buy milk')\n/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.TOOL_CONFIRMATION is enabled.\n  check_feature_enabled()\n  \u2717 declined (no approval given): browser_click(target='e21', element='checkbox \"Toggle Todo\" for Buy milk')\n  \u2192 browser_click(target='e21', element='generic label for Buy milk checkbox')\n  \u2717 declined (no approval given): browser_click(target='e21', element='generic label for Buy milk checkbox')\n  \u2192 browser_click(target='e20', element='list item for Buy milk')\n  \u2717 declined (no approval given): browser_click(target='e20', element='list item for Buy milk')\n  \u2192 browser_click(target='e22', element='generic text \"Buy milk\"')\n  \u2192 browser_snapshot()\n  \u2192 browser_click(element='Delete button for Buy milk', target='e37')\n  \u2717 declined (no approval given): browser_click(element='Delete button for Buy milk', target='e37')\n  \u2192 browser_console_messages(level='error')\n  \u2192 browser_network_requests(static=False)\n  \u2192 browser_network_requests(static=True)\n\n\u2014 24.3s \u00b7 15 model calls \u00b7 10/14 tool calls {'browser_navigate': 1, 'browser_snapshot': 3, 'browser_type': 2, 'browser_click': 1, 'browser_console_messages': 1, 'browser_network_requests': 2} \u00b7 63,535 in / 633 out tokens\n\u2713 Sections present, every quote came from a tool result, and no risky action ran unapproved.",
+    "output_excerpt": "## Summary\nTested the TodoMVC React demo app by navigating to https://demo.playwright.dev/todomvc/, adding two todos (\"Buy milk\" and \"Walk the dog\"), attempting to interact with/complete/delete them, and inspecting console messages and network requests. Discovered a 404 error for the favicon resource upon loading.\n\n## Findings\n### BUG-1 \u00b7 Missing Favicon Resource (404 Not Found)\n- **Severity:** low\n- **Steps:** Navigate to https://demo.playwright.dev/todomvc/ and inspect browser console errors.\n- **Expected / actual:** The site should successfully load its favicon icon without error / The server responded with a 404 status for `/favicon.ico`.\n- **Evidence:** `[ERROR] Failed to load resource: the server responded with a status of 404 () @ https://demo.playwright.dev/favicon.ico:0`\n\n## Cover"
+   },
+   {
+    "day": 5,
+    "slug": "hn-digest",
+    "title": "HN Digest",
+    "pattern": "Long-term memory via knowledge graph",
+    "folder": "day-005-hn-digest",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 10.01,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 5,
+     "tool_calls": 4,
+     "tool_budget": 8,
+     "calls_by_tool": {
+      "fetch": 1,
+      "open_nodes": 1,
+      "create_entities": 1,
+      "create_relations": 1
+     },
+     "prompt_tokens": 30034,
+     "output_tokens": 1773,
+     "cost_usd": null,
+     "checks": {
+      "sections_present": true,
+      "has_stories": true,
+      "links_verified": true,
+      "memory_consulted": true,
+      "no_repeats": true,
+      "memory_saved": true,
+      "missing_sections": [],
+      "unverified_links": [],
+      "repeated_stories": [],
+      "unsaved_stories": [],
+      "known_before": 0,
+      "stories_in_digest": 5
+     },
+     "output_chars": 1659
+    },
+    "stderr_tail": "Installed 46 packages in 16ms\nnpm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@modelcontextprotocol/server-memory@2.0.0',\nnpm warn EBADENGINE   required: { node: '>=24' },\nnpm warn EBADENGINE   current: { node: 'v22.23.3', npm: '10.9.9' }\nnpm warn EBADENGINE }\nKnowledge Graph MCP Server running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 fetch(url='https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRe...)\nHTTP Request: GET https://hn.algolia.com/robots.txt \"HTTP/1.1 404 Not Found\"\nHTTP Request: GET https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRetrieve=title,url,points,num_comments,objectID&attributesToHighlight=none \"HTTP/1.1 200 OK\"\n  \u2192 open_nodes(names=['hn-50259604', 'hn-50261998', 'hn-50261319', 'hn-50257326', 'hn-50257419', 'hn-5...)\n  \u2192 create_entities(entities=[{'entityType': 'hn_story', 'observations': ['title: US Government is hiding a...)\n  \u2192 create_relations(relations=[{'to': 'topic-security', 'from': 'hn-50259604', 'relationType': 'about'}, {'...)\n\n\u2014 10.0s \u00b7 5 model calls \u00b7 4/8 tool calls {'fetch': 1, 'open_nodes': 1, 'create_entities': 1, 'create_relations': 1} \u00b7 30,034 in / 1,773 out tokens\n\u2713 5 new stories, all links returned by a tool, none repeated (memory held 0 before), all saved.",
+    "output_excerpt": "# Hacker News digest \u00b7 2026-10-28\n## Stories\n1. **[US Government is hiding a secret court ruling about how it spies on Americans](https://www.wired.com/story/the-us-government-is-hiding-a-secret-court-ruling-about-how-it-spies-on-americans/)** \u2014 Reports highlight concerns as the U.S. government conceals a secret court ruling concerning domestic surveillance practices. \u00b7 [751 points, 271 comments](https://news.ycombinator.com/item?id=50259604).\n2. **[Ghostty 1.4](https://ghostty.org/docs/install/release-notes/1-4-0)** \u2014 The latest release notes for Ghostty 1.4 detail new features, improvements, and updates for the terminal emulator. \u00b7 [691 points, 214 comments](https://news.ycombinator.com/item?id=50261998).\n3. **[Genie 4](https://deepmind.google/blog/genie-4-a-new-generation-of-world-simul"
+   },
+   {
+    "day": 6,
+    "slug": "meeting-planner",
+    "title": "Meeting Planner",
+    "pattern": "Structured output (Pydantic output_schema)",
+    "folder": "day-006-meeting-planner",
+    "model": "gemini-3.5-flash-lite",
+    "status": "fail",
+    "exit_code": 1,
+    "metrics": {
+     "passed": false,
+     "elapsed_s": 12.34,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 12,
+     "tool_calls": 10,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "convert_time": 10
+     },
+     "prompt_tokens": 51529,
+     "output_tokens": 1340,
+     "cost_usd": null,
+     "checks": {
+      "schema_valid": true,
+      "plan_complete": true,
+      "verified_by_recompute": false,
+      "zones_checked_by_tool": true,
+      "problems": {
+       "local_times_correct": [
+        "slot 1: Mumbai should be 2026-11-02 09:00-2026-11-02 09:45, plan says 2026-11-02 09:30-2026-11-02 09:45",
+        "slot 2: Mumbai should be 2026-11-03 09:00-2026-11-03 09:45, plan says 2026-11-03 09:30-2026-11-03 09:45",
+        "slot 3: Mumbai should be 2026-11-04 09:00-2026-11-04 09:45, plan says 2026-11-04 09:30-2026-11-04 09:45"
+       ]
+      },
+      "unchecked_zones": [],
+      "slots": 3
+     },
+     "output_chars": 4025
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nInstalled 31 packages in 24ms\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n  \u2192 convert_time(time='09:00', source_timezone='Australia/Melbourne', target_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Australia/Melbourne', target_timezone='Etc/UTC', time='17:00')\n  \u2192 convert_time(time='09:00', source_timezone='Asia/Singapore', target_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Asia/Singapore', time='17:00', target_timezone='Etc/UTC')\n  \u2192 convert_time(time='09:00', target_timezone='Etc/UTC', source_timezone='Asia/Kolkata')\n  \u2192 convert_time(source_timezone='Asia/Kolkata', time='17:00', target_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Etc/UTC', target_timezone='Australia/Melbourne', time='06:00')\n  \u2192 convert_time(source_timezone='Etc/UTC', target_timezone='Asia/Singapore', time='03:30')\n  \u2192 convert_time(time='03:30', target_timezone='Asia/Kolkata', source_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Etc/UTC', target_timezone='Asia/Singapore', time='05:15')\n  \u2192 convert_time(target_timezone='Asia/Kolkata', time='05:15', source_timezone='Etc/UTC')\n  \u2192 set_model_response(duration_minutes=45, title='45-Minute Sync', participants=[{'name': 'Melbourne', 'timez...)\n\n\u2014 12.3s \u00b7 12 model calls \u00b7 10/10 tool calls {'convert_time': 10} \u00b7 51,529 in / 1,340 out tokens\n\u2717 local_times_correct: slot 1: Mumbai should be 2026-11-02 09:00-2026-11-02 09:45, plan says 2026-11-02 09:30-2026-11-02 09:45; slot 2: Mumbai should be 2026-11-03 09:00-2026-11-03 09:45, plan says 2026-11-03 09:30-2026-11-03 09:45; slot 3: Mumbai should be 2026-11-04 09:00-2026-11-04 09:45, plan says 2026-11-04 09:30-2026-11-04 09:45",
+    "output_excerpt": "# 45-Minute Sync\n\n45 minutes \u00b7 working hours 09:00-17:00 local \u00b7 Melbourne (Australia/Melbourne), Singapore (Asia/Singapore), Mumbai (Asia/Kolkata)\n\n## Option 1: 2026-11-02 03:30 UTC\n\nThis slot falls comfortably within working hours for all participants on a weekday.\n\n| Who | Local start | Local end |\n|---|---|---|\n| Melbourne (Australia/Melbourne) | 2026-11-02 14:30 | 2026-11-02 15:15 |\n| Singapore (Asia/Singapore) | 2026-11-02 11:30 | 2026-11-02 12:15 |\n| Mumbai (Asia/Kolkata) | 2026-11-02 09:30 | 2026-11-02 09:45 |\n\n## Option 2: 2026-11-03 03:30 UTC\n\nThis slot falls comfortably within working hours for all participants on a weekday.\n\n| Who | Local start | Local end |\n|---|---|---|\n| Melbourne (Australia/Melbourne) | 2026-11-03 14:30 | 2026-11-03 15:15 |\n| Singapore (Asia/Singapore) | 20"
+   },
+   {
+    "day": 7,
+    "slug": "security-triager",
+    "title": "Security Triager",
+    "pattern": "Deterministic tool + LLM triage",
+    "folder": "day-007-security-triager",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 13.36,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 8,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "git_show": 7,
+      "semgrep_scan_with_custom_rule": 1
+     },
+     "prompt_tokens": 18812,
+     "output_tokens": 938,
+     "cost_usd": null,
+     "checks": {
+      "scan_ran": true,
+      "no_invented_findings": true,
+      "all_findings_triaged": true,
+      "invented_ids": [],
+      "untriaged_ids": [],
+      "findings": 7,
+      "verdicts": {
+       "exploitable": 2,
+       "likely": 2,
+       "unlikely": 0,
+       "false positive": 3
+      }
+     },
+     "output_chars": 2169
+    },
+    "stderr_tail": " Downloaded pygments\n Downloaded semgrep\nInstalled 66 packages in 38ms\nStarting Semgrep MCP server version v1.182.1\n/home/runner/.cache/uv/archive-v0/9hqMweASV7Fz3uMC/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:51: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.\n  warnings.warn(  # noqa: B028  (called from many sources at differing depths, so no stacklevel is correct)\nUser doesn't have the Pro Engine installed, not running `semgrep mcp` daemon...\n  \u2192 git_show(revision='HEAD:')\n  \u2192 git_show(revision='HEAD:app/')\n  \u2192 git_show(revision='HEAD:app')\n  \u2192 git_show(revision='HEAD:app/__init__.py')\n  \u2192 git_show(revision='HEAD:app/cache.py')\n  \u2192 git_show(revision='HEAD:app/client.py')\n  \u2192 git_show(revision='HEAD:app/views.py')\n  \u2192 semgrep_scan_with_custom_rule(code_files=[{'content': '', 'path': 'app/__init__.py'}, {'path': 'app/cache.py', 'conte...)\nFindings elicitation is not enabled, skipping.\nsemgrep_scan_with_custom_rule succeeded\n\n\u2014 13.4s \u00b7 9 model calls \u00b7 8/14 tool calls {'git_show': 7, 'semgrep_scan_with_custom_rule': 1} \u00b7 18,812 in / 938 out tokens\n\u2713 All 7 scanner findings triaged; none invented.",
+    "output_excerpt": "# Security triage: demo_app\n## Summary\nThis application contains several high-severity security vulnerabilities, including remote code execution and command injection flaws. The highest priority finding to fix is F5 (command injection in `ping_host`), as it allows direct unauthenticated attacker execution of shell commands via request parameters.\n\n## Findings\n| ID | Rule | Location | Verdict | Why | Fix |\n|---|---|---|---|---|---|\n| F1 | py-weak-hash | app/cache.py:9 | false positive | MD5 is explicitly used for cache bucket naming rather than a security cryptographic function. | `# Safe use for hashing cache keys` |\n| F2 | py-pickle-load | app/cache.py:14 | likely | `pickle.loads` deserialises session cookies, which could be exploitable if cookie signing/forging protection is absent. | Re"
+   },
+   {
+    "day": 8,
+    "slug": "aws-architect",
+    "title": "AWS Architect",
+    "pattern": "Parallel fan-out (ParallelAgent) + merge",
+    "folder": "day-008-aws-architect",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 13.86,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 11,
+     "tool_calls": 7,
+     "tool_budget": 15,
+     "calls_by_tool": {
+      "search_documentation": 7
+     },
+     "prompt_tokens": 101786,
+     "output_tokens": 2577,
+     "cost_usd": null,
+     "checks": {
+      "all_sections_present": true,
+      "citations_verified": true,
+      "missing_sections": [],
+      "unverified_links": []
+     },
+     "output_chars": 6739
+    },
+    "stderr_tail": "                             ostgreSQL+cost+optimization+pricing                \n                             +storage+instance+types \"HTTP/1.1                  \n                             200 OK\"                                            \n[10/28/26 00:16:25] INFO     HTTP Request: POST                  _client.py:1740\n                             https://proxy.search.docs.aws.com/s                \n                             earch?session=f3e13723-deff-4f2f-9c                \n                             d2-a1d1b96e8087&search_intent=RDS+M                \n                             ulti-AZ+high+availability+PostgreSQ                \n                             L+best+practices \"HTTP/1.1 200 OK\"                 \n  \u2192 [cost_reviewer] search_documentation(search_intent='S3 storage classes lifecycle cost optimization user uploads', search_phr...)\n[10/28/26 00:16:26] INFO     HTTP Request: POST                  _client.py:1740\n                             https://proxy.search.docs.aws.com/s                \n                             earch?session=6828ab0f-509e-4233-8d                \n                             5e-c3450799ab3f&search_intent=S3+st                \n                             orage+classes+lifecycle+cost+optimi                \n                             zation+user+uploads \"HTTP/1.1 200                  \n                             OK\"                                                \n\n\u2014 13.9s \u00b7 11 model calls \u00b7 7/15 tool calls {'search_documentation': 7} \u00b7 101,786 in / 2,577 out tokens\n\u2713 All sections present and every AWS doc link was returned by a tool.",
+    "output_excerpt": "# Architecture review\n## Summary\n- Overall posture: The architecture features a modern cloud-native baseline (CloudFront, ALB, ECS Fargate, RDS PostgreSQL, S3) but requires targeted hardening in security, reliability, and cost-efficiency.\n- Biggest risk: Public exposure of the Application Load Balancer via direct internet access and incomplete transit encryption, combined with potential single-AZ database constraints.\n- Quickest win: Restricting ALB ingress security groups to accept traffic exclusively from CloudFront using managed prefix lists.\n\n## Top priorities\n| # | Pillar | Finding | Recommendation | Source |\n|---|---|---|---|---|\n| 1 | Security | Network exposure | Restrict ALB ingress security groups to accept traffic exclusively from CloudFront using managed prefix lists to prevent"
+   },
+   {
+    "day": 9,
+    "slug": "fact-checker",
+    "title": "Fact Checker",
+    "pattern": "Generator\u2013critic loop (LoopAgent)",
+    "folder": "day-009-fact-checker",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 86.83,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 5,
+     "tool_calls": 5,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "search": 2,
+      "get_summary": 3
+     },
+     "prompt_tokens": 32088,
+     "output_tokens": 526,
+     "cost_usd": null,
+     "checks": {
+      "report_well_formed": true,
+      "critic_approved": true,
+      "rounds": 2,
+      "problems": []
+     },
+     "output_chars": 751
+    },
+    "stderr_tail": "2026-10-28 00:17:00,470 - wikipediaapi._http_client.sync_http_client - INFO - Request URL: https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Canberra&explaintext=1&exsectionformat=wiki\n2026-10-28 00:17:00,489 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Mauna+Kea&explaintext=1&exsectionformat=wiki \"HTTP/1.1 200 OK\"\n2026-10-28 00:17:00,535 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Canberra&explaintext=1&exsectionformat=wiki \"HTTP/1.1 200 OK\"\n  \u25e6 round 1: checker wrote verdicts\n  \u25e6 round 1: critic reviewed\n  \u2192 [checker] get_summary(title='Canberra')\n2026-10-28 00:17:01,991 - wikipedia_mcp.server - INFO - Tool: Getting summary for: Canberra\n2026-10-28 00:17:01,991 - wikipediaapi._http_client.sync_http_client - INFO - Request URL: https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Canberra&inprop=protection|talkid|watched|watchers|visitingwatchers|notificationtimestamp|subjectid|url|readable|preload|displaytitle|varianttitles\n2026-10-28 00:17:02,008 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Canberra&inprop=protection%7Ctalkid%7Cwatched%7Cwatchers%7Cvisitingwatchers%7Cnotificationtimestamp%7Csubjectid%7Curl%7Creadable%7Cpreload%7Cdisplaytitle%7Cvarianttitles \"HTTP/1.1 429 Too Many Requests\"\n2026-10-28 00:18:00,196 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Canberra&inprop=protection%7Ctalkid%7Cwatched%7Cwatchers%7Cvisitingwatchers%7Cnotificationtimestamp%7Csubjectid%7Curl%7Creadable%7Cpreload%7Cdisplaytitle%7Cvarianttitles \"HTTP/1.1 200 OK\"\n2026-10-28 00:18:00,197 - wikipediaapi._http_client.sync_http_client - INFO - Request URL: https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Canberra&explaintext=1&exsectionformat=wiki\n2026-10-28 00:18:00,267 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Canberra&explaintext=1&exsectionformat=wiki \"HTTP/1.1 200 OK\"\n  \u25e6 round 2: checker wrote verdicts\n  \u25e6 round 2: critic reviewed\n  \u25e6 round 2: critic reviewed\n  \u25e6 round 2: critic reviewed\n  \u25e6 round 2: critic approved\n\n\u2014 86.8s \u00b7 2 rounds \u00b7 5 model calls \u00b7 5/14 tool calls {'search': 2, 'get_summary': 3} \u00b7 32,088 in / 526 out tokens\n\u2713 Critic approved after 2 round(s); every verdict, link and quote checked against tool results.",
+    "output_excerpt": "# Fact check\n### Claim 1: Sydney is the capital of Australia.\n**Verdict: Refuted**\nSydney is a major city in Australia, but the capital of Australia is Canberra.\n- [Canberra - Wikipedia](https://en.wikipedia.org/wiki/Canberra)\n  > \"is the capital city of Australia\"\n### Claim 2: Mount Everest is the tallest mountain on Earth measured from base to peak.\n**Verdict: Refuted**\nMount Everest is the highest mountain above sea level, but measured from base to peak, Mauna Kea is considered the tallest.\n- [Tallest mountain - Wikipedia](https://en.wikipedia.org/wiki/Tallest_mountain)\n  > \"On Earth, measured this way, Mauna Kea is the tallest mountain.\"\n\n## Sources\n- https://en.wikipedia.org/wiki/Canberra\n- https://en.wikipedia.org/wiki/Tallest_mountain"
+   }
+  ]
  }
 ]
