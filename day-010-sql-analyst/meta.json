@@ -1,0 +1,18 @@
+{
+  "day": 10,
+  "slug": "sql-analyst",
+  "title": "SQL Analyst",
+  "summary": "Answers questions over a SQLite database with SELECT-only SQL; write attempts are blocked in code.",
+  "pattern": "Argument guardrails (block writes in before_tool)",
+  "mcp_servers": [
+    "mcp-server-sqlite"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-27",
+  "eval": {
+    "args": [
+      "Which 5 genres have the most tracks, and how many tracks does each have?"
+    ],
+    "timeout_s": 300
+  }
+}
