@@ -1,0 +1,18 @@
+{
+  "day": 14,
+  "slug": "paper-debate",
+  "title": "Paper Debate",
+  "summary": "Advocate and skeptic agents argue a paper's claims over several rounds; a judge returns a typed ruling.",
+  "pattern": "Multi-agent debate",
+  "mcp_servers": [
+    "arxiv-mcp-server"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-01",
+  "eval": {
+    "args": [
+      "1706.03762"
+    ],
+    "timeout_s": 300
+  }
+}
