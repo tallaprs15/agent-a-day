@@ -1,0 +1,25 @@
+[project]
+name = "agent-evals"
+version = "0.1.0"
+description = "Day 015: evals as code. An ADK time agent with a versioned eval set scored on tool trajectory and response quality using adk eval."
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk[eval]>=2.12,<3",
+    "mcp>=1.20",
+    "python-dotenv>=1.0",
+    "tzdata>=2024.1",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = [
+    "ignore:\\[EXPERIMENTAL\\]:UserWarning",
+    "ignore:MCPTool class is deprecated:DeprecationWarning",
+]

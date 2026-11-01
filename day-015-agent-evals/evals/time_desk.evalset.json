@@ -1,0 +1,220 @@
+{
+  "eval_set_id": "time_desk",
+  "name": "Time Desk",
+  "description": "Conversions via the time MCP server, plus cases where no tool should be called.",
+  "eval_cases": [
+    {
+      "eval_id": "tokyo_to_kolkata",
+      "conversation": [
+        {
+          "invocation_id": "tokyo_to_kolkata-1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "What is 09:00 in Tokyo in Kolkata time?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "09:00 in Asia/Tokyo is 05:30 in Asia/Kolkata."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {
+                  "source_timezone": "Asia/Tokyo",
+                  "time": "09:00",
+                  "target_timezone": "Asia/Kolkata"
+                },
+                "name": "convert_time"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 0.0
+        }
+      ],
+      "session_input": {
+        "app_name": "agent_evals",
+        "user_id": "eval",
+        "state": {}
+      },
+      "creation_timestamp": 0.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "singapore_to_kathmandu",
+      "conversation": [
+        {
+          "invocation_id": "singapore_to_kathmandu-1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Convert 14:00 Singapore time to Kathmandu time."
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "14:00 in Asia/Singapore is 11:45 in Asia/Kathmandu."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {
+                  "source_timezone": "Asia/Singapore",
+                  "time": "14:00",
+                  "target_timezone": "Asia/Kathmandu"
+                },
+                "name": "convert_time"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 0.0
+        }
+      ],
+      "session_input": {
+        "app_name": "agent_evals",
+        "user_id": "eval",
+        "state": {}
+      },
+      "creation_timestamp": 0.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "dubai_to_karachi",
+      "conversation": [
+        {
+          "invocation_id": "dubai_to_karachi-1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "If it is 18:30 in Dubai, what time is it in Karachi?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "18:30 in Asia/Dubai is 19:30 in Asia/Karachi."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {
+                  "source_timezone": "Asia/Dubai",
+                  "time": "18:30",
+                  "target_timezone": "Asia/Karachi"
+                },
+                "name": "convert_time"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 0.0
+        }
+      ],
+      "session_input": {
+        "app_name": "agent_evals",
+        "user_id": "eval",
+        "state": {}
+      },
+      "creation_timestamp": 0.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "off_topic_no_tools",
+      "conversation": [
+        {
+          "invocation_id": "off_topic_no_tools-1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "What is the capital of France?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "I only help with time zone questions."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 0.0
+        }
+      ],
+      "session_input": {
+        "app_name": "agent_evals",
+        "user_id": "eval",
+        "state": {}
+      },
+      "creation_timestamp": 0.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "missing_zone_asks",
+      "conversation": [
+        {
+          "invocation_id": "missing_zone_asks-1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Convert 15:00 to Tokyo time."
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Which time zone is the 15:00 in?"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 0.0
+        }
+      ],
+      "session_input": {
+        "app_name": "agent_evals",
+        "user_id": "eval",
+        "state": {}
+      },
+      "creation_timestamp": 0.0,
+      "final_session_state": {}
+    }
+  ],
+  "creation_timestamp": 0.0
+}
