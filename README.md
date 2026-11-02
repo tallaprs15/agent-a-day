@@ -7,7 +7,7 @@ One production-minded AI agent, built and published every day.
 Every agent is built with **[Google ADK](https://google.github.io/adk-docs/)** on **Gemini**, and gets its tools from **public, free MCP servers**. No custom MCP servers: the point is composing what already exists, well. Each agent folder has an engineering README covering architecture, tool selection, guardrails, cost per run, failure modes and tests.
 
 <!-- index:start -->
-**Agents built so far: 8**
+**Agents built so far: 13**
 
 | Day | Agent | What it does | Pattern | MCP servers |
 |---:|---|---|---|---|
@@ -19,6 +19,11 @@ Every agent is built with **[Google ADK](https://google.github.io/adk-docs/)** o
 | 006 | [Meeting Planner](day-006-meeting-planner/) | Finds meeting slots across time zones and returns a typed plan whose conversions are re-verified. | Structured output (Pydantic output_schema) | `mcp-server-time` |
 | 007 | [Security Triager](day-007-security-triager/) | Runs Semgrep over a git repo via MCP and triages every finding by exploitability; verdicts are checked against the scan. | Deterministic tool + LLM triage | `semgrep` · `mcp-server-git` |
 | 008 | [AWS Architect](day-008-aws-architect/) | Reviews an AWS architecture on cost, security and reliability in parallel, citing the AWS docs it actually read. | Parallel fan-out (ParallelAgent) + merge | `awslabs.aws-documentation-mcp-server` |
+| 009 | [Fact Checker](day-009-fact-checker/) | Verifies claims with verdicts and quoted sources; a critic loop rejects unsupported verdicts until they hold up. | Generator–critic loop (LoopAgent) | `wikipedia-mcp` · `duckduckgo-mcp-server` |
+| 010 | [SQL Analyst](day-010-sql-analyst/) | Answers questions over a SQLite database with SELECT-only SQL; write attempts are blocked in code. | Argument guardrails (block writes in before_tool) | `mcp-server-sqlite` |
+| 011 | [Perf Auditor](day-011-perf-auditor/) | Records a Chrome performance trace and explains Core Web Vitals; every number and rating is checked against the trace. | Tool-heavy diagnostics | `chrome-devtools-mcp` |
+| 012 | [Model Picker](day-012-model-picker/) | Recommends Hugging Face models for a task under constraints, ranked by a transparent scoring rubric. | Ranking with explicit scoring rubric | `Hugging Face MCP` |
+| 015 | [Agent Evals](day-015-agent-evals/) | A time-zone agent with a versioned eval set scored on tool trajectory and response match via ADK evals. | Evals as code (trajectory + response scoring) | `mcp-server-time` |
 <!-- index:end -->
 
 ## Engineering standards (every agent)
