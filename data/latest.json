@@ -1,5 +1,5 @@
 {
- "timestamp": "2026-10-31T23:55:40+00:00",
+ "timestamp": "2026-11-02T00:14:50+00:00",
  "sha": "2b22e337379871c25e3cc4fc12d0e4beb352155e",
  "results": [
   {
@@ -9,11 +9,30 @@
    "pattern": "Single agent + guardrail callbacks",
    "folder": "day-001-arxiv-scout",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "  File \"/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 152, in _drive\n    return await step\n           ^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_model_call.py\", line 277, in _call_llm_with_tracing\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py\", line 669, in _run_and_handle_error\n    async for response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 397, in run_and_handle_error\n    raise model_error\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 370, in run_and_handle_error\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 381, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 135.98,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 6,
+    "tool_calls": 5,
+    "tool_budget": 12,
+    "calls_by_tool": {
+     "search_papers": 2,
+     "get_abstract": 3
+    },
+    "prompt_tokens": 22017,
+    "output_tokens": 1068,
+    "cost_usd": null,
+    "checks": {
+     "citations_verified": true,
+     "unverified_ids": []
+    },
+    "output_chars": 3801
+   },
+   "stderr_tail": "Installed 44 packages in 26ms\nInstalled 45 packages in 28ms\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(sort_by='relevance', categories=['cs.CL', 'cs.AI', 'cs.LG'], max_results=5, query='\"spe...)\narXiv API request HTTP 429; retrying in 2.9s (attempt 1/3)\narXiv API request HTTP 429; retrying in 5.1s (attempt 2/3)\narXiv API request HTTP 429 after 3 attempts\narXiv search rate limited after retries: arXiv is rate limiting this IP (HTTP 429). Please wait 60 seconds before retrying.\n  \u2192 search_papers(max_results=5, sort_by='relevance', categories=['cs.CL'], query='\"speculative decoding\"')\narXiv API request HTTP 429; retrying in 2.3s (attempt 1/3)\narXiv API request timed out; retrying in 2.0s (attempt 2/3)\n  \u2192 get_abstract(paper_id='2402.01528')\n  \u2192 get_abstract(paper_id='2310.07177')\n  \u2192 get_abstract(paper_id='2503.03434')\n\n\u2014 136.0s \u00b7 6 model calls \u00b7 5/12 tool calls {'search_papers': 2, 'get_abstract': 3} \u00b7 22,017 in / 1,068 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
+   "output_excerpt": "# speculative decoding for LLM inference: engineering brief\n\n## TL;DR\n- **Draft Model Design Matters More Than Raw Capability:** Analysis shows that a draft model's performance in speculative decoding depends heavily on its latency rather than simple language modeling capability. Hardware-efficient draft models can dramatically improve overall throughput.\n- **Adapting to Domain Shifts via Online Updates:** Static draft models suffer in diverse or out-of-domain query contexts; continually updating draft models on observed user queries (via online knowledge distillation) significantly increases token acceptance rates and latency reduction.\n- **Retrieval and Tree-based Fusion Overcomes Domain Gaps:** Combining traditional draft models with retrieval-augmented generation and tree-pruning/fusio"
   },
   {
    "day": 2,
@@ -22,11 +41,34 @@
    "pattern": "Sequential pipeline (SequentialAgent)",
    "folder": "day-002-repo-onboarder",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 152, in _drive\n    return await step\n           ^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_model_call.py\", line 277, in _call_llm_with_tracing\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py\", line 669, in _run_and_handle_error\n    async for response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 397, in run_and_handle_error\n    raise model_error\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 370, in run_and_handle_error\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 381, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 23.1,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 5,
+    "tool_calls": 6,
+    "tool_budget": 10,
+    "calls_by_tool": {
+     "read_wiki_structure": 1,
+     "ask_wiki_question": 4,
+     "fetch": 1
+    },
+    "prompt_tokens": 22927,
+    "output_tokens": 1962,
+    "cost_usd": null,
+    "checks": {
+     "repo_available": true,
+     "all_sections_present": true,
+     "links_verified": true,
+     "missing_sections": [],
+     "unverified_links": []
+    },
+    "output_chars": 2810
+   },
+   "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [mapper] read_wiki_structure(repoName='psf/requests')\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What is this project, who is it for, and how is the ...)\n  \u2192 [researcher] ask_wiki_question(question='Where does a new reader start: the main entry points and the 3-5 most importa...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='How do I set up a development environment, run it, a...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What are the contribution conventions (branching, st...)\n  \u2192 [researcher] fetch(url='https://raw.githubusercontent.com/psf/requests/main/CONTRIBUTING.md')\n\n\u2014 23.1s \u00b7 5 model calls \u00b7 6/10 tool calls {'read_wiki_structure': 1, 'ask_wiki_question': 4, 'fetch': 1} \u00b7 22,927 in / 1,962 out tokens\n\u2713 All sections present and every repo link was returned by a tool.",
+   "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\nThe `Requests` library is a Python HTTP client library designed to simplify HTTP requests following the design philosophy \"HTTP for Humans\u2122\". It automatically manages connection pooling, keep-alive, redirects, and encoding detection, serving as a foundational dependency for over 4 million repositories.\n\n## Architecture map\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Core Source Code | https://github.com/psf/requests/blob/HEAD/src/requests/ | Core library modules including API definitions, models, sessions, adapters, and utility helpers. |\n| Documentation | https://github.com/psf/requests/blob/HEAD/docs/ | reStructuredText documentation files, user guides (`docs/user/`), and developer guidelines. |\n| Test Suite | http"
   },
   {
    "day": 3,
@@ -35,11 +77,35 @@
    "pattern": "Grounded QA + answer verification",
    "folder": "day-003-docs-copilot",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "  File \"/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 152, in _drive\n    return await step\n           ^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_model_call.py\", line 277, in _call_llm_with_tracing\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py\", line 669, in _run_and_handle_error\n    async for response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 397, in run_and_handle_error\n    raise model_error\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 370, in run_and_handle_error\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 381, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 12.03,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 4,
+    "tool_calls": 2,
+    "tool_budget": 6,
+    "calls_by_tool": {
+     "microsoft_docs_search": 1,
+     "microsoft_code_sample_search": 1
+    },
+    "prompt_tokens": 20870,
+    "output_tokens": 1062,
+    "cost_usd": null,
+    "checks": {
+     "answered_from_docs": true,
+     "sections_present": true,
+     "sources_verified": true,
+     "code_grounded": true,
+     "missing_sections": [],
+     "unverified_sources": [],
+     "ungrounded_calls": []
+    },
+    "output_chars": 1545
+   },
+   "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\nContext7 Documentation MCP Server v4.4.4 running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [researcher] microsoft_docs_search(query='upload local file azure blob storage python sdk')\n  \u2192 [researcher] microsoft_code_sample_search(language='python', query='upload_blob upload local file to azure blob storage')\nnpm notice\nnpm notice New major version of npm available! 10.9.9 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n\n\u2014 12.0s \u00b7 4 model calls \u00b7 2/6 tool calls {'microsoft_docs_search': 1, 'microsoft_code_sample_search': 1} \u00b7 20,870 in / 1,062 out tokens\n\u2713 Sections present, every source was returned by a tool, and every API call appears in the docs.",
+   "output_excerpt": "## Answer\nTo upload a local file to Azure Blob Storage using the Python SDK, you can create a `BlobClient` using a connection string or credentials, open your local file in binary read mode (`\"rb\"`), and then call the `upload_blob()` method on the client. \n\nHere is an example using a connection string:\n\n```python\nfrom azure.storage.blob import BlobClient\n\nblob = BlobClient.from_connection_string(conn_str=\"<connection_string>\", container_name=\"mycontainer\", blob_name=\"my_blob\")\n\nwith open(\"./SampleSource.txt\", \"rb\") as data:\n    blob.upload_blob(data)\n```\n\nAlternatively, you can instantiate a `BlobClient` using a storage account URL and Azure credentials:\n\n```python\nimport os\nimport uuid\nfrom azure.identity import DefaultAzureCredential\nfrom azure.storage.blob import BlobClient\n\ncredential "
   },
   {
    "day": 4,
@@ -48,11 +114,62 @@
    "pattern": "Browser agent + human confirmation (require_confirmation)",
    "folder": "day-004-web-qa-explorer",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "  File \"/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 152, in _drive\n    return await step\n           ^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_model_call.py\", line 277, in _call_llm_with_tracing\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py\", line 669, in _run_and_handle_error\n    async for response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 397, in run_and_handle_error\n    raise model_error\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 370, in run_and_handle_error\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 381, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 20.01,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 15,
+    "tool_calls": 9,
+    "tool_budget": 14,
+    "calls_by_tool": {
+     "browser_navigate": 1,
+     "browser_console_messages": 2,
+     "browser_snapshot": 2,
+     "browser_type": 2,
+     "browser_ snapshot:": 1,
+     "browser_network_requests": 1
+    },
+    "prompt_tokens": 65930,
+    "output_tokens": 611,
+    "cost_usd": null,
+    "checks": {
+     "sections_present": true,
+     "evidence_verified": true,
+     "pages_verified": true,
+     "risky_actions_gated": true,
+     "missing_sections": [],
+     "unverified_evidence": [],
+     "unverified_pages": [],
+     "approvals": [
+      {
+       "action": "browser_click(Toggle Todo checkbox for Buy milk e21)",
+       "decision": "declined"
+      },
+      {
+       "action": "browser_click(Toggle Todo checkbox for Buy milk e20)",
+       "decision": "declined"
+      },
+      {
+       "action": "browser_click(Toggle Todo for Buy milk e22)",
+       "decision": "declined"
+      },
+      {
+       "action": "browser_click(Checkbox toggle todo for Buy milk e21)",
+       "decision": "declined"
+      },
+      {
+       "action": "browser_click(Delete button for todo Buy milk e22)",
+       "decision": "declined"
+      }
+     ],
+     "blocked": []
+    },
+    "output_chars": 1489
+   },
+   "stderr_tail": "  - Verify tool is included in agent.tools list\n  - Check for typos in function name\n  \u2192 browser_snapshot(boxes=True)\n  \u2192 browser_click(target='e21', element='Toggle Todo checkbox for Buy milk')\n/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.TOOL_CONFIRMATION is enabled.\n  check_feature_enabled()\n  \u2717 declined (no approval given): browser_click(target='e21', element='Toggle Todo checkbox for Buy milk')\n  \u2192 browser_click(element='Toggle Todo checkbox for Buy milk', target='e20')\n  \u2717 declined (no approval given): browser_click(element='Toggle Todo checkbox for Buy milk', target='e20')\n  \u2192 browser_click(target='e22', element='Toggle Todo for Buy milk')\n  \u2717 declined (no approval given): browser_click(target='e22', element='Toggle Todo for Buy milk')\n  \u2192 browser_click(target='e21', element='Checkbox toggle todo for Buy milk')\n  \u2717 declined (no approval given): browser_click(target='e21', element='Checkbox toggle todo for Buy milk')\n  \u2192 browser_click(target='e22', element='Delete button for todo Buy milk')\n  \u2717 declined (no approval given): browser_click(target='e22', element='Delete button for todo Buy milk')\n  \u2192 browser_network_requests(static=False)\n  \u2192 browser_console_messages(level='error')\n\n\u2014 20.0s \u00b7 15 model calls \u00b7 9/14 tool calls {'browser_navigate': 1, 'browser_console_messages': 2, 'browser_snapshot': 2, 'browser_type': 2, 'browser_ snapshot:': 1, 'browser_network_requests': 1} \u00b7 65,930 in / 611 out tokens\n\u2713 Sections present, every quote came from a tool result, and no risky action ran unapproved.",
+   "output_excerpt": "## Summary\nTested the TodoMVC React application by navigating to the page, adding two todo items (\"Buy milk\" and \"Walk the dog\"), and attempting to complete and delete them. Interactions via clicks were rejected due to tool approval constraints, but two todos were successfully added and inspected. Console and network inspections revealed a 404 error for `favicon.ico`.\n\n## Findings\n### BUG-1 \u00b7 Missing favicon resource (404 Not Found)\n- **Severity:** low\n- **Steps:** Navigate to `https://demo.playwright.dev/todomvc/`\n- **Expected / actual:** Favicon loads successfully / Favicon request returns 404\n- **Evidence:** `Failed to load resource: the server responded with a status of 404 () @ https://demo.playwright.dev/favicon.ico:0`\n\n## Coverage\n- **Pages visited:** `https://demo.playwright.dev/to"
   },
   {
    "day": 5,
@@ -61,11 +178,42 @@
    "pattern": "Long-term memory via knowledge graph",
    "folder": "day-005-hn-digest",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "  File \"/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 152, in _drive\n    return await step\n           ^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_model_call.py\", line 277, in _call_llm_with_tracing\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py\", line 669, in _run_and_handle_error\n    async for response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 397, in run_and_handle_error\n    raise model_error\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 370, in run_and_handle_error\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 381, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 10.49,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 5,
+    "tool_calls": 4,
+    "tool_budget": 8,
+    "calls_by_tool": {
+     "fetch": 1,
+     "open_nodes": 1,
+     "create_entities": 1,
+     "create_relations": 1
+    },
+    "prompt_tokens": 30120,
+    "output_tokens": 1763,
+    "cost_usd": null,
+    "checks": {
+     "sections_present": true,
+     "has_stories": true,
+     "links_verified": true,
+     "memory_consulted": true,
+     "no_repeats": true,
+     "memory_saved": true,
+     "missing_sections": [],
+     "unverified_links": [],
+     "repeated_stories": [],
+     "unsaved_stories": [],
+     "known_before": 0,
+     "stories_in_digest": 5
+    },
+    "output_chars": 1892
+   },
+   "stderr_tail": "npm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@modelcontextprotocol/server-memory@2.0.0',\nnpm warn EBADENGINE   required: { node: '>=24' },\nnpm warn EBADENGINE   current: { node: 'v22.23.4', npm: '10.9.9' }\nnpm warn EBADENGINE }\nInstalled 46 packages in 15ms\nKnowledge Graph MCP Server running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 fetch(url='https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRe...)\nHTTP Request: GET https://hn.algolia.com/robots.txt \"HTTP/1.1 404 Not Found\"\nHTTP Request: GET https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRetrieve=title,url,points,num_comments,objectID&attributesToHighlight=none \"HTTP/1.1 200 OK\"\n  \u2192 open_nodes(names=['hn-50319510', 'hn-50326821', 'hn-50320963', 'hn-50326099', 'hn-50327650', 'hn-5...)\n  \u2192 create_entities(entities=[{'name': 'hn-50319510', 'observations': ['title: HackerTube: YouTube built fr...)\n  \u2192 create_relations(relations=[{'to': 'topic-technology', 'from': 'hn-50319510', 'relationType': 'about'}, ...)\n\n\u2014 10.5s \u00b7 5 model calls \u00b7 4/8 tool calls {'fetch': 1, 'open_nodes': 1, 'create_entities': 1, 'create_relations': 1} \u00b7 30,120 in / 1,763 out tokens\n\u2713 5 new stories, all links returned by a tool, none repeated (memory held 0 before), all saved.",
+   "output_excerpt": "# Hacker News digest \u00b7 2026-11-02\n\n## Stories\n1. **[HackerTube: YouTube built from videos recommended by HN](https://karpathy.bearblog.dev/hacker-tube/)** \u2014 A look at HackerTube, a platform built around videos recommended by Hacker News users. \u00b7 [2223 points, 533 comments](https://news.ycombinator.com/item?id=50319510).\n2. **[Show HN: HackerBooks \u2013 HackerTube, but for books mentioned on HN](https://hackerbooks.org)** \u2014 A new Show HN project introducing HackerBooks, applying the HackerTube concept to books mentioned across the community. \u00b7 [832 points, 166 comments](https://news.ycombinator.com/item?id=50326821).\n3. **[An Italian farmer found some unknown seeds in his attic and planted them](https://www.smithsonianmag.com/science-nature/italian-farmer-found-unknown-seeds-attic-with-nothing-"
   },
   {
    "day": 6,
@@ -74,11 +222,38 @@
    "pattern": "Structured output (Pydantic output_schema)",
    "folder": "day-006-meeting-planner",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
+   "status": "fail",
    "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "  File \"/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 152, in _drive\n    return await step\n           ^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_model_call.py\", line 277, in _call_llm_with_tracing\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py\", line 669, in _run_and_handle_error\n    async for response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 397, in run_and_handle_error\n    raise model_error\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 370, in run_and_handle_error\n    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 381, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "metrics": {
+    "passed": false,
+    "elapsed_s": 4.47,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 2,
+    "tool_calls": 6,
+    "tool_budget": 10,
+    "calls_by_tool": {
+     "convert_time": 6
+    },
+    "prompt_tokens": 6842,
+    "output_tokens": 580,
+    "cost_usd": null,
+    "checks": {
+     "schema_valid": true,
+     "plan_complete": true,
+     "verified_by_recompute": false,
+     "zones_checked_by_tool": true,
+     "problems": {
+      "within_working_hours": [
+       "slot 1: Mumbai Mon 08:45-09:30"
+      ]
+     },
+     "unchecked_zones": [],
+     "slots": 1
+    },
+    "output_chars": 1669
+   },
+   "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/tools/set_model_response_tool.py:272: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  build_function_declaration(\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nInstalled 31 packages in 14ms\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n  \u2192 convert_time(time='09:00', target_timezone='Etc/UTC', source_timezone='Australia/Melbourne')\n  \u2192 convert_time(time='09:00', source_timezone='Asia/Singapore', target_timezone='Etc/UTC')\n  \u2192 convert_time(time='09:00', target_timezone='Etc/UTC', source_timezone='Asia/Kolkata')\n  \u2192 convert_time(time='17:00', target_timezone='Etc/UTC', source_timezone='Australia/Melbourne')\n  \u2192 convert_time(time='17:00', source_timezone='Asia/Singapore', target_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Asia/Kolkata', target_timezone='Etc/UTC', time='17:00')\n  \u2192 set_model_response(title='Sync', participants=[{'timezone': 'Australia/Melbourne', 'name': 'Melbourne'}, {...)\n\n\u2014 4.5s \u00b7 2 model calls \u00b7 6/10 tool calls {'convert_time': 6} \u00b7 6,842 in / 580 out tokens\n\u2717 within_working_hours: slot 1: Mumbai Mon 08:45-09:30",
+   "output_excerpt": "# Sync\n\n45 minutes \u00b7 working hours 09:00-17:00 local \u00b7 Melbourne (Australia/Melbourne), Singapore (Asia/Singapore), Mumbai (Asia/Kolkata)\n\n## Option 1: 2026-11-09 03:15 UTC\n\nThis slot falls outside Mumbai's 09:00 working hours.\n\n| Who | Local start | Local end |\n|---|---|---|\n| Melbourne (Australia/Melbourne) | 2026-11-09 14:15 | 2026-11-09 15:00 |\n| Singapore (Asia/Singapore) | 2026-11-09 11:15 | 2026-11-09 12:00 |\n| Mumbai (Asia/Kolkata) | 2026-11-09 08:45 | 2026-11-09 09:30 |\n\n```json\n{\n  \"needs_clarification\": null,\n  \"title\": \"Sync\",\n  \"duration_minutes\": 45,\n  \"working_hours_start\": \"09:00\",\n  \"working_hours_end\": \"17:00\",\n  \"participants\": [\n    {\n      \"name\": \"Melbourne\",\n      \"timezone\": \"Australia/Melbourne\"\n    },\n    {\n      \"name\": \"Singapore\",\n      \"timezone\": \"Asia/Singap"
   },
   {
    "day": 7,
@@ -87,11 +262,40 @@
    "pattern": "Deterministic tool + LLM triage",
    "folder": "day-007-security-triager",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-007-security-triager/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-007-security-triager/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-007-security-triager/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-007-security-triager/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-007-security-triager/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 14.19,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 9,
+    "tool_calls": 8,
+    "tool_budget": 14,
+    "calls_by_tool": {
+     "git_show": 7,
+     "semgrep_scan_with_custom_rule": 1
+    },
+    "prompt_tokens": 19463,
+    "output_tokens": 1036,
+    "cost_usd": null,
+    "checks": {
+     "scan_ran": true,
+     "no_invented_findings": true,
+     "all_findings_triaged": true,
+     "invented_ids": [],
+     "untriaged_ids": [],
+     "findings": 7,
+     "verdicts": {
+      "exploitable": 3,
+      "likely": 1,
+      "unlikely": 1,
+      "false positive": 2
+     }
+    },
+    "output_chars": 2441
+   },
+   "stderr_tail": " Downloaded pygments\n Downloaded semgrep\nInstalled 66 packages in 24ms\nStarting Semgrep MCP server version v1.182.1\n/home/runner/.cache/uv/archive-v0/FmznQhsEt66owOGk/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:51: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.\n  warnings.warn(  # noqa: B028  (called from many sources at differing depths, so no stacklevel is correct)\nUser doesn't have the Pro Engine installed, not running `semgrep mcp` daemon...\n  \u2192 git_show(revision='HEAD:')\n  \u2192 git_show(revision='HEAD:app/')\n  \u2192 git_show(revision='HEAD:app')\n  \u2192 git_show(revision='HEAD:app/views.py')\n  \u2192 git_show(revision='HEAD:app/cache.py')\n  \u2192 git_show(revision='HEAD:app/client.py')\n  \u2192 git_show(revision='HEAD:app/__init__.py')\n  \u2192 semgrep_scan_with_custom_rule(code_files=[{'path': 'app/views.py', 'content': ''}, {'content': '', 'path': 'app/cache...)\nFindings elicitation is not enabled, skipping.\nsemgrep_scan_with_custom_rule succeeded\n\n\u2014 14.2s \u00b7 9 model calls \u00b7 8/14 tool calls {'git_show': 7, 'semgrep_scan_with_custom_rule': 1} \u00b7 19,463 in / 1,036 out tokens\n\u2713 All 7 scanner findings triaged; none invented.",
+   "output_excerpt": "# Security triage: demo_app\n## Summary\nThe codebase contains several high-severity security vulnerabilities, notably unvalidated command execution and unsafe deserialisation, requiring immediate remediation of command injection in `ping_host`. Fixing finding F5 first is critical because it allows direct remote code execution via unescaped HTTP parameters passed to a shell command.\n\n## Findings\n| ID | Rule | Location | Verdict | Why | Fix |\n|---|---|---|---|---|---|\n| F1 | py-weak-hash | app/cache.py:9 | false positive | MD5 is used exclusively to generate non-security cache bucket keys (`hashlib.md5(url.encode()).hexdigest()`), not for cryptography or password hashing. | None (non-security usage). |\n| F2 | py-pickle-load | app/cache.py:14 | likely | `pickle.loads` deserialises session cook"
   },
   {
    "day": 8,
@@ -100,11 +304,31 @@
    "pattern": "Parallel fan-out (ParallelAgent) + merge",
    "folder": "day-008-aws-architect",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-008-aws-architect/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-008-aws-architect/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-008-aws-architect/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-008-aws-architect/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-008-aws-architect/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 12.42,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 8,
+    "tool_calls": 4,
+    "tool_budget": 15,
+    "calls_by_tool": {
+     "search_documentation": 4
+    },
+    "prompt_tokens": 61185,
+    "output_tokens": 2288,
+    "cost_usd": null,
+    "checks": {
+     "all_sections_present": true,
+     "citations_verified": true,
+     "missing_sections": [],
+     "unverified_links": []
+    },
+    "output_chars": 6540
+   },
+   "stderr_tail": "                             +high+availability+for+PostgreSQL                  \n                             \"HTTP/1.1 200 OK\"                                  \n[11/02/26 00:11:58] INFO     HTTP Request: POST                  _client.py:1740\n                             https://proxy.search.docs.aws.com/s                \n                             earch?session=f99fbf3a-b859-44b4-b5                \n                             81-ec98db9a910a&search_intent=Cloud                \n                             Front+ALB+ECS+Fargate+RDS+PostgreSQ                \n                             L+S3+security+best+practices+encryp                \n                             tion+IAM \"HTTP/1.1 200 OK\"                         \n  \u2192 [reliability_reviewer] search_documentation(search_phrase='ECS Fargate task placement multi AZ resilience high availability', searc...)\n[11/02/26 00:11:59] INFO     HTTP Request: POST                  _client.py:1740\n                             https://proxy.search.docs.aws.com/s                \n                             earch?session=917e2837-d758-4126-a5                \n                             a7-fb7f5a097fae&search_intent=Check                \n                             +Amazon+ECS+Fargate+high+availabili                \n                             ty+and+multi+AZ+resilience                         \n                             \"HTTP/1.1 200 OK\"                                  \n\n\u2014 12.4s \u00b7 8 model calls \u00b7 4/15 tool calls {'search_documentation': 4} \u00b7 61,185 in / 2,288 out tokens\n\u2713 All sections present and every AWS doc link was returned by a tool.",
+   "output_excerpt": "# Architecture review\n## Summary\n- Overall posture: The architecture uses standard modern AWS managed services (CloudFront, ALB, ECS Fargate, RDS PostgreSQL, S3) but has critical gaps in high availability, security hardening, and resource rightsizing.\n- Biggest risk: The RDS PostgreSQL instance is likely deployed as Single-AZ, creating a single point of failure and lacking automated failover, combined with an S3 upload bucket that lacks public access blocks and encryption.\n- Quickest win: Enable S3 block public access, server-side encryption, and secure transport on the user upload bucket, and configure RDS for Multi-AZ.\n\n## Top priorities\n| # | Pillar | Finding | Recommendation | Source |\n|---|---|---|---|---|\n| 1 | Reliability | RDS PostgreSQL instance high availability | Configure the R"
   },
   {
    "day": 9,
@@ -113,11 +337,32 @@
    "pattern": "Generator\u2013critic loop (LoopAgent)",
    "folder": "day-009-fact-checker",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-009-fact-checker/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-009-fact-checker/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-009-fact-checker/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-009-fact-checker/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-009-fact-checker/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 117.06,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 7,
+    "tool_calls": 7,
+    "tool_budget": 14,
+    "calls_by_tool": {
+     "search": 3,
+     "get_summary": 4
+    },
+    "prompt_tokens": 37064,
+    "output_tokens": 731,
+    "cost_usd": null,
+    "checks": {
+     "report_well_formed": true,
+     "critic_approved": true,
+     "rounds": 3,
+     "problems": []
+    },
+    "output_chars": 765
+   },
+   "stderr_tail": "2026-11-02 00:14:00,775 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Tallest+mountain&inprop=protection%7Ctalkid%7Cwatched%7Cwatchers%7Cvisitingwatchers%7Cnotificationtimestamp%7Csubjectid%7Curl%7Creadable%7Cpreload%7Cdisplaytitle%7Cvarianttitles \"HTTP/1.1 200 OK\"\n2026-11-02 00:14:00,775 - wikipediaapi._http_client.sync_http_client - INFO - Request URL: https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Tallest mountain&explaintext=1&exsectionformat=wiki\n2026-11-02 00:14:00,848 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Tallest+mountain&explaintext=1&exsectionformat=wiki \"HTTP/1.1 200 OK\"\n2026-11-02 00:14:00,882 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Canberra&inprop=protection%7Ctalkid%7Cwatched%7Cwatchers%7Cvisitingwatchers%7Cnotificationtimestamp%7Csubjectid%7Curl%7Creadable%7Cpreload%7Cdisplaytitle%7Cvarianttitles \"HTTP/1.1 200 OK\"\n2026-11-02 00:14:00,882 - wikipediaapi._http_client.sync_http_client - INFO - Request URL: https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Canberra&explaintext=1&exsectionformat=wiki\n2026-11-02 00:14:00,963 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Canberra&explaintext=1&exsectionformat=wiki \"HTTP/1.1 200 OK\"\n  \u25e6 round 2: checker wrote verdicts\n  \u25e6 round 2: critic reviewed\n  \u2192 [checker] search(query='Canberra is the capital city of Australia')\n[11/02/26 00:14:03] INFO     HTTP Request: POST                  _client.py:1740\n                             https://html.duckduckgo.com/html                   \n                             \"HTTP/1.1 200 OK\"                                  \n  \u25e6 round 3: checker wrote verdicts\n  \u25e6 round 3: critic reviewed\n  \u25e6 round 3: critic reviewed\n  \u25e6 round 3: critic reviewed\n  \u25e6 round 3: critic approved\n\n\u2014 117.1s \u00b7 3 rounds \u00b7 7 model calls \u00b7 7/14 tool calls {'search': 3, 'get_summary': 4} \u00b7 37,064 in / 731 out tokens\n\u2713 Critic approved after 3 round(s); every verdict, link and quote checked against tool results.",
+   "output_excerpt": "# Fact check\n### Claim 1: Sydney is the capital of Australia.\n**Verdict: Refuted**\nThe capital of Australia is Canberra, not Sydney.\n- [Australian Capital Territory - Wikipedia](https://en.wikipedia.org/wiki/Australian_Capital_Territory)\n  > \"Canberra, the capital city of Australia, is situated within the territory\"\n\n### Claim 2: Mount Everest is the tallest mountain on Earth measured from base to peak.\n**Verdict: Refuted**\nWhen measured from base to peak, Mauna Kea is the tallest mountain on Earth.\n- [Tallest mountain](https://en.wikipedia.org/wiki/Tallest_mountain)\n  > \"On Earth, measured this way, Mauna Kea is the tallest mountain.\"\n\n## Sources\n- https://en.wikipedia.org/wiki/Australian_Capital_Territory\n- https://en.wikipedia.org/wiki/Tallest_mountain"
   },
   {
    "day": 10,
@@ -126,11 +371,34 @@
    "pattern": "Argument guardrails (block writes in before_tool)",
    "folder": "day-010-sql-analyst",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-010-sql-analyst/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-010-sql-analyst/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-010-sql-analyst/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-010-sql-analyst/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-010-sql-analyst/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 5.0,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 4,
+    "tool_calls": 4,
+    "tool_budget": 12,
+    "calls_by_tool": {
+     "list_tables": 1,
+     "describe_table": 2,
+     "read_query": 1
+    },
+    "prompt_tokens": 4557,
+    "output_tokens": 328,
+    "cost_usd": null,
+    "checks": {
+     "queried_database": true,
+     "sql_shown": true,
+     "shown_sql_was_executed": true,
+     "rejected_queries": 0,
+     "unexecuted_sql": 0
+    },
+    "output_chars": 609
+   },
+   "stderr_tail": "Downloading pydantic-core (1.9MiB)\n Downloaded pydantic-core\nInstalled 33 packages in 9ms\n  \u2192 list_tables()\n  \u2192 describe_table(table_name='Genre')\n  \u2192 describe_table(table_name='Track')\n  \u2192 read_query(query='SELECT g.Name AS GenreName, COUNT(t.TrackId) AS TrackCount FROM Genre g JOIN Tra...)\n\n\u2014 5.0s \u00b7 4 model calls \u00b7 4/12 tool calls {'list_tables': 1, 'describe_table': 2, 'read_query': 1} \u00b7 4,557 in / 328 out tokens\n\u2713 The answer's SQL is exactly what the database ran, and every query was a guarded SELECT.",
+   "output_excerpt": "## Answer\nThe 5 genres with the most tracks are Rock (1,297 tracks), Latin (579 tracks), Metal (374 tracks), Alternative & Punk (332 tracks), and Jazz (130 tracks).\n\n## Data\n| GenreName | TrackCount |\n|---|---|\n| Rock | 1297 |\n| Latin | 579 |\n| Metal | 374 |\n| Alternative & Punk | 332 |\n| Jazz | 130 |\n\n## SQL used\n```sql\nSELECT g.Name AS GenreName, COUNT(t.TrackId) AS TrackCount\nFROM Genre g\nJOIN Track t ON g.GenreId = t.GenreId\nGROUP BY g.GenreId, g.Name\nORDER BY TrackCount DESC\nLIMIT 5;\n```\n\n## Notes\n- Results are ordered in descending order by the number of tracks per genre and limited to the top 5."
   },
   {
    "day": 11,
@@ -139,11 +407,34 @@
    "pattern": "Tool-heavy diagnostics",
    "folder": "day-011-perf-auditor",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-011-perf-auditor/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-011-perf-auditor/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-011-perf-auditor/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-011-perf-auditor/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-011-perf-auditor/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 23.26,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 7,
+    "tool_calls": 6,
+    "tool_budget": 10,
+    "calls_by_tool": {
+     "new_page": 1,
+     "emulate": 1,
+     "performance_start_trace": 1,
+     "performance_analyze_insight": 3
+    },
+    "prompt_tokens": 37166,
+    "output_tokens": 931,
+    "cost_usd": null,
+    "checks": {
+     "structure": true,
+     "trace_recorded": true,
+     "numbers_verified": true,
+     "ratings_correct": true
+    },
+    "output_chars": 2458
+   },
+   "stderr_tail": "chrome-devtools-mcp exposes content of the browser instance to the MCP clients allowing them to inspect,\ndebug, and modify any data in the browser or DevTools.\nAvoid sharing sensitive or personal information that you do not want to share with MCP clients.\n[chrome-devtools-mcp] The connecting client did not negotiate the MCP roots capability. Tools that read or write local files will be restricted to the OS temp directory. To restore the previous unrestricted behavior, start the server with --allow-unrestricted-paths.\n  \u2192 new_page(url='https://web.dev')\n  \u2192 emulate(cpuThrottlingRate=4, pageId=2, networkConditions='Fast 4G')\n  \u2192 performance_start_trace(pageId=2)\n  \u2192 performance_analyze_insight(insightName='LCPBreakdown', pageId=2, insightSetId='NAVIGATION_0')\n  \u2192 performance_analyze_insight(insightName='CLSCulprits', insightSetId='NAVIGATION_0', pageId=2)\n  \u2192 performance_analyze_insight(pageId=2, insightSetId='NAVIGATION_0', insightName='ForcedReflow')\n\n\u2014 23.3s \u00b7 7 model calls \u00b7 6/10 tool calls {'new_page': 1, 'emulate': 1, 'performance_start_trace': 1, 'performance_analyze_insight': 3} \u00b7 37,166 in / 931 out tokens\n\u2713 Trace recorded; every metric value and rating checked against tool results.",
+   "output_excerpt": "# Performance audit: https://web.dev\n## Core Web Vitals\n| Metric | Value | Rating |\n|---|---|---|\n| LCP | 1909 ms | Good |\n| CLS | 0.05 | Good |\n| INP | not measured | n/a |\n| FCP | not measured | n/a |\n| TTFB | 236 ms | Good |\n\n*(Note: CPU throttling at 4x and Fast 4G network conditions were applied during the audit.)*\n\n## Diagnosis\nThe page load performance is primarily constrained by render delays during the Largest Contentful Paint (LCP) and minor layout shifts:\n- **LCP Breakdown**: The total LCP time was measured at 1,909 ms. While TTFB was fast at 236 ms, resource load delay was 30 ms, and resource load duration was 7 ms, the **element render delay** accounted for **1,636 ms** (85.7% of the total LCP time). The LCP element is an image (`https://web.dev/static/images/home-blue_720.png"
   },
   {
    "day": 12,
@@ -152,11 +443,34 @@
    "pattern": "Ranking with explicit scoring rubric",
    "folder": "day-012-model-picker",
    "model": "gemini-3.5-flash-lite",
-   "status": "error",
-   "exit_code": 1,
-   "metrics": null,
-   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-012-model-picker/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-012-model-picker/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-012-model-picker/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-012-model-picker/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-012-model-picker/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
-   "output_excerpt": ""
+   "status": "pass",
+   "exit_code": 0,
+   "metrics": {
+    "passed": true,
+    "elapsed_s": 6.29,
+    "model": "gemini-3.5-flash-lite",
+    "model_calls": 6,
+    "tool_calls": 4,
+    "tool_budget": 10,
+    "calls_by_tool": {
+     "hub_repo_search": 3,
+     "hub_repo_details": 1
+    },
+    "prompt_tokens": 28051,
+    "output_tokens": 967,
+    "cost_usd": null,
+    "checks": {
+     "all_ranked_repos_from_tools": true,
+     "rubric_complete": true,
+     "sorted_by_total": true,
+     "downloads_known": true,
+     "problems": [],
+     "ranked": 4
+    },
+    "output_chars": 2406
+   },
+   "stderr_tail": "Failed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [scout] hub_repo_search(filters=['feature-extraction', 'sentence-similarity'], repo_types=['model'], limit=10, ...)\n  \u2192 [scout] hub_repo_search(query='multilingual embeddings', limit=10, sort='downloads', repo_types=['model'])\n  \u2192 [scout] hub_repo_search(limit=10, query='sentence-transformers multilingual', repo_types=['model'], sort='downl...)\n  \u2192 [scout] hub_repo_details(repo_ids=['sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', 'sentence-tran...)\n\n\u2014 6.3s \u00b7 6 model calls \u00b7 4/10 tool calls {'hub_repo_search': 3, 'hub_repo_details': 1} \u00b7 28,051 in / 967 out tokens\n\u2713 4 models ranked; every one came from a tool result and was scored on the full rubric.",
+   "output_excerpt": "# Model shortlist\n> Multilingual sentence embeddings for semantic search, permissive licence, small enough for a laptop CPU\n\n## Ranking\n| # | Model | Total | task fit | constraint fit | popularity | licence | freshness |\n|---:|---|---:|---:|---:|---:|---:|---:|\n| 1 | [sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) | **98.0** | 5 | 5 | 5 | 5 | 4 |\n| 2 | [sentence-transformers/distiluse-base-multilingual-cased-v2](https://huggingface.co/sentence-transformers/distiluse-base-multilingual-cased-v2) | **91.0** | 5 | 4 | 5 | 5 | 3 |\n| 3 | [sentence-transformers/paraphrase-multilingual-mpnet-base-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2) | **91.0** | 5 | 4"
   }
  ]
 }
