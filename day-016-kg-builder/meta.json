@@ -1,0 +1,20 @@
+{
+  "day": 16,
+  "slug": "kg-builder",
+  "title": "KG Builder",
+  "summary": "Extracts a quote-grounded knowledge graph from web pages and stores it through the Memory MCP server.",
+  "pattern": "Extraction → graph writes",
+  "mcp_servers": [
+    "mcp-server-fetch",
+    "Memory MCP"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-03",
+  "eval": {
+    "args": [
+      "https://peps.python.org/pep-0484/",
+      "https://peps.python.org/pep-0526/"
+    ],
+    "timeout_s": 300
+  }
+}
