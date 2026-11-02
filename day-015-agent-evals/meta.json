@@ -1,0 +1,16 @@
+{
+  "day": 15,
+  "slug": "agent-evals",
+  "title": "Agent Evals",
+  "summary": "A time-zone agent with a versioned eval set scored on tool trajectory and response match via ADK evals.",
+  "pattern": "Evals as code (trajectory + response scoring)",
+  "mcp_servers": [
+    "mcp-server-time"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-02",
+  "eval": {
+    "args": [],
+    "timeout_s": 300
+  }
+}
