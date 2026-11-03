@@ -1,0 +1,19 @@
+{
+  "day": 17,
+  "slug": "jd-matcher",
+  "title": "JD Matcher",
+  "summary": "Compares a CV to a job description: weighted fit score, quoted evidence, gaps and tailored bullets.",
+  "pattern": "Structured comparison",
+  "mcp_servers": [
+    "server-filesystem",
+    "mcp-server-fetch"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-04",
+  "eval": {
+    "args": [
+      "CV: cv.md  Job: job.md"
+    ],
+    "timeout_s": 300
+  }
+}
