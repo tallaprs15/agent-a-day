@@ -1,0 +1,19 @@
+{
+  "day": 18,
+  "slug": "competitor-scan",
+  "title": "Competitor Scan",
+  "summary": "Scans a market and returns a normalised competitor table; every row is checked against fetched page text.",
+  "pattern": "Search → extract → normalise",
+  "mcp_servers": [
+    "duckduckgo-mcp-server",
+    "mcp-server-fetch"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-05",
+  "eval": {
+    "args": [
+      "open-source feature flag platforms for small teams"
+    ],
+    "timeout_s": 300
+  }
+}
