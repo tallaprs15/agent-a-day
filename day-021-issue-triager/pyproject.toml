@@ -1,0 +1,24 @@
+[project]
+name = "issue-triager"
+version = "0.1.0"
+description = "Day 021: an ADK agent that triages one public GitHub issue (labels, duplicates, owners) using read-only retrieval."
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk>=2.12,<3",
+    "mcp>=1.20",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = [
+    "ignore:\\[EXPERIMENTAL\\]:UserWarning",
+    "ignore:MCPTool class is deprecated:DeprecationWarning",
+]
