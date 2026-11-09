@@ -1,0 +1,18 @@
+{
+  "day": 23,
+  "slug": "a11y-auditor",
+  "title": "A11y Auditor",
+  "summary": "Audits a page's accessibility in a real browser against a fixed WCAG rubric; every failure needs quoted evidence.",
+  "pattern": "Browser + rubric",
+  "mcp_servers": [
+    "Playwright MCP"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-10",
+  "eval": {
+    "args": [
+      "https://demo.playwright.dev/todomvc/"
+    ],
+    "timeout_s": 300
+  }
+}
