@@ -7412,5 +7412,481 @@
     "output_excerpt": "# Time Desk eval report\n\n| Case | tool_trajectory_avg_score | response_match_score |\n|---|---|---|\n| tokyo_to_kolkata | 1.00 | 1.00 |\n| singapore_to_kathmandu | 1.00 | 1.00 |\n| dubai_to_karachi | 1.00 | 1.00 |\n| off_topic_no_tools | 1.00 | 0.88 |\n| missing_zone_asks | 1.00 | 0.50 |\n\n| Metric | Mean | Threshold | Result |\n|---|---|---|---|\n| tool_trajectory_avg_score | 1.00 | 1.0 | pass |\n| response_match_score | 0.88 | 0.6 | pass |\n"
    }
   ]
+ },
+ {
+  "timestamp": "2026-11-10T03:11:08+00:00",
+  "sha": "10f0829b87d26b420e5edab1c73feab16f1f6aef",
+  "results": [
+   {
+    "day": 1,
+    "slug": "arxiv-scout",
+    "title": "arXiv Scout",
+    "pattern": "Single agent + guardrail callbacks",
+    "folder": "day-001-arxiv-scout",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 19.21,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 6,
+     "tool_calls": 5,
+     "tool_budget": 12,
+     "calls_by_tool": {
+      "search_papers": 1,
+      "get_abstract": 4
+     },
+     "prompt_tokens": 25183,
+     "output_tokens": 1162,
+     "cost_usd": null,
+     "checks": {
+      "citations_verified": true,
+      "unverified_ids": []
+     },
+     "output_chars": 4168
+    },
+    "stderr_tail": "Downloading pydantic-core (2.2MiB)\nDownloading lxml (5.0MiB)\n Downloaded aiohttp\n Downloaded pydantic-core\n Downloaded cryptography\n Downloaded lxml\nInstalled 44 packages in 24ms\nInstalled 45 packages in 34ms\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.14/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.14/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(max_results=6, sort_by='relevance', categories=['cs.CL', 'cs.LG'], query='\"speculative ...)\n  \u2192 get_abstract(paper_id='2308.04623')\n  \u2192 get_abstract(paper_id='2402.01528')\n  \u2192 get_abstract(paper_id='2610.35957')\n  \u2192 get_abstract(paper_id='2503.00491')\n\n\u2014 19.2s \u00b7 6 model calls \u00b7 5/12 tool calls {'search_papers': 1, 'get_abstract': 4} \u00b7 25,183 in / 1,162 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
+    "output_excerpt": "# speculative decoding for LLM inference: engineering brief\n\n## TL;DR\n- **Paradigm shift**: Speculative decoding breaks the token-by-token autoregressive bottleneck by using a small, lightweight draft model (or heuristic) to generate candidate token sequences, which are then verified in parallel by the target large language model (LLM).\n- **Core engineering trade-off**: Speedup gains (typically 2x\u20134x) depend heavily on draft model execution latency and acceptance rates rather than pure language modeling perplexity.\n- **Architectural evolution**: Moving beyond simple linear drafting, recent frameworks introduce tree-based speculative drafting, multi-stage speculative steps, and communication-optimized distributed protocols for bandwidth-constrained environments.\n\n## Key papers\n\n| Paper | Co"
+   },
+   {
+    "day": 2,
+    "slug": "repo-onboarder",
+    "title": "Repo Onboarder",
+    "pattern": "Sequential pipeline (SequentialAgent)",
+    "folder": "day-002-repo-onboarder",
+    "model": "gemini-3.5-flash-lite",
+    "status": "error",
+    "exit_code": 1,
+    "metrics": null,
+    "stderr_tail": "    raise retry_exc.reraise()\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/tenacity/__init__.py\", line 184, in reraise\n    raise self.last_attempt.result()\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/.local/share/uv/python/cpython-3.12.16-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/.local/share/uv/python/cpython-3.12.16-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py\", line 116, in __call__\n    result = await fn(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/genai/_api_client.py\", line 1798, in _async_request_once\n    await errors.APIError.raise_for_async_response(client_response)\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/genai/errors.py\", line 265, in raise_for_async_response\n    await cls.raise_error_async(status_code, response_json, response)\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/genai/errors.py\", line 289, in raise_error_async\n    raise ServerError(status_code, response_json, response)\ngoogle.genai.errors.ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}",
+    "output_excerpt": ""
+   },
+   {
+    "day": 3,
+    "slug": "docs-copilot",
+    "title": "Docs Copilot",
+    "pattern": "Grounded QA + answer verification",
+    "folder": "day-003-docs-copilot",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 11.57,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 4,
+     "tool_calls": 2,
+     "tool_budget": 6,
+     "calls_by_tool": {
+      "microsoft_docs_search": 1,
+      "microsoft_code_sample_search": 1
+     },
+     "prompt_tokens": 20636,
+     "output_tokens": 805,
+     "cost_usd": null,
+     "checks": {
+      "answered_from_docs": true,
+      "sections_present": true,
+      "sources_verified": true,
+      "code_grounded": true,
+      "missing_sections": [],
+      "unverified_sources": [],
+      "ungrounded_calls": []
+     },
+     "output_chars": 969
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\nContext7 Documentation MCP Server v4.4.4 running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [researcher] microsoft_docs_search(query='upload local file azure blob storage python sdk')\n  \u2192 [researcher] microsoft_code_sample_search(language='python', query='upload_blob azure storage blob python')\nnpm notice\nnpm notice New major version of npm available! 10.9.9 -> 12.2.2\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2\nnpm notice To update run: npm install -g npm@12.2.2\nnpm notice\n\n\u2014 11.6s \u00b7 4 model calls \u00b7 2/6 tool calls {'microsoft_docs_search': 1, 'microsoft_code_sample_search': 1} \u00b7 20,636 in / 805 out tokens\n\u2713 Sections present, every source was returned by a tool, and every API call appears in the docs.",
+    "output_excerpt": "## Answer         \nTo upload a local file to Azure Blob Storage using the Python SDK (`azure-storage-blob`), you first instantiate a `BlobClient` using either a connection string or an account URL with a credential (such as `DefaultAzureCredential`). Then, you open your local file in binary read mode (`\"rb\"`) and pass the file object to the `upload_blob()` method on the client. \n\nHere is an example using a connection string:\n\n```python\nfrom azure.storage.blob import BlobClient\n\nblob = BlobClient.from_connection_string(conn_str=\"<connection_string>\", container_name=\"mycontainer\", blob_name=\"my_blob\")\n\nwith open(\"./SampleSource.txt\", \"rb\") as data:\n    blob.upload_blob(data)\n```\n\n## Version notes  \n- none stated\n\n## Sources  \n- `https://learn.microsoft.com/python/api/overview/azure/storage-b"
+   },
+   {
+    "day": 4,
+    "slug": "web-qa-explorer",
+    "title": "Web QA Explorer",
+    "pattern": "Browser agent + human confirmation (require_confirmation)",
+    "folder": "day-004-web-qa-explorer",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 30.24,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 13,
+     "tool_calls": 10,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "browser_navigate": 1,
+      "browser_console_messages": 2,
+      "browser_snapshot": 3,
+      "browser_type": 2,
+      "browser_click": 1,
+      "browser_network_requests": 1
+     },
+     "prompt_tokens": 53026,
+     "output_tokens": 566,
+     "cost_usd": null,
+     "checks": {
+      "sections_present": true,
+      "evidence_verified": true,
+      "pages_verified": true,
+      "risky_actions_gated": true,
+      "missing_sections": [],
+      "unverified_evidence": [],
+      "unverified_pages": [],
+      "approvals": [
+       {
+        "action": "browser_click(Delete button for todo 'Buy milk' e20)",
+        "decision": "declined"
+       },
+       {
+        "action": "browser_click(Delete button for todo 'Buy milk' e37)",
+        "decision": "declined"
+       }
+      ],
+      "blocked": []
+     },
+     "output_chars": 1303
+    },
+    "stderr_tail": "  return self._build_declaration(fenced=False)\n  \u2192 browser_navigate(url='https://demo.playwright.dev/todomvc/')\n  \u2192 browser_console_messages(all=True, level='error')\n  \u2192 browser_snapshot()\n  \u2192 browser_type(element='textbox \"What needs to be done?\"', target='e8', submit=True, text='Buy milk')\n  \u2192 browser_type(element='textbox \"What needs to be done?\"', submit=True, text='Walk dog', target='e8')\n  \u2192 browser_snapshot()\n  \u2192 browser_click(target='e21', element=\"Toggle Todo for 'Buy milk'\")\n  \u2192 browser_click(element=\"Delete button for todo 'Buy milk'\", target='e20')\n/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.TOOL_CONFIRMATION is enabled.\n  check_feature_enabled()\n  \u2717 declined (no approval given): browser_click(element=\"Delete button for todo 'Buy milk'\", target='e20')\n  \u2192 browser_snapshot()\n  \u2192 browser_click(element=\"Delete button for todo 'Buy milk'\", target='e37')\n  \u2717 declined (no approval given): browser_click(element=\"Delete button for todo 'Buy milk'\", target='e37')\n  \u2192 browser_network_requests(static=False)\n  \u2192 browser_console_messages(level='error', all=False)\n\n\u2014 30.2s \u00b7 13 model calls \u00b7 10/14 tool calls {'browser_navigate': 1, 'browser_console_messages': 2, 'browser_snapshot': 3, 'browser_type': 2, 'browser_click': 1, 'browser_network_requests': 1} \u00b7 53,026 in / 566 out tokens\n\u2713 Sections present, every quote came from a tool result, and no risky action ran unapproved.",
+    "output_excerpt": "## Summary\nTested the TodoMVC React demo app by adding two todo items (\"Buy milk\" and \"Walk dog\"), completing one item (\"Buy milk\"), and attempting to delete one item (which was not exercised due to human approval rejection on the delete action). Checked browser console messages and network requests for defects.\n\n## Findings\n### BUG-1 \u00b7 Missing favicon resource results in 404 error\n- **Severity:** low\n- **Steps:** Navigate to `https://demo.playwright.dev/todomvc/` and load the application.\n- **Expected / actual:** Expected all resources to load successfully; actual the favicon resource failed with a 404 error.\n- **Evidence:** `[ERROR] Failed to load resource: the server responded with a status of 404 () @ https://demo.playwright.dev/favicon.ico:0`\n\n## Coverage\n- **Pages visited:** `https:/"
+   },
+   {
+    "day": 5,
+    "slug": "hn-digest",
+    "title": "HN Digest",
+    "pattern": "Long-term memory via knowledge graph",
+    "folder": "day-005-hn-digest",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 10.46,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 5,
+     "tool_calls": 4,
+     "tool_budget": 8,
+     "calls_by_tool": {
+      "fetch": 1,
+      "open_nodes": 1,
+      "create_entities": 1,
+      "create_relations": 1
+     },
+     "prompt_tokens": 29667,
+     "output_tokens": 1722,
+     "cost_usd": null,
+     "checks": {
+      "sections_present": true,
+      "has_stories": true,
+      "links_verified": true,
+      "memory_consulted": true,
+      "no_repeats": true,
+      "memory_saved": true,
+      "missing_sections": [],
+      "unverified_links": [],
+      "repeated_stories": [],
+      "unsaved_stories": [],
+      "known_before": 0,
+      "stories_in_digest": 5
+     },
+     "output_chars": 1779
+    },
+    "stderr_tail": "Installed 46 packages in 12ms\nnpm warn EBADENGINE Unsupported engine {\nnpm warn EBADENGINE   package: '@modelcontextprotocol/server-memory@2.0.0',\nnpm warn EBADENGINE   required: { node: '>=24' },\nnpm warn EBADENGINE   current: { node: 'v22.23.4', npm: '10.9.9' }\nnpm warn EBADENGINE }\nKnowledge Graph MCP Server running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-005-hn-digest/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 fetch(url='https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRe...)\nHTTP Request: GET https://hn.algolia.com/robots.txt \"HTTP/1.1 404 Not Found\"\nHTTP Request: GET https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=30&attributesToRetrieve=title,url,points,num_comments,objectID&attributesToHighlight=none \"HTTP/1.1 200 OK\"\n  \u2192 open_nodes(names=['hn-50424581', 'hn-50431058', 'hn-50427362', 'hn-50429426', 'hn-50431144', 'hn-5...)\n  \u2192 create_entities(entities=[{'observations': ['title: Foldable Flight: The Best Paper Airplanes', 'url: h...)\n  \u2192 create_relations(relations=[{'to': 'topic-aviation', 'from': 'hn-50424581', 'relationType': 'about'}, {'...)\n\n\u2014 10.5s \u00b7 5 model calls \u00b7 4/8 tool calls {'fetch': 1, 'open_nodes': 1, 'create_entities': 1, 'create_relations': 1} \u00b7 29,667 in / 1,722 out tokens\n\u2713 5 new stories, all links returned by a tool, none repeated (memory held 0 before), all saved.",
+    "output_excerpt": "# Hacker News digest \u00b7 2026-11-10\n\n## Stories\n1. **[Foldable Flight: The Best Paper Airplanes](https://www.foldableflight.com)** \u2014 An expert guide exploring top-tier designs and techniques for crafting high-performing paper airplanes. \u00b7 [868 points, 141 comments](https://news.ycombinator.com/item?id=50424581).\n2. **[USPS now offers official ZIP Code boundary polygons](https://postalpro.usps.com/zcb)** \u2014 The United States Postal Service now provides official boundary polygon datasets for ZIP codes. \u00b7 [504 points, 263 comments](https://news.ycombinator.com/item?id=50431058).\n3. **[Payments Canada announces launch of Canada's Real-Time Rail (RTR) payment system](https://www.payments.ca/canada-launches-real-time-rail-bringing-247-payment-infrastructure-national-economy)** \u2014 Payments Canada has"
+   },
+   {
+    "day": 6,
+    "slug": "meeting-planner",
+    "title": "Meeting Planner",
+    "pattern": "Structured output (Pydantic output_schema)",
+    "folder": "day-006-meeting-planner",
+    "model": "gemini-3.5-flash-lite",
+    "status": "fail",
+    "exit_code": 1,
+    "metrics": {
+     "passed": false,
+     "elapsed_s": 3.92,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 1,
+     "tool_calls": 9,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "convert_time": 9
+     },
+     "prompt_tokens": 2353,
+     "output_tokens": 744,
+     "cost_usd": null,
+     "checks": {
+      "schema_valid": true,
+      "plan_complete": true,
+      "verified_by_recompute": false,
+      "zones_checked_by_tool": true,
+      "problems": {
+       "within_working_hours": [
+        "slot 1: Mumbai Mon 08:00-08:45"
+       ]
+      },
+      "unchecked_zones": [],
+      "slots": 1
+     },
+     "output_chars": 1735
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/tools/set_model_response_tool.py:272: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  build_function_declaration(\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nInstalled 31 packages in 15ms\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n  \u2192 convert_time(source_timezone='Australia/Melbourne', time='09:00', target_timezone='Etc/UTC')\n  \u2192 convert_time(time='09:00', target_timezone='Etc/UTC', source_timezone='Asia/Singapore')\n  \u2192 convert_time(source_timezone='Asia/Kolkata', time='09:00', target_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Australia/Melbourne', target_timezone='Etc/UTC', time='17:00')\n  \u2192 convert_time(time='17:00', source_timezone='Asia/Singapore', target_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Asia/Kolkata', target_timezone='Etc/UTC', time='17:00')\n  \u2192 convert_time(target_timezone='Australia/Melbourne', source_timezone='Etc/UTC', time='02:30')\n  \u2192 convert_time(target_timezone='Asia/Singapore', source_timezone='Etc/UTC', time='02:30')\n  \u2192 convert_time(target_timezone='Asia/Kolkata', source_timezone='Etc/UTC', time='02:30')\n  \u2192 set_model_response(title='Sync', slots=[{'local_times': [{'timezone': 'Australia/Melbourne', 'local_end': ...)\n\n\u2014 3.9s \u00b7 1 model calls \u00b7 9/10 tool calls {'convert_time': 9} \u00b7 2,353 in / 744 out tokens\n\u2717 within_working_hours: slot 1: Mumbai Mon 08:00-08:45",
+    "output_excerpt": "# Sync\n\n45 minutes \u00b7 working hours 09:00-17:00 local \u00b7 Melbourne (Australia/Melbourne), Singapore (Asia/Singapore), Mumbai (Asia/Kolkata)\n\n## Option 1: 2026-11-16 02:30 UTC\n\nMumbai starts at 08:00 local time, which is just before the 09:00 working hour window.\n\n| Who | Local start | Local end |\n|---|---|---|\n| Melbourne (Australia/Melbourne) | 2026-11-16 13:30 | 2026-11-16 14:15 |\n| Singapore (Asia/Singapore) | 2026-11-16 10:30 | 2026-11-16 11:15 |\n| Mumbai (Asia/Kolkata) | 2026-11-16 08:00 | 2026-11-16 08:45 |\n\n```json\n{\n  \"needs_clarification\": null,\n  \"title\": \"Sync\",\n  \"duration_minutes\": 45,\n  \"working_hours_start\": \"09:00\",\n  \"working_hours_end\": \"17:00\",\n  \"participants\": [\n    {\n      \"name\": \"Melbourne\",\n      \"timezone\": \"Australia/Melbourne\"\n    },\n    {\n      \"name\": \"Singapore"
+   },
+   {
+    "day": 7,
+    "slug": "security-triager",
+    "title": "Security Triager",
+    "pattern": "Deterministic tool + LLM triage",
+    "folder": "day-007-security-triager",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 14.35,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 8,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "git_show": 7,
+      "semgrep_scan_with_custom_rule": 1
+     },
+     "prompt_tokens": 19221,
+     "output_tokens": 1052,
+     "cost_usd": null,
+     "checks": {
+      "scan_ran": true,
+      "no_invented_findings": true,
+      "all_findings_triaged": true,
+      "invented_ids": [],
+      "untriaged_ids": [],
+      "findings": 7,
+      "verdicts": {
+       "exploitable": 1,
+       "likely": 3,
+       "unlikely": 1,
+       "false positive": 2
+      }
+     },
+     "output_chars": 2593
+    },
+    "stderr_tail": " Downloaded pygments\n Downloaded semgrep\nInstalled 66 packages in 27ms\nStarting Semgrep MCP server version v1.182.1\n/home/runner/.cache/uv/archive-v0/gYKK5QSK8ueWipSx/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:51: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.\n  warnings.warn(  # noqa: B028  (called from many sources at differing depths, so no stacklevel is correct)\nUser doesn't have the Pro Engine installed, not running `semgrep mcp` daemon...\n  \u2192 git_show(revision='HEAD:')\n  \u2192 git_show(revision='HEAD:app/')\n  \u2192 git_show(revision='HEAD:app')\n  \u2192 git_show(revision='HEAD:app/views.py')\n  \u2192 git_show(revision='HEAD:app/client.py')\n  \u2192 git_show(revision='HEAD:app/cache.py')\n  \u2192 git_show(revision='HEAD:app/__init__.py')\n  \u2192 semgrep_scan_with_custom_rule(rule='', code_files=[{'content': '', 'path': 'app/views.py'}, {'path': 'app/client.py',...)\nFindings elicitation is not enabled, skipping.\nsemgrep_scan_with_custom_rule succeeded\n\n\u2014 14.4s \u00b7 9 model calls \u00b7 8/14 tool calls {'git_show': 7, 'semgrep_scan_with_custom_rule': 1} \u00b7 19,221 in / 1,052 out tokens\n\u2713 All 7 scanner findings triaged; none invented.",
+    "output_excerpt": "# Security triage: demo_app\n## Summary\nThe codebase contains critical remote code execution vulnerabilities via unsafe deserialisation and command injection, requiring immediate remediation of the request handlers. Fix finding F5 first because it exposes a direct unauthenticated remote command execution vulnerability via shell injection in the ping handler.\n## Findings\n| ID | Rule | Location | Verdict | Why | Fix |\n|---|---|---|---|---|---|\n| F1 | py-weak-hash | app/cache.py:9 | false positive | MD5 is used exclusively for generating cache bucket names in `cache_key()`, not for cryptography or security verification. | Replace MD5 with `hashlib.sha256()` if collision resistance is desired. |\n| F2 | py-pickle-load | app/cache.py:14 | likely | `load_session()` passes `bytes.fromhex(cookie_val"
+   },
+   {
+    "day": 8,
+    "slug": "aws-architect",
+    "title": "AWS Architect",
+    "pattern": "Parallel fan-out (ParallelAgent) + merge",
+    "folder": "day-008-aws-architect",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 12.52,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 5,
+     "tool_budget": 15,
+     "calls_by_tool": {
+      "search_documentation": 5
+     },
+     "prompt_tokens": 60354,
+     "output_tokens": 2270,
+     "cost_usd": null,
+     "checks": {
+      "all_sections_present": true,
+      "citations_verified": true,
+      "missing_sections": [],
+      "unverified_links": []
+     },
+     "output_chars": 6520
+    },
+    "stderr_tail": "                             s+for+Amazon+RDS+PostgreSQL                        \n                             \"HTTP/1.1 200 OK\"                                  \n[11/10/26 03:08:36] INFO     HTTP Request: POST                  _client.py:1740\n                             https://proxy.search.docs.aws.com/s                \n                             earch?session=9e5d9c9f-43f3-4821-85                \n                             f7-442f7c79dd86&search_intent=RDS+P                \n                             ostgreSQL+security+encryption+at+re                \n                             st+and+in+transit+best+practices                   \n                             \"HTTP/1.1 200 OK\"                                  \n  \u2192 [reliability_reviewer] search_documentation(search_intent='Find ECS Fargate service multi-AZ and resiliency best practices', search...)\n[11/10/26 03:08:37] INFO     HTTP Request: POST                  _client.py:1740\n                             https://proxy.search.docs.aws.com/s                \n                             earch?session=0a5df199-2a18-424f-98                \n                             5c-162c129f91af&search_intent=Find+                \n                             ECS+Fargate+service+multi-AZ+and+re                \n                             siliency+best+practices \"HTTP/1.1                  \n                             200 OK\"                                            \n\n\u2014 12.5s \u00b7 9 model calls \u00b7 5/15 tool calls {'search_documentation': 5} \u00b7 60,354 in / 2,270 out tokens\n\u2713 All sections present and every AWS doc link was returned by a tool.",
+    "output_excerpt": "# Architecture review\n## Summary                 \n- **Overall Posture:** The public web application features a modern, scalable serverless and managed infrastructure baseline (CloudFront, ALB, ECS Fargate, RDS PostgreSQL, S3), but requires critical hardening in data security and high availability configurations.\n- **Biggest Risk:** The Amazon RDS PostgreSQL database lacks encryption at rest using AWS KMS keys and a Multi-AZ deployment configuration, leaving it vulnerable to data exposure and single-AZ outages.\n- **Quickest Win:** Enable AWS KMS encryption at rest for the RDS instance and configure AWS Compute Optimizer and Trusted Advisor checks to address Fargate sizing and cost efficiency.\n\n## Top priorities          \n| # | Pillar | Finding | Recommendation | Source |\n|---|---|---|---|--"
+   },
+   {
+    "day": 9,
+    "slug": "fact-checker",
+    "title": "Fact Checker",
+    "pattern": "Generator\u2013critic loop (LoopAgent)",
+    "folder": "day-009-fact-checker",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 79.39,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 6,
+     "tool_calls": 4,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "search": 2,
+      "get_summary": 2
+     },
+     "prompt_tokens": 17898,
+     "output_tokens": 298,
+     "cost_usd": null,
+     "checks": {
+      "report_well_formed": true,
+      "critic_approved": true,
+      "rounds": 1,
+      "problems": []
+     },
+     "output_chars": 792
+    },
+    "stderr_tail": "  \u2192 [checker] search(query='tallest mountain on Earth measured from base to peak')\n[11/10/26 03:09:52] INFO     HTTP Request: POST                  _client.py:1740\n                             https://html.duckduckgo.com/html                   \n                             \"HTTP/1.1 200 OK\"                                  \n  \u2192 [checker] get_summary(title='Tallest mountain')\n2026-11-10 03:09:53,397 - wikipedia_mcp.server - INFO - Tool: Getting summary for: Tallest mountain\n2026-11-10 03:09:53,397 - wikipediaapi._http_client.sync_http_client - INFO - Request URL: https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Tallest mountain&inprop=protection|talkid|watched|watchers|visitingwatchers|notificationtimestamp|subjectid|url|readable|preload|displaytitle|varianttitles\n2026-11-10 03:09:53,451 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Tallest+mountain&inprop=protection%7Ctalkid%7Cwatched%7Cwatchers%7Cvisitingwatchers%7Cnotificationtimestamp%7Csubjectid%7Curl%7Creadable%7Cpreload%7Cdisplaytitle%7Cvarianttitles \"HTTP/1.1 429 Too Many Requests\"\n2026-11-10 03:10:00,555 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Tallest+mountain&inprop=protection%7Ctalkid%7Cwatched%7Cwatchers%7Cvisitingwatchers%7Cnotificationtimestamp%7Csubjectid%7Curl%7Creadable%7Cpreload%7Cdisplaytitle%7Cvarianttitles \"HTTP/1.1 200 OK\"\n2026-11-10 03:10:00,556 - wikipediaapi._http_client.sync_http_client - INFO - Request URL: https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Tallest mountain&explaintext=1&exsectionformat=wiki\n2026-11-10 03:10:00,611 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=extracts&titles=Tallest+mountain&explaintext=1&exsectionformat=wiki \"HTTP/1.1 200 OK\"\n2026-11-10 03:10:00,970 - httpx - INFO - HTTP Request: GET https://en.wikipedia.org/w/api.php?format=json&redirects=1&action=query&prop=info&titles=Canberra&inprop=protection%7Ctalkid%7Cwatched%7Cwatchers%7Cvisitingwatchers%7Cnotificationtimestamp%7Csubjectid%7Curl%7Creadable%7Cpreload%7Cdisplaytitle%7Cvarianttitles \"HTTP/1.1 429 Too Many Requests\"\n  \u25e6 round 1: checker wrote verdicts\n  \u25e6 round 1: critic reviewed\n  \u25e6 round 1: critic reviewed\n  \u25e6 round 1: critic reviewed\n  \u25e6 round 1: critic approved\n\n\u2014 79.4s \u00b7 1 rounds \u00b7 6 model calls \u00b7 4/14 tool calls {'search': 2, 'get_summary': 2} \u00b7 17,898 in / 298 out tokens\n\u2713 Critic approved after 1 round(s); every verdict, link and quote checked against tool results.",
+    "output_excerpt": "# Fact check\n### Claim 1: Sydney is the capital of Australia.\n**Verdict: Refuted**\nThe capital of Australia is Canberra, not Sydney.\n- [Britannica](https://www.britannica.com/place/Australia)\n  > \"Its capital city is Canberra, and its most important economic and cultural centers are Sydney and Melbourne.\"\n\n### Claim 2: Mount Everest is the tallest mountain on Earth measured from base to peak.\n**Verdict: Refuted**\nMount Everest is the highest mountain above sea level, but measured from base to peak, Mauna Kea is the tallest mountain on Earth.\n- [Tallest mountain](https://en.wikipedia.org/wiki/Tallest_mountain)\n  > \"On Earth, measured this way, Mauna Kea is the tallest mountain.\"\n\n## Sources\n- https://www.britannica.com/place/Australia\n- https://en.wikipedia.org/wiki/Tallest_mountain"
+   },
+   {
+    "day": 10,
+    "slug": "sql-analyst",
+    "title": "SQL Analyst",
+    "pattern": "Argument guardrails (block writes in before_tool)",
+    "folder": "day-010-sql-analyst",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 5.28,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 4,
+     "tool_calls": 4,
+     "tool_budget": 12,
+     "calls_by_tool": {
+      "list_tables": 1,
+      "describe_table": 2,
+      "read_query": 1
+     },
+     "prompt_tokens": 4557,
+     "output_tokens": 308,
+     "cost_usd": null,
+     "checks": {
+      "queried_database": true,
+      "sql_shown": true,
+      "shown_sql_was_executed": true,
+      "rejected_queries": 0,
+      "unexecuted_sql": 0
+     },
+     "output_chars": 513
+    },
+    "stderr_tail": "Downloading pydantic-core (1.9MiB)\n Downloaded pydantic-core\nInstalled 33 packages in 10ms\n  \u2192 list_tables()\n  \u2192 describe_table(table_name='Genre')\n  \u2192 describe_table(table_name='Track')\n  \u2192 read_query(query='SELECT g.Name AS GenreName, COUNT(t.TrackId) AS TrackCount FROM Genre g JOIN Tra...)\n\n\u2014 5.3s \u00b7 4 model calls \u00b7 4/12 tool calls {'list_tables': 1, 'describe_table': 2, 'read_query': 1} \u00b7 4,557 in / 308 out tokens\n\u2713 The answer's SQL is exactly what the database ran, and every query was a guarded SELECT.",
+    "output_excerpt": "## Answer\nThe 5 genres with the most tracks are Rock (1,297 tracks), Latin (579 tracks), Metal (374 tracks), Alternative & Punk (332 tracks), and Jazz (130 tracks).\n\n## Data\n| GenreName | TrackCount |\n|---|---|\n| Rock | 1297 |\n| Latin | 579 |\n| Metal | 374 |\n| Alternative & Punk | 332 |\n| Jazz | 130 |\n\n## SQL used\n```sql\nSELECT g.Name AS GenreName, COUNT(t.TrackId) AS TrackCount\nFROM Genre g\nJOIN Track t ON g.GenreId = t.GenreId\nGROUP BY g.GenreId, g.Name\nORDER BY TrackCount DESC\nLIMIT 5;\n```\n\n## Notes\nNone."
+   },
+   {
+    "day": 11,
+    "slug": "perf-auditor",
+    "title": "Perf Auditor",
+    "pattern": "Tool-heavy diagnostics",
+    "folder": "day-011-perf-auditor",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 21.98,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 6,
+     "tool_calls": 5,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "new_page": 1,
+      "emulate": 1,
+      "performance_start_trace": 1,
+      "performance_analyze_insight": 2
+     },
+     "prompt_tokens": 28967,
+     "output_tokens": 1015,
+     "cost_usd": null,
+     "checks": {
+      "structure": true,
+      "trace_recorded": true,
+      "numbers_verified": true,
+      "ratings_correct": true
+     },
+     "output_chars": 2573
+    },
+    "stderr_tail": "chrome-devtools-mcp exposes content of the browser instance to the MCP clients allowing them to inspect,\ndebug, and modify any data in the browser or DevTools.\nAvoid sharing sensitive or personal information that you do not want to share with MCP clients.\n[chrome-devtools-mcp] The connecting client did not negotiate the MCP roots capability. Tools that read or write local files will be restricted to the OS temp directory. To restore the previous unrestricted behavior, start the server with --allow-unrestricted-paths.\n  \u2192 new_page(url='https://web.dev')\n  \u2192 emulate(networkConditions='Fast 4G', cpuThrottlingRate=4, pageId=2)\n  \u2192 performance_start_trace(pageId=2, reload=True, autoStop=True)\n  \u2192 performance_analyze_insight(insightName='LCPBreakdown', pageId=2, insightSetId='NAVIGATION_0')\n  \u2192 performance_analyze_insight(insightSetId='NAVIGATION_0', insightName='CLSCulprits', pageId=2)\n\n\u2014 22.0s \u00b7 6 model calls \u00b7 5/10 tool calls {'new_page': 1, 'emulate': 1, 'performance_start_trace': 1, 'performance_analyze_insight': 2} \u00b7 28,967 in / 1,015 out tokens\n\u2713 Trace recorded; every metric value and rating checked against tool results.",
+    "output_excerpt": "# Performance audit: https://web.dev\n## Core Web Vitals\n| Metric | Value | Rating |\n|---|---|---|\n| LCP | 1650 ms | Good |\n| CLS | 0.09 | Good |\n| INP | not measured | n/a |\n| FCP | not measured | n/a |\n| TTFB | 396 ms | Good |\n\n*(Note: CPU throttling was applied at 4x slowdown and network conditions were emulated to Fast 4G).*\n\n## Diagnosis\nThe page load performance was analyzed via trace `NAVIGATION_0`. The Largest Contentful Paint (LCP) was measured at 1,650 ms, which falls into the \"Good\" rating. \nAccording to the `LCPBreakdown` insight, the breakdown of the LCP time is as follows:\n- Time to first byte: 396 ms (24.0% of total LCP time)\n- Resource load delay: 25 ms (1.5% of total LCP time)\n- Resource load duration: 7 ms (0.4% of total LCP time)\n- Element render delay: 1,222 ms (74.0% of"
+   },
+   {
+    "day": 12,
+    "slug": "model-picker",
+    "title": "Model Picker",
+    "pattern": "Ranking with explicit scoring rubric",
+    "folder": "day-012-model-picker",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 5.75,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 5,
+     "tool_calls": 3,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "hub_repo_search": 2,
+      "hub_repo_details": 1
+     },
+     "prompt_tokens": 21051,
+     "output_tokens": 899,
+     "cost_usd": null,
+     "checks": {
+      "all_ranked_repos_from_tools": true,
+      "rubric_complete": true,
+      "sorted_by_total": true,
+      "downloads_known": true,
+      "problems": [],
+      "ranked": 4
+     },
+     "output_chars": 2472
+    },
+    "stderr_tail": "Failed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [scout] hub_repo_search(repo_types=['model'], limit=10, query='multilingual sentence embeddings', sort='downloa...)\n  \u2192 [scout] hub_repo_search(query='multilingual sentence transformers', sort='downloads', repo_types=['model'], lim...)\n  \u2192 [scout] hub_repo_details(repo_ids=['sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', 'sentence-tran...)\n\n\u2014 5.8s \u00b7 5 model calls \u00b7 3/10 tool calls {'hub_repo_search': 2, 'hub_repo_details': 1} \u00b7 21,051 in / 899 out tokens\n\u2713 4 models ranked; every one came from a tool result and was scored on the full rubric.",
+    "output_excerpt": "# Model shortlist\n> Multilingual sentence embeddings for semantic search, permissive licence, small enough for a laptop CPU\n\n## Ranking\n| # | Model | Total | task fit | constraint fit | popularity | licence | freshness |\n|---:|---|---:|---:|---:|---:|---:|---:|\n| 1 | [sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) | **98.0** | 5 | 5 | 5 | 5 | 4 |\n| 2 | [sentence-transformers/distiluse-base-multilingual-cased-v2](https://huggingface.co/sentence-transformers/distiluse-base-multilingual-cased-v2) | **91.0** | 5 | 4 | 5 | 5 | 3 |\n| 3 | [sentence-transformers/paraphrase-multilingual-mpnet-base-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2) | **91.0** | 5 | 4"
+   },
+   {
+    "day": 15,
+    "slug": "agent-evals",
+    "title": "Agent Evals",
+    "pattern": "Evals as code (trajectory + response scoring)",
+    "folder": "day-015-agent-evals",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 9.71,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 8,
+     "tool_calls": 3,
+     "tool_budget": 30,
+     "calls_by_tool": {
+      "convert_time": 3
+     },
+     "prompt_tokens": 10636,
+     "output_tokens": 211,
+     "cost_usd": null,
+     "checks": {
+      "tool_trajectory_avg_score": true,
+      "response_match_score": true,
+      "scores": {
+       "tool_trajectory_avg_score": 1.0,
+       "response_match_score": 0.885
+      }
+     },
+     "output_chars": 436
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/evaluation/metric_evaluator_registry.py:285: UserWarning: [EXPERIMENTAL] MetricEvaluatorRegistry: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  return MetricEvaluatorRegistry()\n/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/agent_evals/suite.py:66: UserWarning: [EXPERIMENTAL] UserSimulatorProvider: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  user_simulator_provider=UserSimulatorProvider(user_simulator_config=config.user_simulator_config),\n/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/agent_evals/suite.py:63: UserWarning: [EXPERIMENTAL] LocalEvalService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  service = LocalEvalService(\n/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/evaluation/simulation/user_simulator_provider.py:169: UserWarning: [EXPERIMENTAL] StaticUserSimulator: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  static_simulator = StaticUserSimulator(\n/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/evaluation/simulation/static_user_simulator.py:39: UserWarning: [EXPERIMENTAL] UserSimulator: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  super().__init__(\nInstalled 31 packages in 18ms\n\n\u2014 9.7s \u00b7 8 model calls \u00b7 3/30 tool calls {'convert_time': 3} \u00b7 10,636 in / 211 out tokens\n\u2713 tool_trajectory_avg_score = 1.00 (threshold 1.0)\n\u2713 response_match_score = 0.88 (threshold 0.6)",
+    "output_excerpt": "# Time Desk eval report\n\n| Case | tool_trajectory_avg_score | response_match_score |\n|---|---|---|\n| tokyo_to_kolkata | 1.00 | 1.00 |\n| singapore_to_kathmandu | 1.00 | 1.00 |\n| dubai_to_karachi | 1.00 | 1.00 |\n| off_topic_no_tools | 1.00 | 0.92 |\n| missing_zone_asks | 1.00 | 0.50 |\n\n| Metric | Mean | Threshold | Result |\n|---|---|---|---|\n| tool_trajectory_avg_score | 1.00 | 1.0 | pass |\n| response_match_score | 0.88 | 0.6 | pass |\n"
+   }
+  ]
  }
 ]
