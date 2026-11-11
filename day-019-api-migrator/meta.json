@@ -1,0 +1,19 @@
+{
+  "day": 19,
+  "slug": "api-migrator",
+  "title": "API Migrator",
+  "summary": "Diffs two versions of a library's docs into a migration plan; rejects APIs missing from the matching docs.",
+  "pattern": "Diff reasoning over docs",
+  "mcp_servers": [
+    "Context7",
+    "Microsoft Learn MCP"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-06",
+  "eval": {
+    "args": [
+      "Migrate the Azure Storage Blob Python SDK from the legacy 2.1 BlockBlobService to the current v12 BlobServiceClient"
+    ],
+    "timeout_s": 300
+  }
+}
