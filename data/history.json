@@ -7888,5 +7888,514 @@
     "output_excerpt": "# Time Desk eval report\n\n| Case | tool_trajectory_avg_score | response_match_score |\n|---|---|---|\n| tokyo_to_kolkata | 1.00 | 1.00 |\n| singapore_to_kathmandu | 1.00 | 1.00 |\n| dubai_to_karachi | 1.00 | 1.00 |\n| off_topic_no_tools | 1.00 | 0.92 |\n| missing_zone_asks | 1.00 | 0.50 |\n\n| Metric | Mean | Threshold | Result |\n|---|---|---|---|\n| tool_trajectory_avg_score | 1.00 | 1.0 | pass |\n| response_match_score | 0.88 | 0.6 | pass |\n"
    }
   ]
+ },
+ {
+  "timestamp": "2026-11-11T01:03:33+00:00",
+  "sha": "10f0829b87d26b420e5edab1c73feab16f1f6aef",
+  "results": [
+   {
+    "day": 1,
+    "slug": "arxiv-scout",
+    "title": "arXiv Scout",
+    "pattern": "Single agent + guardrail callbacks",
+    "folder": "day-001-arxiv-scout",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 19.9,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 3,
+     "tool_calls": 5,
+     "tool_budget": 12,
+     "calls_by_tool": {
+      "search_papers": 1,
+      "get_abstract": 4
+     },
+     "prompt_tokens": 11046,
+     "output_tokens": 1308,
+     "cost_usd": null,
+     "checks": {
+      "citations_verified": true,
+      "unverified_ids": []
+     },
+     "output_chars": 4253
+    },
+    "stderr_tail": "Downloading lxml (5.0MiB)\nDownloading aiohttp (1.8MiB)\n Downloaded aiohttp\n Downloaded pydantic-core\n Downloaded cryptography\n Downloaded lxml\nInstalled 44 packages in 34ms\nInstalled 45 packages in 38ms\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.14/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-001-arxiv-scout/.venv/lib/python3.14/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 search_papers(categories=['cs.CL', 'cs.LG'], sort_by='relevance', max_results=5, query='\"speculative ...)\n  \u2192 get_abstract(paper_id='2402.01528')\n  \u2192 get_abstract(paper_id='2401.07851')\n  \u2192 get_abstract(paper_id='2508.15371')\n  \u2192 get_abstract(paper_id='2404.08856')\n\n\u2014 19.9s \u00b7 3 model calls \u00b7 5/12 tool calls {'search_papers': 1, 'get_abstract': 4} \u00b7 11,046 in / 1,308 out tokens\n\u2713 All cited arXiv IDs were returned by a tool.",
+    "output_excerpt": "# Speculative Decoding for LLM Inference: engineering brief\n\n## TL;DR\n- **Paradigm shift**: Speculative decoding accelerates memory-bandwidth-bound LLM autoregressive inference by using a small, lightweight \"draft\" model to generate multiple speculative tokens, which a larger \"target\" model then validates in a single parallel forward pass.\n- **Draft model dynamics**: Language modeling capability does not strongly correlate with speculative decoding performance; draft model latency and hardware efficiency dictate the overall speedup gains [arXiv:2402.01528](https://arxiv.org/abs/2402.01528).\n- **Adaptability & Multimodal expansion**: Modern frameworks dynamically modulate draft length and verification based on uncertainty/entropy [arXiv:2508.15371](https://arxiv.org/abs/2508.15371) and exte"
+   },
+   {
+    "day": 2,
+    "slug": "repo-onboarder",
+    "title": "Repo Onboarder",
+    "pattern": "Sequential pipeline (SequentialAgent)",
+    "folder": "day-002-repo-onboarder",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 56.96,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 6,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "read_wiki_structure": 1,
+      "ask_wiki_question": 4,
+      "fetch": 1
+     },
+     "prompt_tokens": 45715,
+     "output_tokens": 1964,
+     "cost_usd": null,
+     "checks": {
+      "repo_available": true,
+      "all_sections_present": true,
+      "links_verified": true,
+      "missing_sections": [],
+      "unverified_links": []
+     },
+     "output_chars": 3101
+    },
+    "stderr_tail": "  session = await self._mcp_session_manager.create_session(\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-002-repo-onboarder/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [mapper] read_wiki_structure(repoName='psf/requests')\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\nDownloading pydantic-core (2.2MiB)\nDownloading lxml (5.0MiB)\n Downloaded pydantic-core\n Downloaded lxml\nInstalled 44 packages in 22ms\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What is this project, who is it for, and how is the ...)\n  \u2192 [researcher] ask_wiki_question(question='Where does a new reader start: the main entry points and the 3-5 most importa...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='How do I set up a development environment, run it, a...)\n  \u2192 [researcher] ask_wiki_question(repoName='psf/requests', question='What are the contribution conventions (branching, st...)\n  \u2192 [researcher] fetch(url='https://raw.githubusercontent.com/psf/requests/main/CONTRIBUTING.md')\n\n\u2014 57.0s \u00b7 9 model calls \u00b7 6/10 tool calls {'read_wiki_structure': 1, 'ask_wiki_question': 4, 'fetch': 1} \u00b7 45,715 in / 1,964 out tokens\n\u2713 All sections present and every repo link was returned by a tool.",
+    "output_excerpt": "# Onboarding guide: psf/requests\n\n## What this project is\n`Requests` is a popular Python HTTP client library designed to make sending HTTP/1.1 requests simple and intuitive. It provides a user-friendly API for developers while handling complex protocol details internally.\n\n## Architecture map\n| Area | Path | What lives there |\n| :--- | :--- | :--- |\n| Source Code | https://github.com/psf/requests/blob/HEAD/src/requests | Core Python source code including public APIs, session management, request/response models, and transport adapters |\n| Documentation | https://github.com/psf/requests/blob/HEAD/docs/ | reStructuredText files used to generate user guides, community information, and API docs via Sphinx |\n| Tests | https://github.com/psf/requests/blob/HEAD/tests/ | Project test suite |\n| GitH"
+   },
+   {
+    "day": 3,
+    "slug": "docs-copilot",
+    "title": "Docs Copilot",
+    "pattern": "Grounded QA + answer verification",
+    "folder": "day-003-docs-copilot",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 14.82,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 4,
+     "tool_calls": 2,
+     "tool_budget": 6,
+     "calls_by_tool": {
+      "microsoft_docs_search": 1,
+      "microsoft_code_sample_search": 1
+     },
+     "prompt_tokens": 21758,
+     "output_tokens": 1420,
+     "cost_usd": null,
+     "checks": {
+      "answered_from_docs": true,
+      "sections_present": true,
+      "sources_verified": true,
+      "code_grounded": true,
+      "missing_sections": [],
+      "unverified_sources": [],
+      "ungrounded_calls": []
+     },
+     "output_chars": 1272
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nFailed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\nContext7 Documentation MCP Server v4.4.4 running on stdio\n/home/runner/work/agent-a-day/agent-a-day/day-003-docs-copilot/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 [researcher] microsoft_docs_search(query='upload local file azure blob storage python sdk')\n  \u2192 [researcher] microsoft_code_sample_search(language='python', query='upload_blob upload local file azure-storage-blob')\nnpm notice\nnpm notice New major version of npm available! 10.9.9 -> 12.2.2\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2\nnpm notice To update run: npm install -g npm@12.2.2\nnpm notice\n\n\u2014 14.8s \u00b7 4 model calls \u00b7 2/6 tool calls {'microsoft_docs_search': 1, 'microsoft_code_sample_search': 1} \u00b7 21,758 in / 1,420 out tokens\n\u2713 Sections present, every source was returned by a tool, and every API call appears in the docs.",
+    "output_excerpt": "## Answer\nTo upload a local file to Azure Blob Storage using the Python SDK (`azure-storage-blob`), you can open the local file in binary read mode (`\"rb\"`) and pass it to the `upload_blob()` method of a `BlobClient`. \n\nBelow is an example using a connection string:\n\n```python\nfrom azure.storage.blob import BlobClient\n\nblob = BlobClient.from_connection_string(conn_str=\"<connection_string>\", container_name=\"mycontainer\", blob_name=\"my_blob\")\n\nwith open(\"./SampleSource.txt\", \"rb\") as data:\n    blob.upload_blob(data)\n```\n\n## Version notes\nnone stated\n\n## Sources\n- [https://learn.microsoft.com/python/api/overview/azure/storage-blob-readme?view=azure-python#examples](https://learn.microsoft.com/python/api/overview/azure/storage-blob-readme?view=azure-python#examples)\n- [https://learn.microsoft."
+   },
+   {
+    "day": 4,
+    "slug": "web-qa-explorer",
+    "title": "Web QA Explorer",
+    "pattern": "Browser agent + human confirmation (require_confirmation)",
+    "folder": "day-004-web-qa-explorer",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 16.48,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 12,
+     "tool_calls": 9,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "browser_navigate": 1,
+      "browser_snapshot": 2,
+      "browser_type": 3,
+      "browser_click": 1,
+      "browser_console_messages": 1,
+      "browser_network_requests": 1
+     },
+     "prompt_tokens": 44583,
+     "output_tokens": 611,
+     "cost_usd": null,
+     "checks": {
+      "sections_present": true,
+      "evidence_verified": true,
+      "pages_verified": true,
+      "risky_actions_gated": true,
+      "missing_sections": [],
+      "unverified_evidence": [],
+      "unverified_pages": [],
+      "approvals": [
+       {
+        "action": "browser_click(Delete button for todo \"Buy milk\" .todo-list li:first-child .destroy)",
+        "decision": "declined"
+       },
+       {
+        "action": "browser_click(Delete button for todo \"Buy milk\" .todo-list li:first-child button.destroy)",
+        "decision": "declined"
+       }
+      ],
+      "blocked": []
+     },
+     "output_chars": 1366
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:371: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  return self._build_declaration(fenced=False)\n  \u2192 browser_navigate(url='https://demo.playwright.dev/todomvc/')\n  \u2192 browser_snapshot()\n  \u2192 browser_type(element='textbox \"What needs to be done?\"', target='ref=e8', text='Buy milk', submit=True)\n  \u2192 browser_type(submit=True, text='Buy milk', target='input.new-todo', element='textbox \"What needs to ...)\n  \u2192 browser_type(element='textbox \"What needs to be done?\"', submit=True, target='input.new-todo', text=...)\n  \u2192 browser_click(element='Checkbox to complete todo \"Buy milk\"', target='.todo-list li:first-child .togg...)\n  \u2192 browser_click(target='.todo-list li:first-child .destroy', element='Delete button for todo \"Buy milk\"')\n/home/runner/work/agent-a-day/agent-a-day/day-004-web-qa-explorer/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.TOOL_CONFIRMATION is enabled.\n  check_feature_enabled()\n  \u2717 declined (no approval given): browser_click(target='.todo-list li:first-child .destroy', element='Delete button for todo \"Buy milk\"')\n  \u2192 browser_snapshot()\n  \u2192 browser_click(element='Delete button for todo \"Buy milk\"', target='.todo-list li:first-child button.d...)\n  \u2717 declined (no approval given): browser_click(element='Delete button for todo \"Buy milk\"', target='.todo-list li:first-child button.d...)\n  \u2192 browser_console_messages(level='error')\n  \u2192 browser_network_requests(static=True)\n\n\u2014 16.5s \u00b7 12 model calls \u00b7 9/14 tool calls {'browser_navigate': 1, 'browser_snapshot': 2, 'browser_type': 3, 'browser_click': 1, 'browser_console_messages': 1, 'browser_network_requests': 1} \u00b7 44,583 in / 611 out tokens\n\u2713 Sections present, every quote came from a tool result, and no risky action ran unapproved.",
+    "output_excerpt": "## Summary\nTested the TodoMVC React demo application by navigating to the page, adding two todo items (\"Buy milk\" and \"Pay bills\"), and completing one todo item. Attempting to delete the todo item via the UI delete button was rejected due to human approval constraint, leaving that part unexercised. Console checking revealed a 404 error for `favicon.ico`.\n\n## Findings\n### BUG-1 \u00b7 Missing favicon resource resulting in 404 error\n- **Severity:** low\n- **Steps:** Navigate to https://demo.playwright.dev/todomvc/\n- **Expected / actual:** The browser successfully loads `favicon.ico` / The server responded with a 404 status for `favicon.ico`\n- **Evidence:** `[ERROR] Failed to load resource: the server responded with a status of 404 () @ https://demo.playwright.dev/favicon.ico:0`\n\n## Coverage\n- **Pa"
+   },
+   {
+    "day": 5,
+    "slug": "hn-digest",
+    "title": "HN Digest",
+    "pattern": "Long-term memory via knowledge graph",
+    "folder": "day-005-hn-digest",
+    "model": "gemini-3.5-flash-lite",
+    "status": "fail",
+    "exit_code": 1,
+    "metrics": {
+     "passed": false,
+     "elapsed_s": 24.8,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 11,
+     "tool_calls": 8,
+     "tool_budget": 8,
+     "calls_by_tool": {
+      "fetch": 7,
+      "open_nodes": 1
+     },
+     "prompt_tokens": 84124,
+     "output_tokens": 1269,
+     "cost_usd": null,
+     "checks": {
+      "sections_present": true,
+      "has_stories": true,
+      "links_verified": false,
+      "memory_consulted": true,
+      "no_repeats": true,
+      "memory_saved": false,
+      "missing_sections": [],
+      "unverified_links": [
+       "https://news.ycombinator.com/item?id=50441707",
+       "https://news.ycombinator.com/item?id=50442736",
+       "https://news.ycombinator.com/item?id=50445401",
+       "https://news.ycombinator.com/item?id=50447074"
+      ],
+      "repeated_stories": [],
+      "unsaved_stories": [
+       "50441707",
+       "50442736",
+       "50445401",
+       "50447074"
+      ],
+      "known_before": 0,
+      "stories_in_digest": 4
+     },
+     "output_chars": 1368
+    },
+    "stderr_tail": "HTTP Request: GET https://hacker-news.firebaseio.com/v0/topstories.json \"HTTP/1.1 200 OK\"\n  \u2192 fetch(url='https://hacker-news.firebaseio.com/v0/item/50447074.json')\nHTTP Request: GET https://hacker-news.firebaseio.com/robots.txt \"HTTP/1.1 200 OK\"\nHTTP Request: GET https://hacker-news.firebaseio.com/v0/item/50447074.json \"HTTP/1.1 200 OK\"\n  \u2192 open_nodes(names=['hn-50447074', 'hn-50445401', 'hn-50442736', 'hn-50441707', 'hn-50446246'])\n  \u2192 fetch(url='https://hacker-news.firebaseio.com/v0/item/50445401.json')\nHTTP Request: GET https://hacker-news.firebaseio.com/robots.txt \"HTTP/1.1 200 OK\"\nHTTP Request: GET https://hacker-news.firebaseio.com/v0/item/50445401.json \"HTTP/1.1 200 OK\"\n  \u2192 fetch(url='https://hacker-news.firebaseio.com/v0/item/50442736.json')\nHTTP Request: GET https://hacker-news.firebaseio.com/robots.txt \"HTTP/1.1 200 OK\"\nHTTP Request: GET https://hacker-news.firebaseio.com/v0/item/50442736.json \"HTTP/1.1 200 OK\"\n  \u2192 fetch(url='https://hacker-news.firebaseio.com/v0/item/50441707.json')\nHTTP Request: GET https://hacker-news.firebaseio.com/robots.txt \"HTTP/1.1 200 OK\"\nHTTP Request: GET https://hacker-news.firebaseio.com/v0/item/50441707.json \"HTTP/1.1 200 OK\"\n  \u2192 fetch(url='https://hacker-news.firebaseio.com/v0/item/50446246.json')\n  \u2192 create_entities(entities=[{'entityType': 'hn_story', 'name': 'hn-50447074', 'observations': ['title: Af...)\n\n\u2014 24.8s \u00b7 11 model calls \u00b7 8/8 tool calls {'fetch': 7, 'open_nodes': 1} \u00b7 84,124 in / 1,269 out tokens\n\u2717 Links not returned by any tool: https://news.ycombinator.com/item?id=50441707, https://news.ycombinator.com/item?id=50442736, https://news.ycombinator.com/item?id=50445401, https://news.ycombinator.com/item?id=50447074\n\u2717 Stories in the digest that were not saved to memory: 50441707, 50442736, 50445401, 50447074",
+    "output_excerpt": "# Hacker News digest \u00b7 2026-11-11\n## Stories\n1. **[Smart home devices should work without the internet](https://docodethatmatters.com/home-automation-overnight-success/)** \u2014 An examination of why home automation setups should remain functional locally without relying on cloud internet connectivity. \u00b7 [682 points, 245 comments](https://news.ycombinator.com/item?id=50441707).\n2. **[.name Grandfathered](https://neil.fraser.name/news/2026/11/10/)** \u2014 A look at the updates regarding grandfathered status for `.name` domain endings. \u00b7 [670 points, 155 comments](https://news.ycombinator.com/item?id=50442736).\n3. **[Scion is back and is going to sell a kei truck in America](https://www.theautopian.com/scion-is-back-and-its-going-to-sell-a-freaking-kei-truck-in-america/)** \u2014 Reports show Scion retur"
+   },
+   {
+    "day": 6,
+    "slug": "meeting-planner",
+    "title": "Meeting Planner",
+    "pattern": "Structured output (Pydantic output_schema)",
+    "folder": "day-006-meeting-planner",
+    "model": "gemini-3.5-flash-lite",
+    "status": "fail",
+    "exit_code": 1,
+    "metrics": {
+     "passed": false,
+     "elapsed_s": 5.26,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 1,
+     "tool_calls": 7,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "convert_time": 7
+     },
+     "prompt_tokens": 2353,
+     "output_tokens": 1153,
+     "cost_usd": null,
+     "checks": {
+      "schema_valid": true,
+      "plan_complete": true,
+      "verified_by_recompute": false,
+      "zones_checked_by_tool": true,
+      "problems": {
+       "within_working_hours": [
+        "slot 1: Melbourne Mon 16:30-17:15",
+        "slot 2: Melbourne Tue 16:30-17:15",
+        "slot 3: Melbourne Wed 16:30-17:15"
+       ]
+      },
+      "unchecked_zones": [],
+      "slots": 3
+     },
+     "output_chars": 3977
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.PLUGGABLE_AUTH is enabled.\n  check_feature_enabled()\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/tools/set_model_response_tool.py:272: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.\n  build_function_declaration(\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_toolset.py:407: UserWarning: [EXPERIMENTAL] feature FeatureName._MCP_GRACEFUL_ERROR_HANDLING is enabled.\n  session = await self._mcp_session_manager.create_session(\nInstalled 31 packages in 18ms\n/home/runner/work/agent-a-day/agent-a-day/day-006-meeting-planner/.venv/lib/python3.12/site-packages/google/adk/features/_feature_decorator.py:71: UserWarning: [EXPERIMENTAL] feature FeatureName.BASE_AUTHENTICATED_TOOL is enabled.\n  check_feature_enabled()\n  \u2192 convert_time(source_timezone='Australia/Melbourne', target_timezone='Etc/UTC', time='09:00')\n  \u2192 convert_time(target_timezone='Etc/UTC', source_timezone='Asia/Singapore', time='09:00')\n  \u2192 convert_time(time='09:00', source_timezone='Asia/Kolkata', target_timezone='Etc/UTC')\n  \u2192 convert_time(time='17:00', target_timezone='Etc/UTC', source_timezone='Australia/Melbourne')\n  \u2192 convert_time(time='17:00', source_timezone='Asia/Singapore', target_timezone='Etc/UTC')\n  \u2192 convert_time(time='17:00', source_timezone='Asia/Kolkata', target_timezone='Etc/UTC')\n  \u2192 convert_time(source_timezone='Etc/UTC', target_timezone='Australia/Melbourne', time='01:00')\n  \u2192 set_model_response(slots=[{'end_utc': '2026-11-16 06:15', 'rationale': 'Fits within working hours for all ...)\n\n\u2014 5.3s \u00b7 1 model calls \u00b7 7/10 tool calls {'convert_time': 7} \u00b7 2,353 in / 1,153 out tokens\n\u2717 within_working_hours: slot 1: Melbourne Mon 16:30-17:15; slot 2: Melbourne Tue 16:30-17:15; slot 3: Melbourne Wed 16:30-17:15",
+    "output_excerpt": "# Sync: Melbourne, Singapore, Mumbai\n\n45 minutes \u00b7 working hours 09:00-17:00 local \u00b7 Melbourne (Australia/Melbourne), Singapore (Asia/Singapore), Mumbai (Asia/Kolkata)\n\n## Option 1: 2026-11-16 05:30 UTC\n\nFits within working hours for all participants on Monday next week.\n\n| Who | Local start | Local end |\n|---|---|---|\n| Melbourne (Australia/Melbourne) | 2026-11-16 16:30 | 2026-11-16 17:15 |\n| Singapore (Asia/Singapore) | 2026-11-16 13:30 | 2026-11-16 14:15 |\n| Mumbai (Asia/Kolkata) | 2026-11-16 11:00 | 2026-11-16 11:45 |\n\n## Option 2: 2026-11-17 05:30 UTC\n\nFits within working hours for all participants on Tuesday next week.\n\n| Who | Local start | Local end |\n|---|---|---|\n| Melbourne (Australia/Melbourne) | 2026-11-17 16:30 | 2026-11-17 17:15 |\n| Singapore (Asia/Singapore) | 2026-11-17 13"
+   },
+   {
+    "day": 7,
+    "slug": "security-triager",
+    "title": "Security Triager",
+    "pattern": "Deterministic tool + LLM triage",
+    "folder": "day-007-security-triager",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 16.72,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 8,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "git_show": 7,
+      "semgrep_scan_with_custom_rule": 1
+     },
+     "prompt_tokens": 19221,
+     "output_tokens": 941,
+     "cost_usd": null,
+     "checks": {
+      "scan_ran": true,
+      "no_invented_findings": true,
+      "all_findings_triaged": true,
+      "invented_ids": [],
+      "untriaged_ids": [],
+      "findings": 7,
+      "verdicts": {
+       "exploitable": 3,
+       "likely": 1,
+       "unlikely": 1,
+       "false positive": 2
+      }
+     },
+     "output_chars": 2133
+    },
+    "stderr_tail": " Downloaded pygments\n Downloaded semgrep\nInstalled 66 packages in 40ms\nStarting Semgrep MCP server version v1.182.1\n/home/runner/.cache/uv/archive-v0/IAza2HLJGz45wAy3/lib/python3.12/site-packages/pydantic_settings/sources/utils.py:51: IncompleteFieldDefinitionWarning: Field 'lifespan' has an incomplete definition: its annotation contains an unresolved forward reference, so settings sources may fail to correctly resolve its value. Call `model_rebuild()` on the model where the field is defined, once all the referenced types are defined.\n  warnings.warn(  # noqa: B028  (called from many sources at differing depths, so no stacklevel is correct)\nUser doesn't have the Pro Engine installed, not running `semgrep mcp` daemon...\n  \u2192 git_show(revision='HEAD:')\n  \u2192 git_show(revision='HEAD:app/')\n  \u2192 git_show(revision='HEAD:app')\n  \u2192 git_show(revision='HEAD:app/views.py')\n  \u2192 git_show(revision='HEAD:app/client.py')\n  \u2192 git_show(revision='HEAD:app/cache.py')\n  \u2192 git_show(revision='HEAD:app/__init__.py')\n  \u2192 semgrep_scan_with_custom_rule(code_files=[{'path': 'app/views.py', 'content': ''}, {'path': 'app/client.py', 'content...)\nFindings elicitation is not enabled, skipping.\nsemgrep_scan_with_custom_rule succeeded\n\n\u2014 16.7s \u00b7 9 model calls \u00b7 8/14 tool calls {'git_show': 7, 'semgrep_scan_with_custom_rule': 1} \u00b7 19,221 in / 941 out tokens\n\u2713 All 7 scanner findings triaged; none invented.",
+    "output_excerpt": "# Security triage: demo_app\n## Summary\nThe codebase contains critical remote code execution and command injection vulnerabilities that require immediate remediation. Fix F5 (OS command injection in `ping_host`) first because it exposes a direct unauthenticated remote code execution vector via HTTP request parameters.\n\n## Findings\n| ID | Rule | Location | Verdict | Why | Fix |\n|---|---|---|---|---|---|\n| F1 | py-weak-hash | app/cache.py:9 | false positive | MD5 is used exclusively for generating a cache bucket name, not for cryptography or password hashing. | `return hashlib.sha256(url.encode()).hexdigest()` |\n| F2 | py-pickle-load | app/cache.py:14 | likely | Session cookies are deserialised using `pickle.loads`, which leads to RCE if cookies are forgeable, though cookie signing/forging de"
+   },
+   {
+    "day": 8,
+    "slug": "aws-architect",
+    "title": "AWS Architect",
+    "pattern": "Parallel fan-out (ParallelAgent) + merge",
+    "folder": "day-008-aws-architect",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 15.88,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 5,
+     "tool_budget": 15,
+     "calls_by_tool": {
+      "search_documentation": 5
+     },
+     "prompt_tokens": 68839,
+     "output_tokens": 2935,
+     "cost_usd": null,
+     "checks": {
+      "all_sections_present": true,
+      "citations_verified": true,
+      "missing_sections": [],
+      "unverified_links": []
+     },
+     "output_chars": 7784
+    },
+    "stderr_tail": "                             L+S3+security+best+practices+encryp                \n                             tion+IAM \"HTTP/1.1 200 OK\"                         \n  \u2192 [reliability_reviewer] search_documentation(search_phrase='ECS Fargate task placement multi AZ reliability', search_intent='ECS Far...)\n  \u2192 [cost_reviewer] search_documentation(search_phrase='Amazon RDS cost optimization and S3 storage classes pricing', search_int...)\n[11/11/26 01:01:36] INFO     HTTP Request: POST                  _client.py:1740\n                             https://proxy.search.docs.aws.com/s                \n                             earch?session=640fb715-ba6f-41d1-ba                \n                             6d-efc8170c2cab&search_intent=RDS+a                \n                             nd+S3+cost+optimization+pricing+sto                \n                             rage+classes \"HTTP/1.1 200 OK\"                     \n[11/11/26 01:01:38] INFO     HTTP Request: POST                  _client.py:1740\n                             https://proxy.search.docs.aws.com/s                \n                             earch?session=7c17c5ae-0c88-4dc1-a1                \n                             4d-37f22f33e4b4&search_intent=ECS+F                \n                             argate+task+multi-AZ+deployment+rel                \n                             iability+best+practices \"HTTP/1.1                  \n                             200 OK\"                                            \n\n\u2014 15.9s \u00b7 9 model calls \u00b7 5/15 tool calls {'search_documentation': 5} \u00b7 68,839 in / 2,935 out tokens\n\u2713 All sections present and every AWS doc link was returned by a tool.",
+    "output_excerpt": "# Architecture review\n## Summary\n- **Overall posture:** The architecture follows standard multi-AZ patterns for compute, load balancing, and database layers, but requires hardening across security controls, data persistence policies, and cost-efficiency mechanisms.\n- **Biggest risk:** Unencrypted or publicly accessible assets, lack of least privilege IAM controls, and single-instance database configurations expose the system to high availability failures and data security breaches.\n- **Quickest win:** Enable server-side encryption, block public access on the S3 upload bucket, and configure AWS Compute Optimizer and Trusted Advisor to instantly surface cost and sizing improvements.\n\n## Top priorities\n| # | Pillar | Finding | Recommendation | Source |\n|---|---|---|---|---|\n| 1 | Security | E"
+   },
+   {
+    "day": 9,
+    "slug": "fact-checker",
+    "title": "Fact Checker",
+    "pattern": "Generator\u2013critic loop (LoopAgent)",
+    "folder": "day-009-fact-checker",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 21.15,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 9,
+     "tool_calls": 8,
+     "tool_budget": 14,
+     "calls_by_tool": {
+      "search": 6,
+      "get_summary": 2
+     },
+     "prompt_tokens": 70389,
+     "output_tokens": 804,
+     "cost_usd": null,
+     "checks": {
+      "report_well_formed": true,
+      "critic_approved": true,
+      "rounds": 3,
+      "problems": []
+     },
+     "output_chars": 788
+    },
+    "stderr_tail": "/home/runner/.cache/uv/archive-v0/i21sE6oEJpF0Zp4J/lib/python3.12/site-packages/duckduckgo_mcp_server/server.py:489: MCPDeprecationWarning: The logging capability is deprecated as of 2026-07-28 (SEP-2577).\n  await ctx.error(str(e))\n/home/runner/.cache/uv/archive-v0/i21sE6oEJpF0Zp4J/lib/python3.12/site-packages/mcp/server/mcpserver/context.py:391: MCPDeprecationWarning: The logging capability is deprecated as of 2026-07-28 (SEP-2577).\n  await self.log(\"error\", data, logger_name=logger_name)  # pyright: ignore[reportDeprecated]\n  \u2192 [checker] search(query='Canberra federal capital of the Commonwealth of Australia Britannica')\n[11/11/26 01:02:06] INFO     HTTP Request: POST                  _client.py:1740\n                             https://html.duckduckgo.com/html                   \n                             \"HTTP/1.1 202 Accepted\"                            \n  \u2192 [checker] search(query='Canberra federal capital Commonwealth Australia Britannica')\n[11/11/26 01:02:08] INFO     HTTP Request: POST                  _client.py:1740\n                             https://html.duckduckgo.com/html                   \n                             \"HTTP/1.1 200 OK\"                                  \n  \u25e6 round 3: checker wrote verdicts\n  \u25e6 round 3: critic reviewed\n  \u25e6 round 3: critic reviewed\n  \u25e6 round 3: critic reviewed\n  \u25e6 round 3: critic approved\n\n\u2014 21.1s \u00b7 3 rounds \u00b7 9 model calls \u00b7 8/14 tool calls {'search': 6, 'get_summary': 2} \u00b7 70,389 in / 804 out tokens\n\u2713 Critic approved after 3 round(s); every verdict, link and quote checked against tool results.",
+    "output_excerpt": "# Fact check\n### Claim 1: Sydney is the capital of Australia.\n**Verdict: Refuted**\nSydney is a prominent Australian city, whereas Canberra serves as the federal capital.\n- [Canberra | History, Map, Population, Climate, & Facts | Britannica](https://www.britannica.com/place/Canberra)\n  > \"Canberra, federal capital of the Commonwealth of Australia.\"\n\n### Claim 2: Mount Everest is the tallest mountain on Earth measured from base to peak.\n**Verdict: Refuted**\nWhen measured from base to peak, Mauna Kea is taller than Mount Everest.\n- [Tallest mountain - Wikipedia](https://en.wikipedia.org/wiki/Tallest_mountain)\n  > \"On Earth, measured this way, Mauna Kea is the tallest mountain.\"\n\n## Sources\n- https://www.britannica.com/place/Canberra\n- https://en.wikipedia.org/wiki/Tallest_mountain"
+   },
+   {
+    "day": 10,
+    "slug": "sql-analyst",
+    "title": "SQL Analyst",
+    "pattern": "Argument guardrails (block writes in before_tool)",
+    "folder": "day-010-sql-analyst",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 4.98,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 4,
+     "tool_calls": 4,
+     "tool_budget": 12,
+     "calls_by_tool": {
+      "list_tables": 1,
+      "describe_table": 2,
+      "read_query": 1
+     },
+     "prompt_tokens": 4551,
+     "output_tokens": 322,
+     "cost_usd": null,
+     "checks": {
+      "queried_database": true,
+      "sql_shown": true,
+      "shown_sql_was_executed": true,
+      "rejected_queries": 0,
+      "unexecuted_sql": 0
+     },
+     "output_chars": 586
+    },
+    "stderr_tail": "Downloading pydantic-core (1.9MiB)\n Downloaded pydantic-core\nInstalled 33 packages in 17ms\n  \u2192 list_tables()\n  \u2192 describe_table(table_name='Genre')\n  \u2192 describe_table(table_name='Track')\n  \u2192 read_query(query='SELECT g.Name AS Genre, COUNT(t.TrackId) AS TrackCount FROM Genre g JOIN Track t...)\n\n\u2014 5.0s \u00b7 4 model calls \u00b7 4/12 tool calls {'list_tables': 1, 'describe_table': 2, 'read_query': 1} \u00b7 4,551 in / 322 out tokens\n\u2713 The answer's SQL is exactly what the database ran, and every query was a guarded SELECT.",
+    "output_excerpt": "## Answer\nThe 5 genres with the most tracks are Rock (1,297 tracks), Latin (579 tracks), Metal (374 tracks), Alternative & Punk (332 tracks), and Jazz (130 tracks).\n\n## Data\n| Genre | TrackCount |\n|---|---|\n| Rock | 1297 |\n| Latin | 579 |\n| Metal | 374 |\n| Alternative & Punk | 332 |\n| Jazz | 130 |\n\n## SQL used\n```sql\nSELECT g.Name AS Genre, COUNT(t.TrackId) AS TrackCount\nFROM Genre g\nJOIN Track t ON g.GenreId = t.GenreId\nGROUP BY g.GenreId, g.Name\nORDER BY TrackCount DESC\nLIMIT 5;\n```\n\n## Notes\n- Results are ordered by track count in descending order, limited to the top 5 genres."
+   },
+   {
+    "day": 11,
+    "slug": "perf-auditor",
+    "title": "Perf Auditor",
+    "pattern": "Tool-heavy diagnostics",
+    "folder": "day-011-perf-auditor",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 26.54,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 6,
+     "tool_calls": 5,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "new_page": 1,
+      "emulate": 1,
+      "performance_start_trace": 1,
+      "performance_analyze_insight": 2
+     },
+     "prompt_tokens": 28285,
+     "output_tokens": 778,
+     "cost_usd": null,
+     "checks": {
+      "structure": true,
+      "trace_recorded": true,
+      "numbers_verified": true,
+      "ratings_correct": true
+     },
+     "output_chars": 1924
+    },
+    "stderr_tail": "chrome-devtools-mcp exposes content of the browser instance to the MCP clients allowing them to inspect,\ndebug, and modify any data in the browser or DevTools.\nAvoid sharing sensitive or personal information that you do not want to share with MCP clients.\n[chrome-devtools-mcp] The connecting client did not negotiate the MCP roots capability. Tools that read or write local files will be restricted to the OS temp directory. To restore the previous unrestricted behavior, start the server with --allow-unrestricted-paths.\n  \u2192 new_page(url='https://web.dev')\n  \u2192 emulate(pageId=2, networkConditions='Fast 4G', cpuThrottlingRate=4)\n  \u2192 performance_start_trace(pageId=2, reload=True, autoStop=True)\n  \u2192 performance_analyze_insight(insightSetId='NAVIGATION_0', pageId=2, insightName='LCPBreakdown')\n  \u2192 performance_analyze_insight(insightName='CLSCulprits', pageId=2, insightSetId='NAVIGATION_0')\n\n\u2014 26.5s \u00b7 6 model calls \u00b7 5/10 tool calls {'new_page': 1, 'emulate': 1, 'performance_start_trace': 1, 'performance_analyze_insight': 2} \u00b7 28,285 in / 778 out tokens\n\u2713 Trace recorded; every metric value and rating checked against tool results.",
+    "output_excerpt": "# Performance audit: https://web.dev\n*(Note: Emulation was applied with a CPU throttling rate of 4x and Fast 4G network conditions for a mid-range phone).*\n\n## Core Web Vitals\n| Metric | Value | Rating |\n|---|---|---|\n| LCP | 1227 ms | Good |\n| CLS | 0.05 | Good |\n| INP | not measured | n/a |\n| FCP | not measured | n/a |\n| TTFB | 352 ms | Good |\n\n## Diagnosis\nThe page loads with an LCP of 1227 ms and a CLS of 0.05, both falling within the \"Good\" rating thresholds. \n\nAccording to the `LCPBreakdown` insight, the Largest Contentful Paint is an image (`https://web.dev/static/images/home-blue_720.png`). The subpart breakdown shows:\n- Time to first byte: 352 ms (28.7% of total LCP time)\n- Resource load delay: 50 ms (4.1% of total LCP time)\n- Resource load duration: 7 ms (0.6% of total LCP time)\n"
+   },
+   {
+    "day": 12,
+    "slug": "model-picker",
+    "title": "Model Picker",
+    "pattern": "Ranking with explicit scoring rubric",
+    "folder": "day-012-model-picker",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 6.27,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 5,
+     "tool_calls": 3,
+     "tool_budget": 10,
+     "calls_by_tool": {
+      "hub_repo_search": 2,
+      "hub_repo_details": 1
+     },
+     "prompt_tokens": 18876,
+     "output_tokens": 924,
+     "cost_usd": null,
+     "checks": {
+      "all_ranked_repos_from_tools": true,
+      "rubric_complete": true,
+      "sorted_by_total": true,
+      "downloads_known": true,
+      "problems": [],
+      "ranked": 4
+     },
+     "output_chars": 2283
+    },
+    "stderr_tail": "Failed to configure mTLS using AsyncAuthorizedSession: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.\n  \u2192 [scout] hub_repo_search(query='multilingual embeddings sentence-transformers', limit=10, sort='downloads', filt...)\n  \u2192 [scout] hub_repo_search(query='multilingual embedding', repo_types=['model'], limit=10, sort='downloads')\n  \u2192 [scout] hub_repo_details(repo_ids=['HIT-TMG/KaLM-embedding-multilingual-mini-v1', 'ibm-granite/granite-embedding...)\n\n\u2014 6.3s \u00b7 5 model calls \u00b7 3/10 tool calls {'hub_repo_search': 2, 'hub_repo_details': 1} \u00b7 18,876 in / 924 out tokens\n\u2713 4 models ranked; every one came from a tool result and was scored on the full rubric.",
+    "output_excerpt": "# Model shortlist\n> Multilingual sentence embeddings for semantic search, permissive licence, small enough for a laptop CPU\n\n## Ranking\n| # | Model | Total | task fit | constraint fit | popularity | licence | freshness |\n|---:|---|---:|---:|---:|---:|---:|---:|\n| 1 | [ibm-granite/granite-embedding-97m-multilingual-r2](https://huggingface.co/ibm-granite/granite-embedding-97m-multilingual-r2) | **100.0** | 5 | 5 | 5 | 5 | 5 |\n| 2 | [ibm-granite/granite-embedding-311m-multilingual-r2](https://huggingface.co/ibm-granite/granite-embedding-311m-multilingual-r2) | **95.0** | 5 | 4 | 5 | 5 | 5 |\n| 3 | [ibm-granite/granite-embedding-107m-multilingual](https://huggingface.co/ibm-granite/granite-embedding-107m-multilingual) | **84.0** | 4 | 4 | 5 | 5 | 3 |\n| 4 | [HIT-TMG/KaLM-embedding-multilingual-m"
+   },
+   {
+    "day": 15,
+    "slug": "agent-evals",
+    "title": "Agent Evals",
+    "pattern": "Evals as code (trajectory + response scoring)",
+    "folder": "day-015-agent-evals",
+    "model": "gemini-3.5-flash-lite",
+    "status": "pass",
+    "exit_code": 0,
+    "metrics": {
+     "passed": true,
+     "elapsed_s": 10.74,
+     "model": "gemini-3.5-flash-lite",
+     "model_calls": 8,
+     "tool_calls": 3,
+     "tool_budget": 30,
+     "calls_by_tool": {
+      "convert_time": 3
+     },
+     "prompt_tokens": 10636,
+     "output_tokens": 215,
+     "cost_usd": null,
+     "checks": {
+      "tool_trajectory_avg_score": true,
+      "response_match_score": true,
+      "scores": {
+       "tool_trajectory_avg_score": 1.0,
+       "response_match_score": 0.875
+      }
+     },
+     "output_chars": 436
+    },
+    "stderr_tail": "/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/evaluation/metric_evaluator_registry.py:285: UserWarning: [EXPERIMENTAL] MetricEvaluatorRegistry: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  return MetricEvaluatorRegistry()\n/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/agent_evals/suite.py:66: UserWarning: [EXPERIMENTAL] UserSimulatorProvider: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  user_simulator_provider=UserSimulatorProvider(user_simulator_config=config.user_simulator_config),\n/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/agent_evals/suite.py:63: UserWarning: [EXPERIMENTAL] LocalEvalService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  service = LocalEvalService(\n/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/evaluation/simulation/user_simulator_provider.py:169: UserWarning: [EXPERIMENTAL] StaticUserSimulator: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  static_simulator = StaticUserSimulator(\n/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/evaluation/simulation/static_user_simulator.py:39: UserWarning: [EXPERIMENTAL] UserSimulator: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.\n  super().__init__(\nInstalled 31 packages in 54ms\n\n\u2014 10.7s \u00b7 8 model calls \u00b7 3/30 tool calls {'convert_time': 3} \u00b7 10,636 in / 215 out tokens\n\u2713 tool_trajectory_avg_score = 1.00 (threshold 1.0)\n\u2713 response_match_score = 0.88 (threshold 0.6)",
+    "output_excerpt": "# Time Desk eval report\n\n| Case | tool_trajectory_avg_score | response_match_score |\n|---|---|---|\n| tokyo_to_kolkata | 1.00 | 1.00 |\n| singapore_to_kathmandu | 1.00 | 1.00 |\n| dubai_to_karachi | 1.00 | 1.00 |\n| off_topic_no_tools | 1.00 | 0.88 |\n| missing_zone_asks | 1.00 | 0.50 |\n\n| Metric | Mean | Threshold | Result |\n|---|---|---|---|\n| tool_trajectory_avg_score | 1.00 | 1.0 | pass |\n| response_match_score | 0.88 | 0.6 | pass |\n"
+   }
+  ]
  }
 ]
