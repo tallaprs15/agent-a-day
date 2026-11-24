@@ -1,0 +1,18 @@
+{
+  "day": 13,
+  "slug": "release-notes",
+  "title": "Release Notes",
+  "summary": "Writes release notes for a git range with map-reduce: parallel workers classify commits, a reducer groups them.",
+  "pattern": "Map-reduce summarisation",
+  "mcp_servers": [
+    "mcp-server-git"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-31",
+  "eval": {
+    "args": [
+      "--demo"
+    ],
+    "timeout_s": 300
+  }
+}
