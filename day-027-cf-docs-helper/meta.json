@@ -1,0 +1,18 @@
+{
+  "day": 27,
+  "slug": "cf-docs-helper",
+  "title": "CF Docs Helper",
+  "summary": "Answers Cloudflare Workers questions from the official docs MCP server, with verified doc links.",
+  "pattern": "Remote MCP over streamable HTTP",
+  "mcp_servers": [
+    "Cloudflare Docs MCP"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-15",
+  "eval": {
+    "args": [
+      "What are the Workers KV limits?"
+    ],
+    "timeout_s": 300
+  }
+}
