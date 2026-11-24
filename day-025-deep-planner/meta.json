@@ -1,0 +1,18 @@
+{
+  "day": 25,
+  "slug": "deep-planner",
+  "title": "Deep Planner",
+  "summary": "Breaks a vague goal into a dependency-ordered plan via an explicit reasoning tool; rejects cyclic or uncheckable plans.",
+  "pattern": "Explicit reasoning tool",
+  "mcp_servers": [
+    "Sequential Thinking MCP"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-13",
+  "eval": {
+    "args": [
+      "Launch a personal blog about cycling"
+    ],
+    "timeout_s": 300
+  }
+}
