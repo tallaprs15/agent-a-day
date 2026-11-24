@@ -1,0 +1,26 @@
+[project]
+name = "a2a-duo"
+version = "0.1.0"
+description = "Day 026: two ADK agents collaborating over the A2A protocol, one owning arXiv tools, one writing the brief."
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk>=2.12,<3",
+    "mcp>=1.20",
+    "a2a-sdk>=0.3,<1",
+    "uvicorn>=0.30",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = [
+    "ignore:\\[EXPERIMENTAL\\]:UserWarning",
+    "ignore:MCPTool class is deprecated:DeprecationWarning",
+]
