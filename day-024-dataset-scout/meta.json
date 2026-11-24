@@ -1,0 +1,18 @@
+{
+  "day": 24,
+  "slug": "dataset-scout",
+  "title": "Dataset Scout",
+  "summary": "Finds Hugging Face datasets for a task and explains them in a guide where every dataset comes from a tool result.",
+  "pattern": "Retrieval + summarisation",
+  "mcp_servers": [
+    "Hugging Face MCP"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-11",
+  "eval": {
+    "args": [
+      "Fine-tune a small model to classify customer support tickets by intent, English, permissive licence"
+    ],
+    "timeout_s": 300
+  }
+}
