@@ -1,6 +1,6 @@
 {
- "timestamp": "2026-11-24T05:12:09+00:00",
- "sha": "fd89601d109bb5e27599c271100aeee7eb434f2b",
+ "timestamp": "2026-11-25T04:01:42+00:00",
+ "sha": "a3042a80e9a4d679fbab89931d0d60eb34ea4a8b",
  "results": [
   {
    "day": 1,
@@ -159,6 +159,32 @@
    "output_excerpt": ""
   },
   {
+   "day": 13,
+   "slug": "release-notes",
+   "title": "Release Notes",
+   "pattern": "Map-reduce summarisation",
+   "folder": "day-013-release-notes",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-013-release-notes/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-013-release-notes/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-013-release-notes/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-013-release-notes/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-013-release-notes/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 14,
+   "slug": "paper-debate",
+   "title": "Paper Debate",
+   "pattern": "Multi-agent debate",
+   "folder": "day-014-paper-debate",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-014-paper-debate/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-014-paper-debate/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-014-paper-debate/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-014-paper-debate/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-014-paper-debate/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
    "day": 15,
    "slug": "agent-evals",
    "title": "Agent Evals",
@@ -167,6 +193,45 @@
    "model": "gemini-3.5-flash-lite",
    "status": "timeout",
    "stderr_tail": "  File \"/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1020, in time_model_awaits\n    response = await iterator.__anext__()\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-015-agent-evals/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}"
+  },
+  {
+   "day": 16,
+   "slug": "kg-builder",
+   "title": "KG Builder",
+   "pattern": "Extraction \u2192 graph writes",
+   "folder": "day-016-kg-builder",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-016-kg-builder/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-016-kg-builder/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-016-kg-builder/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-016-kg-builder/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-016-kg-builder/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 17,
+   "slug": "jd-matcher",
+   "title": "JD Matcher",
+   "pattern": "Structured comparison",
+   "folder": "day-017-jd-matcher",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-017-jd-matcher/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-017-jd-matcher/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-017-jd-matcher/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-017-jd-matcher/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-017-jd-matcher/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 18,
+   "slug": "competitor-scan",
+   "title": "Competitor Scan",
+   "pattern": "Search \u2192 extract \u2192 normalise",
+   "folder": "day-018-competitor-scan",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-018-competitor-scan/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-018-competitor-scan/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-018-competitor-scan/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-018-competitor-scan/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-018-competitor-scan/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
   },
   {
    "day": 19,
@@ -179,6 +244,110 @@
    "exit_code": 1,
    "metrics": null,
    "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-019-api-migrator/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-019-api-migrator/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-019-api-migrator/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-019-api-migrator/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-019-api-migrator/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 20,
+   "slug": "pr-reviewer",
+   "title": "PR Reviewer",
+   "pattern": "Read-only scoped credentials",
+   "folder": "day-020-pr-reviewer",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-020-pr-reviewer/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 52, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-020-pr-reviewer/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 79, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-020-pr-reviewer/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 391, in _record_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-020-pr-reviewer/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1012, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-020-pr-reviewer/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 393, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 21,
+   "slug": "issue-triager",
+   "title": "Issue Triager",
+   "pattern": "Classification + retrieval",
+   "folder": "day-021-issue-triager",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-021-issue-triager/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 62, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-021-issue-triager/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 89, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-021-issue-triager/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 470, in _record_model_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-021-issue-triager/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1085, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-021-issue-triager/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 391, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 22,
+   "slug": "model-router",
+   "title": "Model Router",
+   "pattern": "Cost-aware routing",
+   "folder": "day-022-model-router",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-022-model-router/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 62, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-022-model-router/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 89, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-022-model-router/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 470, in _record_model_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-022-model-router/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1085, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-022-model-router/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 391, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 23,
+   "slug": "a11y-auditor",
+   "title": "A11y Auditor",
+   "pattern": "Browser + rubric",
+   "folder": "day-023-a11y-auditor",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-023-a11y-auditor/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 62, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-023-a11y-auditor/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 89, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-023-a11y-auditor/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 470, in _record_model_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-023-a11y-auditor/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1085, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-023-a11y-auditor/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 391, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 24,
+   "slug": "dataset-scout",
+   "title": "Dataset Scout",
+   "pattern": "Retrieval + summarisation",
+   "folder": "day-024-dataset-scout",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-024-dataset-scout/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 62, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-024-dataset-scout/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 89, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-024-dataset-scout/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 470, in _record_model_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-024-dataset-scout/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1085, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-024-dataset-scout/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 391, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 25,
+   "slug": "deep-planner",
+   "title": "Deep Planner",
+   "pattern": "Explicit reasoning tool",
+   "folder": "day-025-deep-planner",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-025-deep-planner/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 62, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-025-deep-planner/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 89, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-025-deep-planner/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 470, in _record_model_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-025-deep-planner/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1085, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-025-deep-planner/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 391, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 26,
+   "slug": "a2a-duo",
+   "title": "A2A Duo",
+   "pattern": "Agent-to-agent (ADK A2A)",
+   "folder": "day-026-a2a-duo",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-026-a2a-duo/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 62, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-026-a2a-duo/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 89, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-026-a2a-duo/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 470, in _record_model_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-026-a2a-duo/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1085, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-026-a2a-duo/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 391, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
+   "output_excerpt": ""
+  },
+  {
+   "day": 27,
+   "slug": "cf-docs-helper",
+   "title": "CF Docs Helper",
+   "pattern": "Remote MCP over streamable HTTP",
+   "folder": "day-027-cf-docs-helper",
+   "model": "gemini-3.5-flash-lite",
+   "status": "error",
+   "exit_code": 1,
+   "metrics": null,
+   "stderr_tail": "    async for llm_response in agen:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-027-cf-docs-helper/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 62, in _stream_in_caller_scope\n    item = await _InContext(ctx, agen.__anext__())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-027-cf-docs-helper/.venv/lib/python3.12/site-packages/google/adk/utils/_runner_utils.py\", line 89, in __await__\n    waiting_on = self._ctx.run(coro.send, value)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-027-cf-docs-helper/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/core/_finalizer.py\", line 470, in _record_model_responses\n    async for llm_response in timed:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-027-cf-docs-helper/.venv/lib/python3.12/site-packages/google/adk/telemetry/_instrumentation.py\", line 1085, in time_model_awaits\n    async for response in responses:\n  File \"/home/runner/work/agent-a-day/agent-a-day/day-027-cf-docs-helper/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py\", line 391, in generate_content_async\n    raise _ResourceExhaustedError(ce) from ce\ngoogle.adk.models.google_llm._ResourceExhaustedError: \nOn how to mitigate this issue, please refer to:\n\nhttps://google.github.io/adk-docs/agents/models/google-gemini/#error-code-429-resource_exhausted\n\n\n429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Your project has exceeded its monthly spending cap. Please go to AI Studio at https://ai.studio/spend to manage your project spend cap. Learn more at https://ai.google.dev/gemini-api/docs/billing#project-spend-caps. ', 'status': 'RESOURCE_EXHAUSTED'}}",
    "output_excerpt": ""
   }
  ]
